@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet, Image } from "react-native";
 import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColourMap";
 import IconTypeMapper from "../maps/typeToIconMap";
-import GrassIcon from '../assets/type-icons/grass-icon.svg'
 import { LinearGradient } from 'expo-linear-gradient'
 
 const PokemonModalListView = ({ pokemon }) => {
@@ -21,6 +20,20 @@ const PokemonModalListView = ({ pokemon }) => {
     
         return newColor;
     }
+
+    function formatName(name) {
+        // Split the name by dash
+        let words = name.split('-');
+    
+        // Capitalize the first letter of each word
+        words = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    
+        // Join the words with space
+        let formattedName = words.join(' ');
+    
+        return formattedName;
+    }
+
     let hasSecondType = pokemon.types.length === 2;
     return (
         <LinearGradient 
@@ -31,12 +44,12 @@ const PokemonModalListView = ({ pokemon }) => {
             locations={[0.5, 1]}
         >
             <View style={styles.pokemonContainer}>
-                <Text>{String(pokemon.dexNumber).padStart(3 ,'0')}</Text>
-                <Text>{pokemon.name}</Text>
                 <Image 
                     source={{uri: pokemon.image}}
-                    style={{height: 70, width: 70}}
+                    style={{height: 70, width: 70, marginRight: 10, marginBottom: 10}}
                 />
+                <Text style={styles.numText}>{String(pokemon.dexNumber).padStart(3 ,'0')}</Text>
+                <Text style={styles.nameText}>{formatName(pokemon.name)}</Text>
             </View>
             <View>
             <IconTypeMapper type={pokemon.types[0]} width={40} height={40} fill={typeToColourMap[pokemon.types[0]]}/>
@@ -47,12 +60,6 @@ const PokemonModalListView = ({ pokemon }) => {
         </LinearGradient>
     );
 }
-
-/*
-#294121 green
-#27431D
-#231B30 purple
-*/
 
 const styles = StyleSheet.create({
     container: {
@@ -65,10 +72,18 @@ const styles = StyleSheet.create({
     },
     pokemonContainer: {
         flexDirection:"row",
-        alignItems: "center"
+        alignItems: "center",
     },
-    typeContainer: {
-
+    nameText: {
+        color: "#fff",
+        fontFamily: "Inconsolata Regular",
+        fontSize: 20
+    },
+    numText: {
+        color: "#808080",
+        fontFamily: "Inconsolata Regular",
+        fontSize: 20,
+        marginRight: 10
     }
 })
 
