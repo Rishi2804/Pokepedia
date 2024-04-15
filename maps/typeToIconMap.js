@@ -42,9 +42,9 @@ const IconTypeMapper = ({type, ...props}) => {
     }
     const Icon = typeToIcon[type]
     return(
-        <View>
+        <>
             {Icon ? Icon : <View style={{width: props.width, height: props.height}}/>}
-        </View>
+        </>
     )
 }
 

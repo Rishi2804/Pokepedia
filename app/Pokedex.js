@@ -6,30 +6,62 @@ const Pokedex = () => {
     const [pokemon, setPokemon] = useState([])
 
     useEffect(() => {
-        const fetchPokemonSpecies = async () => {
-            // console.log("Start fetching")
-            // const response = await fetch("https://pokeapi.co/api/v2/pokedex/1")
 
-            // const json = await response.json()
-
-            // const finalResponse = []
-
-            // if (response.ok) {
-            //     for (const entry of json.pokemon_entries) {
-            //         const speciesInfo = await fetch(entry.pokemon_species.url)
-            //         const speciesResult = await speciesInfo.json()
-            //         if (speciesInfo.ok) {
-            //             const detailedInfo = await fetch(speciesResult.varieties[0].pokemon.url)
-            //             const detailedResponse = await detailedInfo.json()
-            //             if (detailedInfo.ok) {
-            //                 finalResponse.push({ name: entry.pokemon_species.name, dexNumber: entry.entry_number, types: detailedResponse.types })
-            //             }
-            //         }
-            //     }
-            //     console.log("Done fetching")
-            //     setPokemon(finalResponse)
-            // }
+        const fetchPokemon = async () => {
             console.log("Start fetching");
+            const query = `
+            query ($dex: String) {
+            dex: pokemon_v2_pokedex(where: {name: {_eq: $dex}}) {
+                dexName: name
+                results: pokemon_v2_pokemondexnumbers(order_by: {pokedex_number: asc}) {
+                entry: pokemon_v2_pokemonspecy {
+                    name
+                    info: pokemon_v2_pokemons {
+                    types: pokemon_v2_pokemontypes {
+                        type: pokemon_v2_type {
+                            name
+                        }
+                    }
+                    sprites: pokemon_v2_pokemonsprites {
+                        imgPaths: sprites
+                    }
+                    }
+                }
+                dexNum: pokedex_number
+                }
+            }
+            }              
+            `
+            const response = await fetch("https://beta.pokeapi.co/graphql/v1beta",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                    query: query,
+                    variables: {dex: "national"}
+                    })
+                }
+            )
+
+            const json = await response.json()
+            if (response.ok) {
+                //console.log(json.data.dex[0].results[0].entry.info[0].sprites)
+                const finalArray = json.data.dex[0].results.map((result) => {
+                    return {
+                        name: result.entry.name,
+                        dexNumber: result.dexNum,
+                        types: result.entry.info[0].types.map(type => type.type.name),
+                        image: result.entry.info[0].sprites[0].imgPaths.other.home.front_default
+                    }
+                })
+                setPokemon(finalArray);
+                console.log("Done fetching");
+            } else {
+                fetchPokemonAlt()
+            }
+        }
+
+        const fetchPokemonAlt = async () => {
+            console.log("Start REST fetching");
             const response = await fetch("https://pokeapi.co/api/v2/pokedex/1");
             const json = await response.json();
             const speciesUrls = json.pokemon_entries.map(entry => entry.pokemon_species.url);
@@ -66,9 +98,10 @@ const Pokedex = () => {
                 setPokemon(finalResponse);
             }
 
-            console.log("Done fetching");
+            console.log("Done REST fetching");
         }
-        fetchPokemonSpecies()
+
+        fetchPokemon()
     }, [])
     return (
         <SafeAreaView>
