@@ -59,7 +59,8 @@ const Pokedex = () => {
                     return {
                         name: speciesResult.name,
                         dexNumber: speciesResult.id,
-                        types: detailedResponses[index].types.map((obj) => obj.type.name)
+                        types: detailedResponses[index].types.map((obj) => obj.type.name),
+                        image: detailedResponses[index].sprites.other.home.front_default
                     };
                 }));
                 setPokemon(finalResponse);
