@@ -1,13 +1,13 @@
 import { Text, View, StyleSheet } from "react-native";
-// import GrassIcon from '../assets/type-icons/grass-icon.svg'
+import FireIcon from '../assets/type-icons/fire-icon.svg'
 
 const PokemonModalListView = ({ pokemon }) => {
     return (
         <View style={styles.container}>
             <View style={styles.pokemonContainer}>
-                <Text>{pokemon.dexNumber}</Text>
+                <Text>{String(pokemon.dexNumber).padStart(3 ,'0')}</Text>
                 <Text>{pokemon.name}</Text>
-                {/* <GrassIcon height={200} width={200} /> */}
+                <FireIcon height={40} width={40} fill="black"/>
             </View>
             <View>
                 <Text>{pokemon.types[0]}</Text>
