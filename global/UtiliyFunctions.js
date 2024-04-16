@@ -44,6 +44,7 @@ export function formatGameText(str) {
         case "soulsilver": return "SoulSilver"
         case "lets-go-pikachu": return "Let's Go Pikachu"
         case "lets-go-eevee": return "Let's Go Eevee"
+        case "legends-arceus": return "Legends: Arceus"
         default: return formatName(str)
     }
 }

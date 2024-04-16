@@ -180,7 +180,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                                 <View style={{ marginBottom: 3 }}>
                                                     <View style={{flexDirection: "row"}}>
                                                         <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
-                                                            <Text style={{fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
+                                                            <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
                                                         </View>
                                                         <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
                                                             <Text style={styles.defaultText2}>{entry.entry}</Text>
