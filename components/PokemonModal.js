@@ -75,6 +75,108 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
         }
     }
 
+
+    const GeneralView = () => {
+        return (
+            <>
+                <View style={styles.section}>
+                    <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+                        <View style={{alignItems: "center"}}>
+                            <Text style={styles.headerText}>Weight</Text>
+                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].weight} kg</Text>
+                        </View>
+                        <View style={{alignItems: "center"}}>
+                            <Text style={styles.headerText}>Height</Text>
+                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].height} m</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.line} />
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Pokedex Entries</Text>
+                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, marginHorizontal: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
+                        {
+                            dexEntries.map((entry) => (
+                                <View style={{ marginBottom: 3 }}>
+                                    <View style={{flexDirection: "row"}}>
+                                        <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
+                                            <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
+                                        </View>
+                                        <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
+                                            <Text style={styles.defaultText2}>{entry.entry}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            ))
+                        }
+                    </View>
+                </View>
+                <View style={styles.line} />
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Images</Text>
+                        <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+                            <View>
+                                <Text style={styles.headerText}>Regular</Text>
+                                <Image 
+                                    source={{uri: pokemonInfo[formIndex].image}}
+                                    style={{width: 150, height: 150}}
+                                />
+                            </View>
+                            <View>
+                                <Text style={styles.headerText}>Shiny</Text>
+                                <Image 
+                                    source={{uri: pokemonInfo[formIndex].shiny}}
+                                    style={{width: 150, height: 150}}
+                                />
+                            </View>
+                        </View>
+                        {
+                            pokemonInfo[formIndex].female && (
+                                <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+                                    <View>
+                                        <Text style={styles.headerText}>Female</Text>
+                                        <Image 
+                                            source={{uri: pokemonInfo[formIndex].female}}
+                                            style={{width: 150, height: 150}}
+                                        />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.headerText}>Female Shiny</Text>
+                                        <Image 
+                                            source={{uri: pokemonInfo[formIndex].femaleShiny}}
+                                            style={{width: 150, height: 150}}
+                                        />
+                                    </View>
+                                </View>
+                            )
+                        }
+                    </View>
+                <View style={styles.line} />
+            </>
+        );
+    }
+
+    const BattleView = () => {
+        return (
+            <>
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Abilites</Text>
+                    <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+                        {
+                            pokemonInfo[formIndex].abilites.map((ability) => (
+                                <View style={{alignItems: "center"}}>
+                                    <Text style={styles.defaultText}>{formatName(ability.name)}</Text>
+                                    {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
+                                </View>
+                            ))
+                        }
+                    </View>
+                </View>
+                <View style={styles.line} />
+            </>
+        );
+    }
+
     return (
         <View>
             <Pressable onPress={ () => {
@@ -145,95 +247,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     {
                         pokemonInfo[0] && (
                             <>
-                                <View style={styles.section}>
-                                    <Text style={styles.headerText}>Abilites</Text>
-                                    <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
-                                        {
-                                            pokemonInfo[formIndex].abilites.map((ability) => (
-                                                <View style={{alignItems: "center"}}>
-                                                    <Text style={styles.defaultText}>{formatName(ability.name)}</Text>
-                                                    {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
-                                                </View>
-                                            ))
-                                        }
-                                    </View>
-                                </View>
-                                <View style={styles.line} />
-                                <View style={styles.section}>
-                                    <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
-                                        <View style={{alignItems: "center"}}>
-                                            <Text style={styles.headerText}>Weight</Text>
-                                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].weight} kg</Text>
-                                        </View>
-                                        <View style={{alignItems: "center"}}>
-                                            <Text style={styles.headerText}>Height</Text>
-                                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].height} m</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                <View style={styles.line} />
-                                <View style={styles.section}>
-                                    <Text style={styles.headerText}>Pokedex Entries</Text>
-                                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, marginHorizontal: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
-                                        {
-                                            dexEntries.map((entry) => (
-                                                <View style={{ marginBottom: 3 }}>
-                                                    <View style={{flexDirection: "row"}}>
-                                                        <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
-                                                            <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
-                                                        </View>
-                                                        <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
-                                                            <Text style={styles.defaultText2}>{entry.entry}</Text>
-                                                        </View>
-                                                    </View>
-                                                </View>
-                                            ))
-                                        }
-                                    </View>
-                                </View>
-                                <View style={styles.line} />
-                                <View style={styles.section}>
-                                    <Text style={styles.headerText}>Images</Text>
-                                        <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
-                                            <View>
-                                                <Text style={styles.headerText}>Regular</Text>
-                                                <Image 
-                                                    source={{uri: pokemonInfo[formIndex].image}}
-                                                    style={{width: 150, height: 150}}
-                                                />
-                                            </View>
-                                            <View>
-                                                <Text style={styles.headerText}>Shiny</Text>
-                                                <Image 
-                                                    source={{uri: pokemonInfo[formIndex].shiny}}
-                                                    style={{width: 150, height: 150}}
-                                                />
-                                            </View>
-                                        </View>
-                                        {
-                                            pokemonInfo[formIndex].female && (
-                                                <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
-                                                    <View>
-                                                        <Text style={styles.headerText}>Female</Text>
-                                                        <Image 
-                                                            source={{uri: pokemonInfo[formIndex].female}}
-                                                            style={{width: 150, height: 150}}
-                                                        />
-                                                    </View>
-                                                    <View>
-                                                        <Text style={styles.headerText}>Female Shiny</Text>
-                                                        <Image 
-                                                            source={{uri: pokemonInfo[formIndex].femaleShiny}}
-                                                            style={{width: 150, height: 150}}
-                                                        />
-                                                    </View>
-                                                </View>
-                                            )
-                                        }
-                                    </View>
-                                <View style={styles.line} />
+                                <GeneralView />
                             </>
-
                         )
                     }
                 </ScrollView>
