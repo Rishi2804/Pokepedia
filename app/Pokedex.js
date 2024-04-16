@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FlatList, SafeAreaView, View, StyleSheet } from "react-native";
 import PokemonListView from "../components/PokemonListView";
 
+import { useDexContext } from "../components/hooks/useDexContext";
+
 const Pokedex = () => {
-    const [pokemon, setPokemon] = useState([])
+    const  { dex: pokemon, dispatch } = useDexContext()
 
     useEffect(() => {
 
@@ -52,7 +54,8 @@ const Pokedex = () => {
                         image: result.entry.info[0].sprites[0].imgPaths.other.home.front_default
                     }
                 })
-                setPokemon(finalArray);
+                //setPokemon(finalArray);
+                dispatch({type: 'SET_DEX_INFO', payload: finalArray})
                 console.log("Done fetching");
             } else {
                 fetchPokemonAlt()
@@ -94,7 +97,8 @@ const Pokedex = () => {
                         image: detailedResponses[index].sprites.other.home.front_default
                     };
                 }));
-                setPokemon(finalResponse);
+                //setPokemon(finalResponse);
+                dispatch({type: 'SET_DEX_INFO', payload: finalArray})
             }
 
             console.log("Done REST fetching");
