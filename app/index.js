@@ -8,12 +8,7 @@ export default function Page() {
         "Geologica SemiBold": require("../assets/fonts/GeologicaSemiBold.ttf"),
         "Geologica Bold": require("../assets/fonts/GeologicaBold.ttf"),
         "Inconsolata Regular": require("../assets/fonts/InconsolataRegular.ttf"),
+        "Inconsolata Bold": require("../assets/fonts/InconsolataBold.ttf"),
     })
-
-    if (!fontsLoaded) {
-        return <AppLoading />
-    }
-
-
     return <LoadingView />
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, View, StyleSheet } from "react-native";
-import PokemonModalListView from "../components/PokemonModalListView";
+import PokemonListView from "../components/PokemonListView";
 
 const Pokedex = () => {
     const [pokemon, setPokemon] = useState([])
@@ -44,7 +44,6 @@ const Pokedex = () => {
 
             const json = await response.json()
             if (response.ok) {
-                //console.log(json.data.dex[0].results[0].entry.info[0].sprites)
                 const finalArray = json.data.dex[0].results.map((result) => {
                     return {
                         name: result.entry.name,
@@ -110,7 +109,7 @@ const Pokedex = () => {
                     data={pokemon}
                     renderItem={({ item }) => {
                         return(
-                            <PokemonModalListView pokemon={item} key={item.dexNumber}/>
+                            <PokemonListView pokemon={item} key={item.dexNumber} />
                         )
                     }}
                     ItemSeparatorComponent={<View style={{height: 5}}/>}
