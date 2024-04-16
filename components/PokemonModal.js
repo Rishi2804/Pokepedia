@@ -96,8 +96,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     <Text style={styles.headerText}>Pokedex Entries</Text>
                     <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, marginHorizontal: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
                         {
-                            dexEntries.map((entry) => (
-                                <View style={{ marginBottom: 3 }}>
+                            dexEntries.map((entry, index) => (
+                                <View style={{ marginBottom: 3 }} key={index}>
                                     <View style={{flexDirection: "row"}}>
                                         <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
                                             <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
@@ -163,8 +163,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     <Text style={styles.headerText}>Abilites</Text>
                     <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
                         {
-                            pokemonInfo[formIndex].abilites.map((ability) => (
-                                <View style={{alignItems: "center"}}>
+                            pokemonInfo[formIndex].abilites.map((ability, index) => (
+                                <View style={{alignItems: "center"}} key={index}>
                                     <Text style={styles.defaultText}>{formatName(ability.name)}</Text>
                                     {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
                                 </View>
