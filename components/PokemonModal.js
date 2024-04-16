@@ -3,6 +3,8 @@ import { Modal, Pressable, View, Text, StyleSheet, ScrollView, Image } from "rea
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
+import { fixFlavourText, darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
+import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -10,44 +12,6 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [dexEntries, setDexEntries] = useState([])
     const [formIndex, setFormIndex] = useState(0)
     const [fetched, setFetched] = useState(false)
-
-    function fixFlavourText(str) {
-        return str.replace(/\f/g, '\n')  // Replace form feed with newline
-                  .replace(/\u00ad\n/g, '')  // Replace soft hyphen followed by newline with nothing
-                  .replace(/\u00ad/g, '')    // Replace standalone soft hyphen with nothing
-                  .replace(/ -\n/g, ' - ')   // Replace hyphen followed by newline with hyphen and space
-                  .replace(/-\n/g, '- ')     // Replace hyphen followed by newline with hyphen and space
-                  .replace(/(\s*\n)+/g, ' ');      // Replace newline with space
-    }
-
-    function darkenColor(color, darkeningFactor) {
-        // Convert hex color to RGB
-        var r = parseInt(color.substring(1, 3), 16);
-        var g = parseInt(color.substring(3, 5), 16);
-        var b = parseInt(color.substring(5, 7), 16);
-    
-        var newR = Math.max(0, Math.floor(r * (1 - darkeningFactor)));
-        var newG = Math.max(0, Math.floor(g * (1 - darkeningFactor)));
-        var newB = Math.max(0, Math.floor(b * (1 - darkeningFactor)));
-    
-        // Convert RGB back to hex
-        var newColor = "#" + ((1 << 24) + (newR << 16) + (newG << 8) + newB).toString(16).slice(1);
-    
-        return newColor;
-    }
-
-    function formatName(name) {
-        // Split the name by dash
-        let words = name.split('-');
-    
-        // Capitalize the first letter of each word
-        words = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-    
-        // Join the words with space
-        let formattedName = words.join(' ');
-    
-        return formattedName;
-    }
 
     const fetchDataAlt = async () => {
         const dexFormat = (data) => {
@@ -210,20 +174,22 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                 <View style={styles.line} />
                                 <View style={styles.section}>
                                     <Text style={styles.headerText}>Pokedex Entries</Text>
-                                    {
-                                        dexEntries.map((entry) => (
-                                            <View style={{backgroundColor: "lightblue", marginHorizontal: 8, borderWidth: 3,}}>
-                                                <View style={{flexDirection: "row"}}>
-                                                    <View style={{backgroundColor: "dodgerblue", borderTopRightRadius: 8, borderTopBottomRadius: 8, width: 70, alignItems: "center", justifyContent: "center"}}>
-                                                        <Text>{entry.game}</Text>
-                                                    </View>
-                                                    <View style={{flex: 1}}>
-                                                        <Text style={{textAlign: "left"}}>{entry.entry}</Text>
+                                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, marginHorizontal: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
+                                        {
+                                            dexEntries.map((entry) => (
+                                                <View style={{ marginBottom: 3 }}>
+                                                    <View style={{flexDirection: "row"}}>
+                                                        <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
+                                                            <Text style={{fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
+                                                        </View>
+                                                        <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
+                                                            <Text style={styles.defaultText2}>{entry.entry}</Text>
+                                                        </View>
                                                     </View>
                                                 </View>
-                                            </View>
-                                        ))
-                                    }
+                                            ))
+                                        }
+                                    </View>
                                 </View>
                                 <View style={styles.line} />
                                 <View style={styles.section}>

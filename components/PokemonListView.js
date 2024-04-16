@@ -3,37 +3,9 @@ import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColou
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
 import PokemonModal from "./PokemonModal";
+import { darkenColor, formatName } from "../global/UtiliyFunctions";
 
 const PokemonListView = ({ pokemon }) => {
-
-    function darkenColor(color, darkeningFactor) {
-        // Convert hex color to RGB
-        var r = parseInt(color.substring(1, 3), 16);
-        var g = parseInt(color.substring(3, 5), 16);
-        var b = parseInt(color.substring(5, 7), 16);
-    
-        var newR = Math.max(0, Math.floor(r * (1 - darkeningFactor)));
-        var newG = Math.max(0, Math.floor(g * (1 - darkeningFactor)));
-        var newB = Math.max(0, Math.floor(b * (1 - darkeningFactor)));
-    
-        // Convert RGB back to hex
-        var newColor = "#" + ((1 << 24) + (newR << 16) + (newG << 8) + newB).toString(16).slice(1);
-    
-        return newColor;
-    }
-
-    function formatName(name) {
-        // Split the name by dash
-        let words = name.split('-');
-    
-        // Capitalize the first letter of each word
-        words = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-    
-        // Join the words with space
-        let formattedName = words.join(' ');
-    
-        return formattedName;
-    }
 
     let hasSecondType = pokemon.types.length === 2;
     return (
