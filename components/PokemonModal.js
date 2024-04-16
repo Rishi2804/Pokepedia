@@ -11,6 +11,15 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [formIndex, setFormIndex] = useState(0)
     const [fetched, setFetched] = useState(false)
 
+    function fixFlavourText(str) {
+        return str.replace(/\f/g, '\n')  // Replace form feed with newline
+                  .replace(/\u00ad\n/g, '')  // Replace soft hyphen followed by newline with nothing
+                  .replace(/\u00ad/g, '')    // Replace standalone soft hyphen with nothing
+                  .replace(/ -\n/g, ' - ')   // Replace hyphen followed by newline with hyphen and space
+                  .replace(/-\n/g, '- ')     // Replace hyphen followed by newline with hyphen and space
+                  .replace(/(\s*\n)+/g, ' ');      // Replace newline with space
+    }
+
     function darkenColor(color, darkeningFactor) {
         // Convert hex color to RGB
         var r = parseInt(color.substring(1, 3), 16);
@@ -44,10 +53,10 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
         const dexFormat = (data) => {
             const dexFiltered = data.flavor_text_entries.filter((entry) => entry.language.name === 'en')
             const dexEntries = dexFiltered.map((entry) => {
-            return {
-                entry: entry.flavor_text,
-                game: entry.version.name
-            }
+                return {
+                    entry: fixFlavourText(entry.flavor_text),
+                    game: entry.version.name
+                }
             })
             return dexEntries
         }
@@ -96,8 +105,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     stats: stats
                 })
             }
-            setPokemonInfo(formData)
             setDexEntries(dexEntries)
+            setPokemonInfo(formData)
             //console.log("end")
         }
     }
@@ -141,7 +150,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         ]}
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}
-                        locations={[0, 1]}
+                        locations={[0.2, 1]}
                     >
                         <Image 
                             source={{uri: pokemonInfo[formIndex] ? pokemonInfo[formIndex].image : pokemon.image}}
@@ -197,6 +206,24 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                             <Text style={styles.defaultText}>{pokemonInfo[formIndex].height} m</Text>
                                         </View>
                                     </View>
+                                </View>
+                                <View style={styles.line} />
+                                <View style={styles.section}>
+                                    <Text style={styles.headerText}>Pokedex Entries</Text>
+                                    {
+                                        dexEntries.map((entry) => (
+                                            <View style={{backgroundColor: "lightblue", marginHorizontal: 8, borderWidth: 3,}}>
+                                                <View style={{flexDirection: "row"}}>
+                                                    <View style={{backgroundColor: "dodgerblue", borderTopRightRadius: 8, borderTopBottomRadius: 8, width: 70, alignItems: "center", justifyContent: "center"}}>
+                                                        <Text>{entry.game}</Text>
+                                                    </View>
+                                                    <View style={{flex: 1}}>
+                                                        <Text style={{textAlign: "left"}}>{entry.entry}</Text>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        ))
+                                    }
                                 </View>
                                 <View style={styles.line} />
                                 <View style={styles.section}>
@@ -315,13 +342,5 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 })
-
-
-// flavor_text.replace(u'\f',       u'\n') \
-//                           .replace(u'\u00ad\n', u'') \
-//                           .replace(u'\u00ad',   u'') \
-//                           .replace(u' -\n',     u' - ') \
-//                           .replace(u'-\n',      u'-') \
-//                           .replace(u'\n',       u' ')
 
 export default PokemonModal;
