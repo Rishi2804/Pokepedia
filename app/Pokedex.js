@@ -54,7 +54,6 @@ const Pokedex = () => {
                         image: result.entry.info[0].sprites[0].imgPaths.other.home.front_default
                     }
                 })
-                //setPokemon(finalArray);
                 dispatch({type: 'SET_DEX_INFO', payload: finalArray})
                 console.log("Done fetching");
             } else {

@@ -3,8 +3,9 @@ import { Modal, Pressable, View, Text, StyleSheet, ScrollView, Image } from "rea
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { fixFlavourText, darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
+import { transformSpeciesInfoAlt, transformDexDataAlt } from "../transformers/SpeciesInfoTransformer";
 
 import { useDexContext } from "./hooks/useDexContext";
 
@@ -16,7 +17,6 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [formIndex, setFormIndex] = useState(0)
 
     const handleModalOpen = () => {
-
         function findInList(name) {
             for (const speciesArray of speciesInfo) {
                 if (speciesArray.info[0].name === name) {
@@ -37,16 +37,6 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     }
 
     const fetchDataAlt = async () => {
-        const dexFormat = (data) => {
-            const dexFiltered = data.flavor_text_entries.filter((entry) => entry.language.name === 'en')
-            const dexEntries = dexFiltered.map((entry) => {
-                return {
-                    entry: fixFlavourText(entry.flavor_text),
-                    game: entry.version.name
-                }
-            })
-            return dexEntries
-        }
 
         const dexResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`)
 
@@ -59,38 +49,13 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             formRawData.push(json)
         }
 
+        // const evoChainResponse = await fetch(dexData.evolution_chain)
+
+        // const evoChainData = await evoChainResponse.json()
+
         if (dexResponse.ok) {
-            const dexEntries = dexFormat(dexData)
-            const formData = []
-            for (const json of formRawData) {
-                const types = json.types.map((item) => item.type.name)
-                const stats = json.stats.map((item) => {
-                    return {
-                        name: item.stat.name,
-                        stat: item.base_stat
-                    }
-                })
-                const abilites = json.abilities.map((item) => {
-                    return {
-                        name: item.ability.name,
-                        hidden: item.is_hidden
-                    }
-                })
-                const height = (json.height / 10).toFixed(1)
-                const weight = (json.weight / 10).toFixed(2)
-                formData.push({
-                    name: json.name,
-                    types: types,
-                    image: json.sprites.other.home.front_default,
-                    female: json.sprites.other.home.front_female,
-                    shiny: json.sprites.other.home.front_shiny,
-                    femaleShiny: json.sprites.other.home.front_shiny_female,
-                    abilites: abilites,
-                    weight: weight,
-                    height: height,
-                    stats: stats
-                })
-            }
+            const dexEntries = transformDexDataAlt(dexData)
+            const formData = transformSpeciesInfoAlt(formRawData)
             setDexEntries(dexEntries)
             setPokemonInfo(formData)
             dispatch({type: 'ADD_SPECIES_INFO', payload: {info: formData, dexEntries: dexEntries}})
