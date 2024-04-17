@@ -6,12 +6,35 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { fixFlavourText, darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 
+import { useDexContext } from "./hooks/useDexContext";
+
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
+    const { speciesInfo, dispatch } = useDexContext()
     const [pokemonInfo, setPokemonInfo] = useState([])
     const [dexEntries, setDexEntries] = useState([])
     const [formIndex, setFormIndex] = useState(0)
-    const [fetched, setFetched] = useState(false)
+
+    const handleModalOpen = () => {
+
+        function findInList(name) {
+            for (const speciesArray of speciesInfo) {
+                if (speciesArray.info[0].name === name) {
+                    return speciesArray
+                }
+            }
+        }
+
+        const pokemonInfo = findInList(pokemon.name)
+        if (!pokemonInfo) {
+            fetchDataAlt()
+            console.log("Needed to fetch")
+        } else {
+            setDexEntries(pokemonInfo.dexEntries)
+            setPokemonInfo(pokemonInfo.info)
+            console.log("Had info from before!")
+        }
+    }
 
     const fetchDataAlt = async () => {
         const dexFormat = (data) => {
@@ -25,7 +48,6 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             return dexEntries
         }
 
-        //console.log("start")
         const dexResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`)
 
         const dexData = await dexResponse.json()
@@ -71,7 +93,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             }
             setDexEntries(dexEntries)
             setPokemonInfo(formData)
-            //console.log("end")
+            dispatch({type: 'ADD_SPECIES_INFO', payload: {info: formData, dexEntries: dexEntries}})
         }
     }
 
@@ -180,7 +202,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     return (
         <View>
             <Pressable onPress={ () => {
-                if (!fetched) fetchDataAlt()
+                handleModalOpen()
                 setIsVisible(true)
             }}>
                 {children}
