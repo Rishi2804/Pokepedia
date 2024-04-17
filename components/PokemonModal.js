@@ -5,15 +5,16 @@ import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
 import { darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
-import { transformSpeciesInfoAlt, transformDexDataAlt } from "../transformers/SpeciesInfoTransformer";
+import { transformSpeciesInfoAlt, transformDexDataAlt, transformEvoChain } from "../transformers/SpeciesInfoTransformer";
 
 import { useDexContext } from "./hooks/useDexContext";
 
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
-    const { speciesInfo, dispatch } = useDexContext()
+    const { dex, speciesInfo, evoChains, dispatch } = useDexContext()
     const [pokemonInfo, setPokemonInfo] = useState([])
     const [dexEntries, setDexEntries] = useState([])
+    const [evoChain, setEvoChain] = useState([])
     const [formIndex, setFormIndex] = useState(0)
 
     const handleModalOpen = () => {
@@ -32,6 +33,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
         } else {
             setDexEntries(pokemonInfo.dexEntries)
             setPokemonInfo(pokemonInfo.info)
+            setEvoChain(evoChains.find((chain) => chain.id === pokemonInfo.chainId).chain)
             console.log("Had info from before!")
         }
     }
@@ -49,16 +51,26 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             formRawData.push(json)
         }
 
-        // const evoChainResponse = await fetch(dexData.evolution_chain)
-
-        // const evoChainData = await evoChainResponse.json()
-
         if (dexResponse.ok) {
             const dexEntries = transformDexDataAlt(dexData)
             const formData = transformSpeciesInfoAlt(formRawData)
+            const chainId = Number(dexData.evolution_chain.url.match(/(\d+)\/?$/)[1])
             setDexEntries(dexEntries)
             setPokemonInfo(formData)
-            dispatch({type: 'ADD_SPECIES_INFO', payload: {info: formData, dexEntries: dexEntries}})
+            dispatch({type: 'ADD_SPECIES_INFO', payload: {info: formData, dexEntries: dexEntries, chainId: chainId}})
+
+            const chain = evoChains.find((chain) => chain.id === chainId)
+            if (!chain) {
+                const evoChainResponse = await fetch(dexData.evolution_chain.url)
+                const evoChainData = await evoChainResponse.json()
+                const formattedChain = transformEvoChain(evoChainData)
+                setEvoChain(formattedChain.chain)
+                dispatch({type: 'ADD_EVO_CHAIN', payload: formattedChain})
+                console.log("Needed to fetch EVO")
+            } else {
+                setEvoChain(chain.chain)
+                console.log("Already there")
+            }
         }
     }
 
@@ -79,9 +91,31 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     </View>
                 </View>
                 <View style={styles.line} />
+                {
+                    evoChain.length > 0 && (
+                        <View style={styles.section}>
+                            <Text style={styles.headerText}>Evolution Chain</Text>
+                            {
+                                evoChain.map((line, index) => (
+                                    <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={index}>
+                                        <Image 
+                                            source={{url: dex.find((mon) => mon.name === line.from).image}}
+                                            style={{width: 80, height: 80}}
+                                        />
+                                        <Image 
+                                            source={{url: dex.find((mon) => mon.name === line.to).image}}
+                                            style={{width: 80, height: 80}}
+                                        />
+                                    </View>
+                                ))
+                            }
+                        </View>
+                    )
+                }
+                <View style={styles.line} />
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Pokedex Entries</Text>
-                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, marginHorizontal: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
+                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
                         {
                             dexEntries.map((entry, index) => (
                                 <View style={{ marginBottom: 3 }} key={index}>
@@ -232,7 +266,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     </LinearGradient>
                     <View style={styles.line}/>
                     {
-                        pokemonInfo[0] && (
+                        pokemonInfo[0] && evoChain.length > 0 && (
                             <>
                                 <GeneralView />
                             </>
@@ -293,7 +327,8 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     section: {
-        marginVertical: 26
+        marginVertical: 26,
+        marginHorizontal: 8, 
     },
     headerText: {
         fontFamily: "Inconsolata Regular",

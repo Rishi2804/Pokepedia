@@ -44,3 +44,31 @@ export function transformDexDataAlt(data) {
     })
     return dexEntries
 }
+
+export function transformEvoChain(data) {
+    const evolutionChain = [];
+    
+    // function parseEvolutionDetails(details) {
+    //     // Extract relevant details from evolution_details
+    //     return details.map(detail => {
+    //         const { min_level, trigger } = detail;
+    //         return { min_level, trigger: trigger.name };
+    //     });
+    // }
+    
+    function traverseChain(chain, from) {
+        if (!chain || !chain.length) return;
+        
+        chain.forEach(evolution => {
+            const to = evolution.species.name;
+            const details = evolution.evolution_details;
+            evolutionChain.push({ from, to, details });
+            traverseChain(evolution.evolves_to, to);
+        });
+    }
+    
+    const startingPokemon = data.chain.species.name;
+    traverseChain(data.chain.evolves_to, startingPokemon);
+    
+    return { id: data.id, chain: evolutionChain };
+}
