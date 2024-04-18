@@ -32,9 +32,9 @@ export function formatName(name) {
     let words = name.split('-');
 
     words = words.sort((a, b) => {
-        if (a === "mega" || a === "gmax" || a === "alola" || a === "galar" || a === "paldea") {
+        if (a === "mega" || a === "gmax" || a === "alola" || a === "galar" || a === 'hisui' || a === "paldea") {
             return -1; // 'mega' comes before other strings
-        } else if (b === "mega" || b === "gmax" || b === "alola" || b === "galar" || b === "paldea") {
+        } else if (b === "mega" || b === "gmax" || b === "alola" || b === "galar" || b === 'hisuian' || b === "paldea") {
             return 1; // Other strings come after 'mega'
         } else {
             return 0; // No preference for other strings
@@ -48,6 +48,10 @@ export function formatName(name) {
         }
         case 'galar': {
             words[0] = 'galarian'
+            break;
+        }
+        case 'hisui': {
+            words[0] = 'Hisuian'
             break;
         }
         case 'paldea': {
