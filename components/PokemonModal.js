@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { Modal, Pressable, View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { useRef, useState } from "react";
+import { Modal, Pressable, View, Text, StyleSheet, ScrollView, Image, Dimensions } from "react-native";
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
@@ -16,6 +17,65 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [dexEntries, setDexEntries] = useState([])
     const [evoChain, setEvoChain] = useState([])
     const [formIndex, setFormIndex] = useState(0)
+
+    const swipeableRef = useRef(null);
+
+    const threshold = Dimensions.get('window').width / 4
+    
+    const handleSwipe = (dir) => {
+        if (dir === "right") {
+            const nextIndex = formIndex + 1
+            if (nextIndex < pokemonInfo.length) {
+                setFormIndex(nextIndex)
+            } else {
+                setFormIndex(0)
+            }
+        } else {
+            const nextIndex = formIndex - 1
+            if (nextIndex >= 0) {
+                setFormIndex(nextIndex)
+            } else {
+                setFormIndex(pokemonInfo.length - 1)
+            }
+        }
+    }
+
+    const handleOpen = (dir) => {
+        if (dir === "right") {
+            const nextIndex = formIndex + 1
+            if (nextIndex < pokemonInfo.length) {
+                setFormIndex(nextIndex)
+            } else {
+                setFormIndex(0)
+            }
+            swipeableRef.current.openLeft()
+            resetImagePosition()
+        } else {
+            const nextIndex = formIndex - 1
+            if (nextIndex >= 0) {
+                setFormIndex(nextIndex)
+            } else {
+                setFormIndex(pokemonInfo.length - 1)
+            }
+            swipeableRef.current.openRight()
+            resetImagePosition()
+        }
+    }
+
+    const resetImagePosition = () => {
+        // Reset the position of the image here
+        if (swipeableRef.current) {
+          swipeableRef.current.close();
+        }
+      };
+
+    const blankRender = () => {
+        return (
+            <View style={{width: pokemonInfo.length > 1 ? '100%' : 0}}>
+
+            </View>
+        )
+    }
 
     const handleModalOpen = () => {
         function findInList(name) {
@@ -208,7 +268,10 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             </Pressable>
             <Modal
                 visible={isVisible}
-                onRequestClose={() => setIsVisible(false)}
+                onRequestClose={() => {
+                    setFormIndex(0)
+                    setIsVisible(false)
+                }}
                 animationType="slide"
                 presentationStyle="pageSheet"
             >
@@ -216,8 +279,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     style={styles.header}
                     colors={[
                         pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
-                        hasSecondType ? pokemonInfo[0] ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[1]], 0.2)
-                            : pokemonInfo[0] ? darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
+                        pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
+                                : hasSecondType ? darkenColor(gradientMap[pokemon.types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
                     ]}
                     start={{x: 0, y: 1}}
                     end={{x: 1, y: 0}}
@@ -232,41 +295,51 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         style={styles.bigContainer}
                         colors={[
                             pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
-                            hasSecondType ? pokemonInfo[0] ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[1]], 0.2)
-                                : pokemonInfo[0] ? darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
+                            pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
+                                : hasSecondType ? darkenColor(gradientMap[pokemon.types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
                         ]}
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}
                         locations={[0.2, 1]}
                     >
-                        <Image 
-                            source={{uri: pokemonInfo[formIndex] ? pokemonInfo[formIndex].image : pokemon.image}}
-                            style={{width: 200, height: 200, marginTop: 40, marginBottom: 10}}
-                        />
-                        <Text style={styles.titleText}>{pokemonInfo[0] ? formatName(pokemonInfo[formIndex].name) : pokemon.name }</Text>
-                        <Text style={styles.subTitleText}>Types</Text>
-                        <View style={{flexDirection: "row"}}>
-                        <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]]}]}>
-                            <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]} width={32} height={32} fill="white"/>
-                            <View style={styles.textContainer}>
-                                <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[0].toUpperCase() : pokemon.types[0].toUpperCase()}</Text>
-                            </View>
-                        </View>
-                            {
-                                hasSecondType && (
-                                    <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]]}]}>
-                                        <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]} width={32} height={32} fill="white"/>
-                                        <View style={styles.textContainer}>
-                                            <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[1].toUpperCase() : pokemon.types[1].toUpperCase()}</Text>
-                                        </View>
+                        <Swipeable
+                            ref={swipeableRef}
+                            leftThreshold={threshold}
+                            rightThreshold={threshold}
+                            renderLeftActions={blankRender}
+                            renderRightActions={blankRender}
+                            onSwipeableOpen={(direction) => handleOpen(direction)}
+                            onSwipeableWillOpen={(direction) => handleSwipe(direction)}
+                        >
+                            <Image
+                                source={{uri: pokemonInfo[formIndex] ? pokemonInfo[formIndex].image : pokemon.image}}
+                                style={{width: 200, height: 200, marginTop: 40, marginBottom: 10, alignSelf: "center"}}
+                            />
+                            <Text style={styles.titleText}>{pokemonInfo[0] ? formatName(pokemonInfo[formIndex].name) : pokemon.name }</Text>
+                            <Text style={styles.subTitleText}>Types</Text>
+                            <View style={{flexDirection: "row", alignSelf: "center"}}>
+                                <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]]}]}>
+                                    <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]} width={32} height={32} fill="white"/>
+                                    <View style={styles.textContainer}>
+                                        <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[0].toUpperCase() : pokemon.types[0].toUpperCase()}</Text>
                                     </View>
-                                )
-                            }
-                        </View>
+                                </View>
+                                    {
+                                        ((pokemonInfo[0] && pokemonInfo[formIndex].types.length === 2) || hasSecondType) && (
+                                            <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]]}]}>
+                                                <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]} width={32} height={32} fill="white"/>
+                                                <View style={styles.textContainer}>
+                                                    <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[1].toUpperCase() : pokemon.types[1].toUpperCase()}</Text>
+                                                </View>
+                                            </View>
+                                        )
+                                    }
+                            </View>
+                        </Swipeable>
                     </LinearGradient>
                     <View style={styles.line}/>
                     {
-                        pokemonInfo[0] && evoChain.length > 0 && (
+                        pokemonInfo[0] && (
                             <>
                                 <GeneralView />
                             </>
@@ -293,8 +366,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     bigContainer: {
-        height: 400,
-        alignItems: "center"
+        height: 400
     },
     typeContainter: {
         flexDirection: "row",
@@ -319,12 +391,14 @@ const styles = StyleSheet.create({
     titleText: {
         fontFamily: "Inconsolata Bold",
         color: "white",
-        fontSize: 35
+        fontSize: 35,
+        textAlign: "center"
     },
     subTitleText: {
         fontFamily: "Inconsolata Regular",
         color: "#909090",
-        fontSize: 20
+        fontSize: 20,
+        textAlign: "center"
     },
     section: {
         marginVertical: 26,
