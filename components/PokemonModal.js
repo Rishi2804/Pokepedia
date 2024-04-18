@@ -4,7 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { darkenColor, formatName, formatGameText } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText, formatText } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { transformSpeciesInfoAlt, transformDexDataAlt, transformEvoChain } from "../transformers/SpeciesInfoTransformer";
 
@@ -246,7 +246,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         {
                             pokemonInfo[formIndex].abilites.map((ability, index) => (
                                 <View style={{alignItems: "center"}} key={index}>
-                                    <Text style={styles.defaultText}>{formatName(ability.name)}</Text>
+                                    <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
                                     {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
                                 </View>
                             ))
