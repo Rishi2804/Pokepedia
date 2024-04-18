@@ -325,7 +325,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                     </View>
                                 </View>
                                     {
-                                        ((pokemonInfo[0] && pokemonInfo[formIndex].types.length === 2) || hasSecondType) && (
+                                        ((pokemonInfo[0] && pokemonInfo[formIndex].types.length === 2) || (!pokemonInfo[0] && hasSecondType)) && (
                                             <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]]}]}>
                                                 <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]} width={32} height={32} fill="white"/>
                                                 <View style={styles.textContainer}>
