@@ -9,6 +9,7 @@ import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { transformSpeciesInfoAlt, transformDexDataAlt, transformEvoChain } from "../transformers/SpeciesInfoTransformer";
 
 import { useDexContext } from "./hooks/useDexContext";
+import Tabs from "./Tabs";
 
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -19,6 +20,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [formIndex, setFormIndex] = useState(0)
 
     const swipeableRef = useRef(null);
+    const [tab, setTab] = useState(0)
 
     const threshold = Dimensions.get('window').width / 4
     
@@ -189,7 +191,6 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                     } else if (curRegionalEvo) {
                                         const fromFind = fromVariants.find((variant) => variant.region === curRegionalEvo)
                                         const toFind = toVariants.find((variant) => variant.region === curRegionalEvo)
-                                        //console.log(toDexContext)
                                         if ((fromFind || pokemonInfo[formIndex].name !== toDexContext.name) && (toFind || pokemonInfo[formIndex].name === toDexContext.name)) {
                                             if (fromFind) fromImg = fromFind.obj.image
                                             if (toFind) toImg = toFind.obj.image
@@ -408,12 +409,14 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                     }
                             </View>
                         </Swipeable>
+                        <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>
                     </LinearGradient>
                     <View style={styles.line}/>
                     {
                         pokemonInfo[0] && (
                             <>
-                                <GeneralView />
+                                {tab === 0 && <GeneralView />}
+                                {tab === 1 && <BattleView />}
                             </>
                         )
                     }
@@ -438,7 +441,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     bigContainer: {
-        height: 400
+        height: 405
     },
     typeContainter: {
         flexDirection: "row",
