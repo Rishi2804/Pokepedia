@@ -4,7 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { darkenColor, formatName, formatGameText, formatText } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText, formatText, returnRegionalVariants, isRegionalVariant, isRegionalEvo } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { transformSpeciesInfoAlt, transformDexDataAlt, transformEvoChain } from "../transformers/SpeciesInfoTransformer";
 
@@ -88,7 +88,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
 
         const pokemonInfo = findInList(pokemon.name)
         if (!pokemonInfo) {
-            fetchDataAlt()
+            fetchData()
             console.log("Needed to fetch")
         } else {
             setDexEntries(pokemonInfo.dexEntries)
@@ -98,7 +98,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
         }
     }
 
-    const fetchDataAlt = async () => {
+    const fetchData = async () => {
 
         const dexResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`)
 
@@ -156,18 +156,90 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         <View style={styles.section}>
                             <Text style={styles.headerText}>Evolution Chain</Text>
                             {
-                                evoChain.map((line, index) => (
-                                    <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={index}>
-                                        <Image 
-                                            source={{url: dex.find((mon) => mon.name === line.from).image}}
-                                            style={{width: 80, height: 80}}
-                                        />
-                                        <Image 
-                                            source={{url: dex.find((mon) => mon.name === line.to).image}}
-                                            style={{width: 80, height: 80}}
-                                        />
-                                    </View>
-                                ))
+                                evoChain.map((line, index) => {
+                                    const fromDexContext = dex.find((mon) => mon.name === line.from)
+                                    let fromImg = fromDexContext.image
+                                    const toDexContext = dex.find((mon) => mon.name === line.to)
+                                    let toImg = toDexContext.image
+                                    let toImgExtra = []
+
+                                    const regionVariant = isRegionalVariant(pokemonInfo[formIndex].name)
+                                    const fromVariants = returnRegionalVariants(fromDexContext, regionVariant)   
+                                    const toVariants = returnRegionalVariants(toDexContext, regionVariant)
+                                    const regionalEvo = isRegionalEvo(toDexContext.name)
+                                    const curRegionalEvo = isRegionalEvo(pokemonInfo[formIndex].name)
+                                    if (regionVariant) {
+                                        if (fromVariants.length > 0 && toVariants.length > 0) {
+                                            const findFrom = fromVariants.find((variant) => variant.region === regionVariant)
+                                            const findTo = toVariants.find((variant) => variant.region === regionVariant)
+                                            if (findFrom && findTo) {
+                                                fromImg = findFrom.obj.image
+                                                toImg = findTo.obj.image
+                                            }
+                                        } else if (fromVariants.length > 0 && regionalEvo) {
+                                            if (regionalEvo !== regionVariant) {
+                                                return
+                                            }
+                                            fromImg = fromVariants[0].obj.image
+                                        } else if (fromVariants.length > 0 && !regionalEvo) {
+                                            return
+                                        } else if (toVariants.length > 0) {
+                                            toImg = toVariants[0].obj.image
+                                        }
+                                    } else if (curRegionalEvo) {
+                                        const fromFind = fromVariants.find((variant) => variant.region === curRegionalEvo)
+                                        const toFind = toVariants.find((variant) => variant.region === curRegionalEvo)
+                                        //console.log(toDexContext)
+                                        if ((fromFind || pokemonInfo[formIndex].name !== toDexContext.name) && (toFind || pokemonInfo[formIndex].name === toDexContext.name)) {
+                                            if (fromFind) fromImg = fromFind.obj.image
+                                            if (toFind) toImg = toFind.obj.image
+                                        } else {
+                                            return
+                                        }
+                                    } else {
+                                        if (regionalEvo) {
+                                            return
+                                        } else if (toVariants.length > 0 && fromVariants.length === 0 && toDexContext.name !== pokemonInfo[formIndex].name) {
+                                            const curChainPlacement = evoChain.findIndex((line) => (line.from === pokemonInfo[formIndex].name || line.to === pokemonInfo[formIndex].name))
+                                            const itemChainPlacement = evoChain.findIndex((line) => line.to === toDexContext.name)
+                                            if (toDexContext.name === pokemonInfo[formIndex].name || fromDexContext.name === pokemonInfo[formIndex].name || curChainPlacement < itemChainPlacement) {
+                                                toVariants.forEach((variant) => toImgExtra.push(variant.obj.image))
+                                            }
+                                        } else if (toVariants.length > 0 && fromVariants.length > 0 && pokemonInfo[formIndex].name !== toDexContext.name && pokemonInfo[formIndex].name !== fromDexContext.name) {
+                                            toVariants.forEach((variant) => toImgExtra.push(variant.obj.image))
+                                        }
+                                    }
+                                    return (
+                                        <>
+                                            <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={index}>
+                                                <Image 
+                                                    source={{url: fromImg}}
+                                                    style={{width: 80, height: 80}}
+                                                />
+                                                <Image 
+                                                    source={{url: toImg}}
+                                                    style={{width: 80, height: 80}}
+                                                />
+                                            </View>
+                                            {
+                                                toImgExtra.map((image, subIndex) => {
+                                                    return(
+                                                        <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={subIndex}>
+                                                            <Image 
+                                                                source={{url: fromImg}}
+                                                                style={{width: 80, height: 80}}
+                                                            />
+                                                            <Image 
+                                                                source={{url: image}}
+                                                                style={{width: 80, height: 80}}
+                                                            />
+                                                        </View>
+                                                    )
+                                                })
+                                            }
+                                        </>
+                                    )
+                                })
                             }
                         </View>
                     )

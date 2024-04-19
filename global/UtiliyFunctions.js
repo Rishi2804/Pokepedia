@@ -92,3 +92,53 @@ export function formatGameText(str) {
         default: return formatText(str)
     }
 }
+
+
+export function returnRegionalVariants(obj, type) {
+    if (obj.name === 'pikachu') return []
+    let forms = []
+    if (!type) {
+        for (const form of obj.altForms) {
+            const words = form.name.split('-')
+            const region = words.find((word) => (word === 'alola' ||
+                                                    word === 'galar' ||
+                                                    word === 'hisui' ||
+                                                    word === 'paldea'))
+            if (region && !forms.find((item) => item.region === region)) {
+                forms.push({region: region, obj: form})
+            }
+        }
+        return forms
+    } else {
+        for (const form of obj.altForms) {
+            const words = form.name.split('-')
+            if (words.find((word) => word === type)) {
+                forms.push({region: type, obj: form})
+                return forms
+            }
+        }
+        return []
+    }
+}
+
+export function isRegionalVariant(name) {
+    const words = name.split('-')
+    if (words[0] === 'pikachu') return null
+    const region = words.find((word) => (word === 'alola' ||
+                                            word === 'galar' ||
+                                            word === 'hisui' ||
+                                            word === 'paldea'))
+    return region
+}
+
+export function isRegionalEvo(name) {
+    if (name === 'obstagoon' || name === 'cursola' || name === 'runerigus' || name === 'sirfetchd' || name === 'mr-rime' || name === 'perrserker') {
+        return 'galar'
+    }
+    if (name === 'sneasler' || name === 'overqwil') {
+        return 'hisui'
+    } if (name === 'clodsire') {
+        return 'paldea'
+    }
+    return null
+}
