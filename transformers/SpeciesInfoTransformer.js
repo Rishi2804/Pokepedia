@@ -1,4 +1,4 @@
-import { fixFlavourText } from "../global/UtiliyFunctions";
+import { fixFlavourText, formatText, formatName } from "../global/UtiliyFunctions";
 
 export function transformSpeciesInfoAlt(rawJson) {
     const formData = []
@@ -48,20 +48,31 @@ export function transformDexDataAlt(data) {
 export function transformEvoChain(data) {
     const evolutionChain = [];
     
-    // function parseEvolutionDetails(details) {
-    //     // Extract relevant details from evolution_details
-    //     return details.map(detail => {
-    //         const { min_level, trigger } = detail;
-    //         return { min_level, trigger: trigger.name };
-    //     });
-    // }
+    function parseEvolutionDetails(details) {
+        const filteredDetails = details.map((details) => {
+            return Object.entries(details).reduce((acc, [key, value]) => {
+                if (value) {
+                    if (typeof value === 'object') {
+                        acc[key] = value.name
+                    } else {
+                        acc[key] = value
+                    }
+                }
+                return acc
+            }, {})
+        })
+        let stringDetails = filteredDetails.map(item => formatEvoDetails(item))
+        stringDetails = [... new Set(stringDetails)]
+        stringDetails.map(item => console.log(item))
+        return stringDetails
+    }
     
     function traverseChain(chain, from) {
         if (!chain || !chain.length) return;
         
         chain.forEach(evolution => {
             const to = evolution.species.name;
-            const details = evolution.evolution_details;
+            const details = parseEvolutionDetails(evolution.evolution_details);
             evolutionChain.push({ from, to, details });
             traverseChain(evolution.evolves_to, to);
         });
@@ -71,4 +82,90 @@ export function transformEvoChain(data) {
     traverseChain(data.chain.evolves_to, startingPokemon);
     
     return { id: data.id, chain: evolutionChain };
+}
+
+export function formatEvoDetails(details) {
+    let string = ''
+    string = formatText(details.trigger)
+
+    if (details.min_level) {
+        string += ' at level '
+        string += details.min_level.toString()
+    }
+    if (details.min_happiness) {
+        if (details.min_happiness > 0) {
+            string += ' with high happiness'
+        }
+    }
+    if (details.min_affection) {
+        if (details.min_affection > 0) {
+            string += ' with high affection'
+        }
+    }
+    if (details.min_beauty) {
+        if (details.min_beauty > 0) {
+            string += ' with high beauty value'
+        }
+    }
+    if (details.time_of_day) {
+        string += ' during '
+        string += details.time_of_day
+    }
+    if (details.held_item) {
+        string += ' holding '
+        string += formatText(details.held_item)
+    }
+    if (details.item) {
+        string += ' given '
+        string += formatText(details.item)
+    }
+    if (details.gender) {
+        if (details.gender === 1) {
+            string += ' while female'
+        } else if (details.gender === 2) {
+            string += ' while male'
+        }
+    }
+    if (details.trade_species) {
+        string += ' with '
+        string += formatName(details.trade_species)
+    }
+    if (details.known_move) {
+        string += ' knowing '
+        string += formatText(details.known_move)
+    }
+    if (details.known_move_type) {
+        string += ' knowing move of type '
+        string += details.known_move_type
+    }
+    if (details.location) {
+        string += ' at '
+        string += formatText(details.location)
+    }
+    if (details.relative_physical_stats !== undefined) {
+        if (details.relative_physical_stats === 1) {
+            string += ' with attack higher than defence'
+        } else if (details.relative_physical_stats === -1) {
+            string += ' with defense higher than attack'
+        } else if (details.relative_physical_stats === 0) {
+            string += ' with attack equal to defence'
+        }
+    }
+    if (details.party_species) {
+        string += ' with '
+        string += formatText(details.party_species)
+        string += ' in party'
+    }
+    if (details.party_type) {
+        string += ' with Pokemon of type '
+        string += details.party_species
+        string += ' in party'
+    }
+    if (details.needs_overworld_rain) {
+        string += ' in the rain'
+    }
+    if (details.turn_upside_down) {
+        string += ' while device upside down'
+    }
+    return string
 }

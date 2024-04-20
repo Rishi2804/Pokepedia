@@ -206,17 +206,24 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                             if (toDexContext.name === pokemonInfo[formIndex].name || fromDexContext.name === pokemonInfo[formIndex].name || curChainPlacement < itemChainPlacement) {
                                                 toVariants.forEach((variant) => toImgExtra.push(variant.obj.image))
                                             }
-                                        } else if (toVariants.length > 0 && fromVariants.length > 0 && pokemonInfo[formIndex].name !== toDexContext.name && pokemonInfo[formIndex].name !== fromDexContext.name) {
+                                        } else if (toVariants.length > 0 && fromVariants.length > 0 && pokemonInfo[formIndex].name !== toDexContext.name && pokemonInfo[formIndex].name !== fromDexContext.name && formIndex === 0) {
                                             toVariants.forEach((variant) => toImgExtra.push(variant.obj.image))
+                                            // TODO: Fix for slowbro
                                         }
                                     }
                                     return (
-                                        <>
+                                        <View key={index}>
                                             <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={index}>
                                                 <Image 
                                                     source={{url: fromImg}}
                                                     style={{width: 80, height: 80}}
                                                 />
+                                                <View style={{flex: 1, alignItems: "center", justifyContent: 'center'}}>
+                                                    {toVariants.length > 0 && line.details.length > 1 && <Text style={[styles.defaultText2, {textAlign: "center"}]}>{line.details[formIndex]}</Text>}
+                                                    {toVariants.length > 0 && line.details.length === 1 && <Text style={[styles.defaultText2, {textAlign: "center"}]}>{line.details[0]}</Text>}
+                                                    {toVariants.length === 0 && line.details.length === 1 && <Text style={[styles.defaultText2, {textAlign: "center"}]}>{line.details[0]}</Text>}
+                                                    {toVariants.length === 0 && line.details.length > 1 && line.details.map((item) => <Text style={[styles.defaultText2, {textAlign: "center"}]}>{item}</Text>)}
+                                                </View>
                                                 <Image 
                                                     source={{url: toImg}}
                                                     style={{width: 80, height: 80}}
@@ -230,6 +237,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                                                 source={{url: fromImg}}
                                                                 style={{width: 80, height: 80}}
                                                             />
+                                                            {toVariants.length > 0 && line.details.length === 1 && <Text style={[styles.defaultText2, {textAlign: "center"}]}>{line.details[0]}</Text>}
+                                                            {toVariants.length > 0 && line.details.length > 1 && <Text style={[styles.defaultText2, {textAlign: "center"}]}>{line.details[subIndex + 1]}</Text>}
                                                             <Image 
                                                                 source={{url: image}}
                                                                 style={{width: 80, height: 80}}
@@ -238,7 +247,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                                     )
                                                 })
                                             }
-                                        </>
+                                        </View>
                                     )
                                 })
                             }
