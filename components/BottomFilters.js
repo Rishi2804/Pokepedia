@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import { View, TouchableOpacity, TextInput, KeyboardAvoidingView, StyleSheet, Platform, Keyboard, Dimensions, Pressable, Text, ScrollView } from "react-native";
 import { Feather, Octicons, FontAwesome6 } from '@expo/vector-icons';
 
-const BottomFilters = ({options, state, setState, selected, setSelected}) => {
+const BottomFilters = ({options, state, setState, selected, setSelected, setSearchTerm}) => {
     const [ search, setSearch ] = useState(false)
 
     const SortButton = ({text, selected, state, onPress}) => {
@@ -45,7 +45,7 @@ const BottomFilters = ({options, state, setState, selected, setSelected}) => {
                 </ScrollView>}
                 {
                     search && <>
-                        <TextInput autoCorrect={false} style={styles.textInput} />
+                        <TextInput autoCorrect={false} style={styles.textInput} onSubmitEditing={(event) => setSearchTerm(event.nativeEvent.text)}/>
                         <TouchableOpacity onPress={() => {
                             Keyboard.dismiss()
                             setSearch(false)
