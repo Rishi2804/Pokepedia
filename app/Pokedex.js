@@ -4,6 +4,9 @@ import PokemonListView from "../components/PokemonListView";
 
 import { useDexContext } from "../components/hooks/useDexContext";
 import BottomFilters from "../components/BottomFilters";
+import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
+import { dexes, types } from "../global/UniversalData";
+import { formatText } from "../global/UtiliyFunctions";
 
 const Pokedex = () => {
     const [ loading, setLoading ] = useState(false)
@@ -12,6 +15,8 @@ const Pokedex = () => {
     const [ state, setState ] = useState(1)
     const [ selected, setSelected ] = useState(0)
     const [ searchTerm, setSearchTerm ] = useState("")
+    const [ filterTypes, setFilterTypes] = useState([])
+    const [ dexType, setDexType ] = useState("")
 
     useEffect(() => {
         if (selected === 0) {
@@ -55,8 +60,36 @@ const Pokedex = () => {
         setPokemon(searchResults)
     }, [searchTerm])
 
+    // useEffect(() => {
+    //     if (filterTypes.length > 0) setPokemon([...pokemon].filter((item) => item.types.some((type) => filterTypes.some(index => types[index].name === type))))
+    // }, [filterTypes])
+
+    // useEffect(() => {
+    //     console.log(dexes[dexType])
+    //     if (dexType.length > 0){
+    //         if (dexType === 'national') {
+    //             setPokemon(dex)
+    //         } else {
+    //             setPokemon([...pokemon].filter((item) => item.regionalDexNumbers.some((dex) => dexType.includes(index => dexes[index] === dex.name))))
+    //         }
+    //     } 
+    // }, [dexType])
+
     return (
         <SafeAreaView style={{flex: 1, justifyContent: "space-between"}}>
+            <View >
+                <SelectList 
+                    data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
+                    save="key"
+                    setSelected={(key) => setDexType(key)}
+                />
+                <MultipleSelectList 
+                    data={types.map((item, index) => {return{key: index, value: item.name}})} 
+                    save="key"
+                    setSelected={(key) => setFilterTypes(key)}
+                    label="Types"
+                />
+            </View>
             {!loading && <View style={styles.scrollContainer}>
                 <FlatList 
                     data={pokemon}

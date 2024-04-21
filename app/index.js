@@ -48,9 +48,9 @@ export default function Page() {
                 }
             )
 
-            const json = await response.json()
-
+            
             if (response.ok) {
+                const json = await response.json()
                 let picturesForFetch = []
                 let finalArray = json.data.species.map((species, index) => {
                     const defaultForm = species.varieties.find((form) => form.is_default)
@@ -138,11 +138,13 @@ export default function Page() {
                         name: speciesResult.name,
                         dexNumber: speciesResult.id,
                         types: detailedResponses[index].types.map((obj) => obj.type.name),
-                        image: detailedResponses[index].sprites.other.home.front_default
+                        image: detailedResponses[index].sprites.other.home.front_default,
+                        regionalDexNumbers: [],
+                        altForms: []
                     };
                 }));
-                //setPokemon(finalResponse);
-                dispatch({type: 'SET_DEX_INFO', payload: finalArray})
+                dispatch({type: 'SET_DEX_INFO', payload: finalResponse})
+                console.log('dispatch')
             }
 
             console.log("Done REST fetching");
