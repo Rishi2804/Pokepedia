@@ -156,6 +156,7 @@ export default function Page() {
         "Geologica SemiBold": require("../assets/fonts/GeologicaSemiBold.ttf"),
         "Geologica Bold": require("../assets/fonts/GeologicaBold.ttf"),
         "Inconsolata Regular": require("../assets/fonts/InconsolataRegular.ttf"),
+        "Inconsolata SemiBold": require("../assets/fonts/InconsolataSemiBold.ttf"),
         "Inconsolata Bold": require("../assets/fonts/InconsolataBold.ttf"),
     })
     return <LoadingView />
