@@ -72,8 +72,8 @@ const Pokedex = () => {
             </View>}
             <BottomFilters 
                 state={state} setState={setState}
-                setSelected={setSelected}
-                searchTerm={searchTerm} setSearchTerm={setSearchTerm}
+                selected={selected} setSelected={setSelected}
+                setSearchTerm={setSearchTerm}
                 options={["Number", "Name", "HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]}
             />
         </SafeAreaView>
