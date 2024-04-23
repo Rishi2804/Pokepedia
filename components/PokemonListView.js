@@ -22,7 +22,7 @@ const PokemonListView = ({ pokemon }) => {
                         source={{uri: pokemon.image}}
                         style={{height: 70, width: 70, marginRight: 10, marginBottom: 10}}
                     />
-                    <Text style={styles.numText}>{String(pokemon.dexNumber).padStart(3 ,'0')}</Text>
+                    <Text style={styles.numText}>{String(pokemon.id).padStart(3 ,'0')}</Text>
                     <Text style={styles.nameText}>{formatName(pokemon.name)}</Text>
                 </View>
                 <View>

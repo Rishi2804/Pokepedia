@@ -1,0 +1,6621 @@
+[
+    {
+        "id": 1,
+        "chain": [
+            {
+                "from": "bulbasaur",
+                "to": "ivysaur",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "ivysaur",
+                "to": "venusaur",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "chain": [
+            {
+                "from": "charmander",
+                "to": "charmeleon",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "charmeleon",
+                "to": "charizard",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "chain": [
+            {
+                "from": "squirtle",
+                "to": "wartortle",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "wartortle",
+                "to": "blastoise",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "chain": [
+            {
+                "from": "caterpie",
+                "to": "metapod",
+                "details": [
+                    "Level Up at level 7"
+                ],
+                "regional": null
+            },
+            {
+                "from": "metapod",
+                "to": "butterfree",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "chain": [
+            {
+                "from": "weedle",
+                "to": "kakuna",
+                "details": [
+                    "Level Up at level 7"
+                ],
+                "regional": null
+            },
+            {
+                "from": "kakuna",
+                "to": "beedrill",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "chain": [
+            {
+                "from": "pidgey",
+                "to": "pidgeotto",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pidgeotto",
+                "to": "pidgeot",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "chain": [
+            {
+                "from": "rattata",
+                "to": "raticate",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "rattata-alola",
+                "to": "raticate-alola",
+                "details": [
+                    "Level Up at level 20 during night"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "chain": [
+            {
+                "from": "spearow",
+                "to": "fearow",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "chain": [
+            {
+                "from": "ekans",
+                "to": "arbok",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "chain": [
+            {
+                "from": "pichu",
+                "to": "pikachu",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pikachu",
+                "to": "raichu",
+                "details": [
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pikachu",
+                "to": "raichu-alola",
+                "details": [
+                    "Given Thunder Stone"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "chain": [
+            {
+                "from": "sandshrew",
+                "to": "sandslash",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            },
+            {
+                "from": "sandshrew-alola",
+                "to": "sandslash-alola",
+                "details": [
+                    "Given Ice Stone"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "chain": [
+            {
+                "from": "nidoran-f",
+                "to": "nidorina",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "nidorina",
+                "to": "nidoqueen",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "chain": [
+            {
+                "from": "nidoran-m",
+                "to": "nidorino",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "nidorino",
+                "to": "nidoking",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "chain": [
+            {
+                "from": "cleffa",
+                "to": "clefairy",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            },
+            {
+                "from": "clefairy",
+                "to": "clefable",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "chain": [
+            {
+                "from": "vulpix",
+                "to": "ninetales",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "vulpix-alola",
+                "to": "ninetales-alola",
+                "details": [
+                    "Given Ice Stone"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "chain": [
+            {
+                "from": "igglybuff",
+                "to": "jigglypuff",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            },
+            {
+                "from": "jigglypuff",
+                "to": "wigglytuff",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "chain": [
+            {
+                "from": "zubat",
+                "to": "golbat",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            },
+            {
+                "from": "golbat",
+                "to": "crobat",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "chain": [
+            {
+                "from": "oddish",
+                "to": "gloom",
+                "details": [
+                    "Level Up at level 21"
+                ],
+                "regional": null
+            },
+            {
+                "from": "gloom",
+                "to": "vileplume",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "gloom",
+                "to": "bellossom",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "chain": [
+            {
+                "from": "paras",
+                "to": "parasect",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "chain": [
+            {
+                "from": "venonat",
+                "to": "venomoth",
+                "details": [
+                    "Level Up at level 31"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "chain": [
+            {
+                "from": "diglett",
+                "to": "dugtrio",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            },
+            {
+                "from": "diglett-alola",
+                "to": "dugtrio-alola",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "chain": [
+            {
+                "from": "meowth",
+                "to": "persian",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            },
+            {
+                "from": "meowth-alola",
+                "to": "persian-alola",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": "alola"
+            },
+            {
+                "from": "meowth-galar",
+                "to": "perrserker",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "chain": [
+            {
+                "from": "psyduck",
+                "to": "golduck",
+                "details": [
+                    "Level Up at level 33"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "chain": [
+            {
+                "from": "mankey",
+                "to": "primeape",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            },
+            {
+                "from": "primeape",
+                "to": "annihilape",
+                "details": [
+                    "Level Up after using Rage Fist 20 times"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "chain": [
+            {
+                "from": "growlithe",
+                "to": "arcanine",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "growlithe-hisui",
+                "to": "arcanine-hisui",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "chain": [
+            {
+                "from": "poliwag",
+                "to": "poliwhirl",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "poliwhirl",
+                "to": "poliwrath",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "poliwhirl",
+                "to": "politoed",
+                "details": [
+                    "Trade holding Kings Rock"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "chain": [
+            {
+                "from": "abra",
+                "to": "kadabra",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "kadabra",
+                "to": "alakazam",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "chain": [
+            {
+                "from": "machop",
+                "to": "machoke",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            },
+            {
+                "from": "machoke",
+                "to": "machamp",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "chain": [
+            {
+                "from": "bellsprout",
+                "to": "weepinbell",
+                "details": [
+                    "Level Up at level 21"
+                ],
+                "regional": null
+            },
+            {
+                "from": "weepinbell",
+                "to": "victreebel",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "chain": [
+            {
+                "from": "tentacool",
+                "to": "tentacruel",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "chain": [
+            {
+                "from": "geodude",
+                "to": "graveler",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "geodude-alola",
+                "to": "graveler-alola",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": "alola"
+            },
+            {
+                "from": "graveler",
+                "to": "golem",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            },
+            {
+                "from": "graveler-alola",
+                "to": "golem-alola",
+                "details": [
+                    "Trade"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "chain": [
+            {
+                "from": "ponyta",
+                "to": "rapidash",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            },
+            {
+                "from": "ponyta-galar",
+                "to": "rapidash-galar",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "chain": [
+            {
+                "from": "slowpoke",
+                "to": "slowbro",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            },
+            {
+                "from": "slowpoke-galar",
+                "to": "slowbro-galar",
+                "details": [
+                    "Given Galarica Cuff"
+                ],
+                "regional": "galar"
+            },
+            {
+                "from": "slowpoke",
+                "to": "slowking",
+                "details": [
+                    "Trade holding Kings Rock"
+                ],
+                "regional": null
+            },
+            {
+                "from": "slowpoke-galar",
+                "to": "slowking-galar",
+                "details": [
+                    "Given Galarica Wreath"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "chain": [
+            {
+                "from": "magnemite",
+                "to": "magneton",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "magneton",
+                "to": "magnezone",
+                "details": [
+                    "Level Up at Mt Coronet",
+                    "Level Up at Chargestone Cave",
+                    "Level Up at Kalos Route 13",
+                    "Level Up",
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "chain": [
+            {
+                "from": "farfetchd-galar",
+                "to": "sirfetchd",
+                "details": [
+                    "Lands three critcal hits in a single battle"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "chain": [
+            {
+                "from": "doduo",
+                "to": "dodrio",
+                "details": [
+                    "Level Up at level 31"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "chain": [
+            {
+                "from": "seel",
+                "to": "dewgong",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "chain": [
+            {
+                "from": "grimer",
+                "to": "muk",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            },
+            {
+                "from": "grimer-alola",
+                "to": "muk-alola",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "chain": [
+            {
+                "from": "shellder",
+                "to": "cloyster",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "chain": [
+            {
+                "from": "gastly",
+                "to": "haunter",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "haunter",
+                "to": "gengar",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "chain": [
+            {
+                "from": "onix",
+                "to": "steelix",
+                "details": [
+                    "Trade holding Metal Coat"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "chain": [
+            {
+                "from": "drowzee",
+                "to": "hypno",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "chain": [
+            {
+                "from": "krabby",
+                "to": "kingler",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "chain": [
+            {
+                "from": "voltorb",
+                "to": "electrode",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "voltorb-hisui",
+                "to": "electrode-hisui",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "chain": [
+            {
+                "from": "exeggcute",
+                "to": "exeggutor",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "chain": [
+            {
+                "from": "cubone",
+                "to": "marowak",
+                "details": [
+                    "Level Up at level 28 during night"
+                ],
+                "regional": null
+            },
+            {
+                "from": "cubone",
+                "to": "marowak-alola",
+                "details": [
+                    "Level Up at level 28 during night"
+                ],
+                "regional": "alola"
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "chain": [
+            {
+                "from": "tyrogue",
+                "to": "hitmonlee",
+                "details": [
+                    "Level Up at level 20 with attack higher than defence"
+                ],
+                "regional": null
+            },
+            {
+                "from": "tyrogue",
+                "to": "hitmonchan",
+                "details": [
+                    "Level Up at level 20 with defense higher than attack"
+                ],
+                "regional": null
+            },
+            {
+                "from": "tyrogue",
+                "to": "hitmontop",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "chain": [
+            {
+                "from": "lickitung",
+                "to": "lickilicky",
+                "details": [
+                    "Level Up knowing Rollout"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "chain": [
+            {
+                "from": "koffing",
+                "to": "weezing",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "koffing",
+                "to": "weezing-galar",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "chain": [
+            {
+                "from": "rhyhorn",
+                "to": "rhydon",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            },
+            {
+                "from": "rhydon",
+                "to": "rhyperior",
+                "details": [
+                    "Trade holding Protector"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "chain": [
+            {
+                "from": "happiny",
+                "to": "chansey",
+                "details": [
+                    "Level Up during day holding Oval Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "chansey",
+                "to": "blissey",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "chain": [
+            {
+                "from": "tangela",
+                "to": "tangrowth",
+                "details": [
+                    "Level Up knowing Ancient Power"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "chain": []
+    },
+    {
+        "id": 54,
+        "chain": [
+            {
+                "from": "horsea",
+                "to": "seadra",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "seadra",
+                "to": "kingdra",
+                "details": [
+                    "Trade holding Dragon Scale"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "chain": [
+            {
+                "from": "goldeen",
+                "to": "seaking",
+                "details": [
+                    "Level Up at level 33"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "chain": [
+            {
+                "from": "staryu",
+                "to": "starmie",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "chain": [
+            {
+                "from": "mime-jr",
+                "to": "mr-mime",
+                "details": [
+                    "Level Up knowing Mimic"
+                ],
+                "regional": null
+            },
+            {
+                "from": "mime-jr",
+                "to": "mr-mime-galar",
+                "details": [
+                    "Level Up knowing Mimic"
+                ],
+                "regional": "galar"
+            },
+            {
+                "from": "mr-mime-galar",
+                "to": "mr-rime",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "chain": [
+            {
+                "from": "scyther",
+                "to": "scizor",
+                "details": [
+                    "Trade holding Metal Coat"
+                ],
+                "regional": null
+            },
+            {
+                "from": "scyther",
+                "to": "kleavor",
+                "details": [
+                    "Given Black Augurite"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "chain": [
+            {
+                "from": "smoochum",
+                "to": "jynx",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "chain": [
+            {
+                "from": "elekid",
+                "to": "electabuzz",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "electabuzz",
+                "to": "electivire",
+                "details": [
+                    "Trade holding Electirizer"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "chain": [
+            {
+                "from": "magby",
+                "to": "magmar",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "magmar",
+                "to": "magmortar",
+                "details": [
+                    "Trade holding Magmarizer"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "chain": []
+    },
+    {
+        "id": 63,
+        "chain": []
+    },
+    {
+        "id": 64,
+        "chain": [
+            {
+                "from": "magikarp",
+                "to": "gyarados",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "chain": []
+    },
+    {
+        "id": 66,
+        "chain": []
+    },
+    {
+        "id": 67,
+        "chain": [
+            {
+                "from": "eevee",
+                "to": "vaporeon",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "jolteon",
+                "details": [
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "flareon",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "espeon",
+                "details": [
+                    "Level Up with high happiness during day"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "umbreon",
+                "details": [
+                    "Level Up with high happiness during night"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "leafeon",
+                "details": [
+                    "Level Up at Eterna Forest",
+                    "Level Up at Pinwheel Forest",
+                    "Level Up at Kalos Route 20",
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "glaceon",
+                "details": [
+                    "Level Up at Sinnoh Route 217",
+                    "Level Up at Twist Mountain",
+                    "Level Up at Frost Cavern",
+                    "Given Ice Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eevee",
+                "to": "sylveon",
+                "details": [
+                    "Level Up with high affection knowing move of type fairy",
+                    "Level Up with high happiness knowing move of type fairy"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "chain": [
+            {
+                "from": "porygon",
+                "to": "porygon2",
+                "details": [
+                    "Trade holding Up Grade"
+                ],
+                "regional": null
+            },
+            {
+                "from": "porygon2",
+                "to": "porygon-z",
+                "details": [
+                    "Trade holding Dubious Disc"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "chain": [
+            {
+                "from": "omanyte",
+                "to": "omastar",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "chain": [
+            {
+                "from": "kabuto",
+                "to": "kabutops",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 71,
+        "chain": []
+    },
+    {
+        "id": 72,
+        "chain": [
+            {
+                "from": "munchlax",
+                "to": "snorlax",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "chain": []
+    },
+    {
+        "id": 74,
+        "chain": []
+    },
+    {
+        "id": 75,
+        "chain": []
+    },
+    {
+        "id": 76,
+        "chain": [
+            {
+                "from": "dratini",
+                "to": "dragonair",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dragonair",
+                "to": "dragonite",
+                "details": [
+                    "Level Up at level 55"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 77,
+        "chain": []
+    },
+    {
+        "id": 78,
+        "chain": []
+    },
+    {
+        "id": 79,
+        "chain": [
+            {
+                "from": "chikorita",
+                "to": "bayleef",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "bayleef",
+                "to": "meganium",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 80,
+        "chain": [
+            {
+                "from": "cyndaquil",
+                "to": "quilava",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "quilava",
+                "to": "typhlosion",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            },
+            {
+                "from": "quilava",
+                "to": "typhlosion-hisui",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "chain": [
+            {
+                "from": "totodile",
+                "to": "croconaw",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "croconaw",
+                "to": "feraligatr",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 82,
+        "chain": [
+            {
+                "from": "sentret",
+                "to": "furret",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 83,
+        "chain": [
+            {
+                "from": "hoothoot",
+                "to": "noctowl",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 84,
+        "chain": [
+            {
+                "from": "ledyba",
+                "to": "ledian",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 85,
+        "chain": [
+            {
+                "from": "spinarak",
+                "to": "ariados",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 86,
+        "chain": [
+            {
+                "from": "chinchou",
+                "to": "lanturn",
+                "details": [
+                    "Level Up at level 27"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 87,
+        "chain": [
+            {
+                "from": "togepi",
+                "to": "togetic",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            },
+            {
+                "from": "togetic",
+                "to": "togekiss",
+                "details": [
+                    "Given Shiny Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 88,
+        "chain": [
+            {
+                "from": "natu",
+                "to": "xatu",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 89,
+        "chain": [
+            {
+                "from": "mareep",
+                "to": "flaaffy",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            },
+            {
+                "from": "flaaffy",
+                "to": "ampharos",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 90,
+        "chain": [
+            {
+                "from": "azurill",
+                "to": "marill",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            },
+            {
+                "from": "marill",
+                "to": "azumarill",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 91,
+        "chain": [
+            {
+                "from": "bonsly",
+                "to": "sudowoodo",
+                "details": [
+                    "Level Up knowing Mimic"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 92,
+        "chain": [
+            {
+                "from": "hoppip",
+                "to": "skiploom",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "skiploom",
+                "to": "jumpluff",
+                "details": [
+                    "Level Up at level 27"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 93,
+        "chain": [
+            {
+                "from": "aipom",
+                "to": "ambipom",
+                "details": [
+                    "Level Up knowing Double Hit"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 94,
+        "chain": [
+            {
+                "from": "sunkern",
+                "to": "sunflora",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 95,
+        "chain": [
+            {
+                "from": "yanma",
+                "to": "yanmega",
+                "details": [
+                    "Level Up knowing Ancient Power"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 96,
+        "chain": [
+            {
+                "from": "wooper",
+                "to": "quagsire",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "wooper-paldea",
+                "to": "clodsire",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": "paldea"
+            }
+        ]
+    },
+    {
+        "id": 97,
+        "chain": [
+            {
+                "from": "murkrow",
+                "to": "honchkrow",
+                "details": [
+                    "Given Dusk Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 98,
+        "chain": [
+            {
+                "from": "misdreavus",
+                "to": "mismagius",
+                "details": [
+                    "Given Dusk Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 99,
+        "chain": []
+    },
+    {
+        "id": 100,
+        "chain": [
+            {
+                "from": "wynaut",
+                "to": "wobbuffet",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 101,
+        "chain": [
+            {
+                "from": "girafarig",
+                "to": "farigiraf",
+                "details": [
+                    "Level Up knowing Twin Beam"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 102,
+        "chain": [
+            {
+                "from": "pineco",
+                "to": "forretress",
+                "details": [
+                    "Level Up at level 31"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 103,
+        "chain": [
+            {
+                "from": "dunsparce",
+                "to": "dudunsparce",
+                "details": [
+                    "Level Up knowing Hyper Drill"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 104,
+        "chain": [
+            {
+                "from": "gligar",
+                "to": "gliscor",
+                "details": [
+                    "Level Up during night holding Razor Fang"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 105,
+        "chain": [
+            {
+                "from": "snubbull",
+                "to": "granbull",
+                "details": [
+                    "Level Up at level 23"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 106,
+        "chain": [
+            {
+                "from": "qwilfish-hisui",
+                "to": "overqwil",
+                "details": [
+                    "Use Barb Barrage in the string style at least 20 times knowing Barb Barrage"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 107,
+        "chain": []
+    },
+    {
+        "id": 108,
+        "chain": []
+    },
+    {
+        "id": 109,
+        "chain": [
+            {
+                "from": "sneasel",
+                "to": "weavile",
+                "details": [
+                    "Level Up during night holding Razor Claw"
+                ],
+                "regional": null
+            },
+            {
+                "from": "sneasel-hisui",
+                "to": "sneasler",
+                "details": [
+                    "Level Up during day holding Razor Claw"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 110,
+        "chain": [
+            {
+                "from": "teddiursa",
+                "to": "ursaring",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "ursaring",
+                "to": "ursaluna",
+                "details": [
+                    "Given Peat Block during full-moon"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 111,
+        "chain": [
+            {
+                "from": "slugma",
+                "to": "magcargo",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 112,
+        "chain": [
+            {
+                "from": "swinub",
+                "to": "piloswine",
+                "details": [
+                    "Level Up at level 33"
+                ],
+                "regional": null
+            },
+            {
+                "from": "piloswine",
+                "to": "mamoswine",
+                "details": [
+                    "Level Up knowing Ancient Power"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 113,
+        "chain": [
+            {
+                "from": "corsola-galar",
+                "to": "cursola",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 114,
+        "chain": [
+            {
+                "from": "remoraid",
+                "to": "octillery",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 115,
+        "chain": []
+    },
+    {
+        "id": 116,
+        "chain": [
+            {
+                "from": "mantyke",
+                "to": "mantine",
+                "details": [
+                    "Level Up with Remoraid in party"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 117,
+        "chain": []
+    },
+    {
+        "id": 118,
+        "chain": [
+            {
+                "from": "houndour",
+                "to": "houndoom",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 119,
+        "chain": [
+            {
+                "from": "phanpy",
+                "to": "donphan",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 120,
+        "chain": [
+            {
+                "from": "stantler",
+                "to": "wyrdeer",
+                "details": [
+                    "Use Psyshield Bash in the agile style at least 20 times knowing Psyshield Bash"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 121,
+        "chain": []
+    },
+    {
+        "id": 122,
+        "chain": []
+    },
+    {
+        "id": 123,
+        "chain": []
+    },
+    {
+        "id": 124,
+        "chain": []
+    },
+    {
+        "id": 125,
+        "chain": []
+    },
+    {
+        "id": 126,
+        "chain": [
+            {
+                "from": "larvitar",
+                "to": "pupitar",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pupitar",
+                "to": "tyranitar",
+                "details": [
+                    "Level Up at level 55"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 127,
+        "chain": []
+    },
+    {
+        "id": 128,
+        "chain": []
+    },
+    {
+        "id": 129,
+        "chain": []
+    },
+    {
+        "id": 130,
+        "chain": [
+            {
+                "from": "treecko",
+                "to": "grovyle",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "grovyle",
+                "to": "sceptile",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 131,
+        "chain": [
+            {
+                "from": "torchic",
+                "to": "combusken",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "combusken",
+                "to": "blaziken",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 132,
+        "chain": [
+            {
+                "from": "mudkip",
+                "to": "marshtomp",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "marshtomp",
+                "to": "swampert",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 133,
+        "chain": [
+            {
+                "from": "poochyena",
+                "to": "mightyena",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 134,
+        "chain": [
+            {
+                "from": "zigzagoon",
+                "to": "linoone",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "zigzagoon-galar",
+                "to": "linoone-galar",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": "galar"
+            },
+            {
+                "from": "linoone-galar",
+                "to": "obstagoon",
+                "details": [
+                    "Level Up at level 35 during night"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 135,
+        "chain": [
+            {
+                "from": "wurmple",
+                "to": "silcoon",
+                "details": [
+                    "Level Up at level 7"
+                ],
+                "regional": null
+            },
+            {
+                "from": "silcoon",
+                "to": "beautifly",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            },
+            {
+                "from": "wurmple",
+                "to": "cascoon",
+                "details": [
+                    "Level Up at level 7"
+                ],
+                "regional": null
+            },
+            {
+                "from": "cascoon",
+                "to": "dustox",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 136,
+        "chain": [
+            {
+                "from": "lotad",
+                "to": "lombre",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "lombre",
+                "to": "ludicolo",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 137,
+        "chain": [
+            {
+                "from": "seedot",
+                "to": "nuzleaf",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "nuzleaf",
+                "to": "shiftry",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 138,
+        "chain": [
+            {
+                "from": "taillow",
+                "to": "swellow",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 139,
+        "chain": [
+            {
+                "from": "wingull",
+                "to": "pelipper",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 140,
+        "chain": [
+            {
+                "from": "ralts",
+                "to": "kirlia",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "kirlia",
+                "to": "gardevoir",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "kirlia",
+                "to": "gallade",
+                "details": [
+                    "Given Dawn Stone while male"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 141,
+        "chain": [
+            {
+                "from": "surskit",
+                "to": "masquerain",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 142,
+        "chain": [
+            {
+                "from": "shroomish",
+                "to": "breloom",
+                "details": [
+                    "Level Up at level 23"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 143,
+        "chain": [
+            {
+                "from": "slakoth",
+                "to": "vigoroth",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "vigoroth",
+                "to": "slaking",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 144,
+        "chain": [
+            {
+                "from": "nincada",
+                "to": "ninjask",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "nincada",
+                "to": "shedinja",
+                "details": [
+                    "When Nincada evolves into Ninjask and player has an empty slot in their party and an extra Poké Ball on hand"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 145,
+        "chain": [
+            {
+                "from": "whismur",
+                "to": "loudred",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "loudred",
+                "to": "exploud",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 146,
+        "chain": [
+            {
+                "from": "makuhita",
+                "to": "hariyama",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 147,
+        "chain": [
+            {
+                "from": "nosepass",
+                "to": "probopass",
+                "details": [
+                    "Level Up at Mt Coronet",
+                    "Level Up at Chargestone Cave",
+                    "Level Up at Kalos Route 13",
+                    "Level Up"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 148,
+        "chain": [
+            {
+                "from": "skitty",
+                "to": "delcatty",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 149,
+        "chain": []
+    },
+    {
+        "id": 150,
+        "chain": []
+    },
+    {
+        "id": 151,
+        "chain": [
+            {
+                "from": "aron",
+                "to": "lairon",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "lairon",
+                "to": "aggron",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 152,
+        "chain": [
+            {
+                "from": "meditite",
+                "to": "medicham",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 153,
+        "chain": [
+            {
+                "from": "electrike",
+                "to": "manectric",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 154,
+        "chain": []
+    },
+    {
+        "id": 155,
+        "chain": []
+    },
+    {
+        "id": 156,
+        "chain": []
+    },
+    {
+        "id": 157,
+        "chain": []
+    },
+    {
+        "id": 158,
+        "chain": [
+            {
+                "from": "budew",
+                "to": "roselia",
+                "details": [
+                    "Level Up with high happiness during day"
+                ],
+                "regional": null
+            },
+            {
+                "from": "roselia",
+                "to": "roserade",
+                "details": [
+                    "Given Shiny Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 159,
+        "chain": [
+            {
+                "from": "gulpin",
+                "to": "swalot",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 160,
+        "chain": [
+            {
+                "from": "carvanha",
+                "to": "sharpedo",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 161,
+        "chain": [
+            {
+                "from": "wailmer",
+                "to": "wailord",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 162,
+        "chain": [
+            {
+                "from": "numel",
+                "to": "camerupt",
+                "details": [
+                    "Level Up at level 33"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 163,
+        "chain": []
+    },
+    {
+        "id": 164,
+        "chain": [
+            {
+                "from": "spoink",
+                "to": "grumpig",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 165,
+        "chain": []
+    },
+    {
+        "id": 166,
+        "chain": [
+            {
+                "from": "trapinch",
+                "to": "vibrava",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "vibrava",
+                "to": "flygon",
+                "details": [
+                    "Level Up at level 45"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 167,
+        "chain": [
+            {
+                "from": "cacnea",
+                "to": "cacturne",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 168,
+        "chain": [
+            {
+                "from": "swablu",
+                "to": "altaria",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 169,
+        "chain": []
+    },
+    {
+        "id": 170,
+        "chain": []
+    },
+    {
+        "id": 171,
+        "chain": []
+    },
+    {
+        "id": 172,
+        "chain": []
+    },
+    {
+        "id": 173,
+        "chain": [
+            {
+                "from": "barboach",
+                "to": "whiscash",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 174,
+        "chain": [
+            {
+                "from": "corphish",
+                "to": "crawdaunt",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 175,
+        "chain": [
+            {
+                "from": "baltoy",
+                "to": "claydol",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 176,
+        "chain": [
+            {
+                "from": "lileep",
+                "to": "cradily",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 177,
+        "chain": [
+            {
+                "from": "anorith",
+                "to": "armaldo",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 178,
+        "chain": [
+            {
+                "from": "feebas",
+                "to": "milotic",
+                "details": [
+                    "Level Up with high beauty value",
+                    "Trade holding Prism Scale"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 179,
+        "chain": []
+    },
+    {
+        "id": 180,
+        "chain": []
+    },
+    {
+        "id": 181,
+        "chain": [
+            {
+                "from": "shuppet",
+                "to": "banette",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 182,
+        "chain": [
+            {
+                "from": "duskull",
+                "to": "dusclops",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dusclops",
+                "to": "dusknoir",
+                "details": [
+                    "Trade holding Reaper Cloth"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 183,
+        "chain": []
+    },
+    {
+        "id": 184,
+        "chain": [
+            {
+                "from": "chingling",
+                "to": "chimecho",
+                "details": [
+                    "Level Up with high happiness during night"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 185,
+        "chain": []
+    },
+    {
+        "id": 186,
+        "chain": [
+            {
+                "from": "snorunt",
+                "to": "glalie",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            },
+            {
+                "from": "snorunt",
+                "to": "froslass",
+                "details": [
+                    "Given Dawn Stone while female"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 187,
+        "chain": [
+            {
+                "from": "spheal",
+                "to": "sealeo",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "sealeo",
+                "to": "walrein",
+                "details": [
+                    "Level Up at level 44"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 188,
+        "chain": [
+            {
+                "from": "clamperl",
+                "to": "huntail",
+                "details": [
+                    "Trade holding Deep Sea Tooth"
+                ],
+                "regional": null
+            },
+            {
+                "from": "clamperl",
+                "to": "gorebyss",
+                "details": [
+                    "Trade holding Deep Sea Scale"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 189,
+        "chain": []
+    },
+    {
+        "id": 190,
+        "chain": []
+    },
+    {
+        "id": 191,
+        "chain": [
+            {
+                "from": "bagon",
+                "to": "shelgon",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "shelgon",
+                "to": "salamence",
+                "details": [
+                    "Level Up at level 50"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 192,
+        "chain": [
+            {
+                "from": "beldum",
+                "to": "metang",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "metang",
+                "to": "metagross",
+                "details": [
+                    "Level Up at level 45"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 193,
+        "chain": []
+    },
+    {
+        "id": 194,
+        "chain": []
+    },
+    {
+        "id": 195,
+        "chain": []
+    },
+    {
+        "id": 196,
+        "chain": []
+    },
+    {
+        "id": 197,
+        "chain": []
+    },
+    {
+        "id": 198,
+        "chain": []
+    },
+    {
+        "id": 199,
+        "chain": []
+    },
+    {
+        "id": 200,
+        "chain": []
+    },
+    {
+        "id": 201,
+        "chain": []
+    },
+    {
+        "id": 202,
+        "chain": []
+    },
+    {
+        "id": 203,
+        "chain": [
+            {
+                "from": "turtwig",
+                "to": "grotle",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "grotle",
+                "to": "torterra",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 204,
+        "chain": [
+            {
+                "from": "chimchar",
+                "to": "monferno",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "monferno",
+                "to": "infernape",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 205,
+        "chain": [
+            {
+                "from": "piplup",
+                "to": "prinplup",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "prinplup",
+                "to": "empoleon",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 206,
+        "chain": [
+            {
+                "from": "starly",
+                "to": "staravia",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "staravia",
+                "to": "staraptor",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 207,
+        "chain": [
+            {
+                "from": "bidoof",
+                "to": "bibarel",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 208,
+        "chain": [
+            {
+                "from": "kricketot",
+                "to": "kricketune",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 209,
+        "chain": [
+            {
+                "from": "shinx",
+                "to": "luxio",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            },
+            {
+                "from": "luxio",
+                "to": "luxray",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 211,
+        "chain": [
+            {
+                "from": "cranidos",
+                "to": "rampardos",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 212,
+        "chain": [
+            {
+                "from": "shieldon",
+                "to": "bastiodon",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 213,
+        "chain": [
+            {
+                "from": "burmy",
+                "to": "wormadam",
+                "details": [
+                    "Level Up at level 20 while female"
+                ],
+                "regional": null
+            },
+            {
+                "from": "burmy",
+                "to": "mothim",
+                "details": [
+                    "Level Up at level 20 while male"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 214,
+        "chain": [
+            {
+                "from": "combee",
+                "to": "vespiquen",
+                "details": [
+                    "Level Up at level 21 while female"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 215,
+        "chain": []
+    },
+    {
+        "id": 216,
+        "chain": [
+            {
+                "from": "buizel",
+                "to": "floatzel",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 217,
+        "chain": [
+            {
+                "from": "cherubi",
+                "to": "cherrim",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 218,
+        "chain": [
+            {
+                "from": "shellos",
+                "to": "gastrodon",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 219,
+        "chain": [
+            {
+                "from": "drifloon",
+                "to": "drifblim",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 220,
+        "chain": [
+            {
+                "from": "buneary",
+                "to": "lopunny",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 221,
+        "chain": [
+            {
+                "from": "glameow",
+                "to": "purugly",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 223,
+        "chain": [
+            {
+                "from": "stunky",
+                "to": "skuntank",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 224,
+        "chain": [
+            {
+                "from": "bronzor",
+                "to": "bronzong",
+                "details": [
+                    "Level Up at level 33"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 228,
+        "chain": []
+    },
+    {
+        "id": 229,
+        "chain": []
+    },
+    {
+        "id": 230,
+        "chain": [
+            {
+                "from": "gible",
+                "to": "gabite",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            },
+            {
+                "from": "gabite",
+                "to": "garchomp",
+                "details": [
+                    "Level Up at level 48"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 232,
+        "chain": [
+            {
+                "from": "riolu",
+                "to": "lucario",
+                "details": [
+                    "Level Up with high happiness during day"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 233,
+        "chain": [
+            {
+                "from": "hippopotas",
+                "to": "hippowdon",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 234,
+        "chain": [
+            {
+                "from": "skorupi",
+                "to": "drapion",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 235,
+        "chain": [
+            {
+                "from": "croagunk",
+                "to": "toxicroak",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 236,
+        "chain": []
+    },
+    {
+        "id": 237,
+        "chain": [
+            {
+                "from": "finneon",
+                "to": "lumineon",
+                "details": [
+                    "Level Up at level 31"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 239,
+        "chain": [
+            {
+                "from": "snover",
+                "to": "abomasnow",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 240,
+        "chain": []
+    },
+    {
+        "id": 241,
+        "chain": []
+    },
+    {
+        "id": 242,
+        "chain": []
+    },
+    {
+        "id": 243,
+        "chain": []
+    },
+    {
+        "id": 244,
+        "chain": []
+    },
+    {
+        "id": 245,
+        "chain": []
+    },
+    {
+        "id": 246,
+        "chain": []
+    },
+    {
+        "id": 247,
+        "chain": []
+    },
+    {
+        "id": 248,
+        "chain": []
+    },
+    {
+        "id": 249,
+        "chain": []
+    },
+    {
+        "id": 250,
+        "chain": [
+            {
+                "from": "phione",
+                "to": "manaphy",
+                "details": [
+                    "Unable to Evolve to, only results from Manaphy breeding"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 252,
+        "chain": []
+    },
+    {
+        "id": 253,
+        "chain": []
+    },
+    {
+        "id": 254,
+        "chain": []
+    },
+    {
+        "id": 255,
+        "chain": []
+    },
+    {
+        "id": 256,
+        "chain": [
+            {
+                "from": "snivy",
+                "to": "servine",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "servine",
+                "to": "serperior",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 257,
+        "chain": [
+            {
+                "from": "tepig",
+                "to": "pignite",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pignite",
+                "to": "emboar",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 258,
+        "chain": [
+            {
+                "from": "oshawott",
+                "to": "dewott",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dewott",
+                "to": "samurott",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dewott",
+                "to": "samurott-hisui",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 259,
+        "chain": [
+            {
+                "from": "patrat",
+                "to": "watchog",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 260,
+        "chain": [
+            {
+                "from": "lillipup",
+                "to": "herdier",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "herdier",
+                "to": "stoutland",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 261,
+        "chain": [
+            {
+                "from": "purrloin",
+                "to": "liepard",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 262,
+        "chain": [
+            {
+                "from": "pansage",
+                "to": "simisage",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 263,
+        "chain": [
+            {
+                "from": "pansear",
+                "to": "simisear",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 264,
+        "chain": [
+            {
+                "from": "panpour",
+                "to": "simipour",
+                "details": [
+                    "Given Water Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 265,
+        "chain": [
+            {
+                "from": "munna",
+                "to": "musharna",
+                "details": [
+                    "Given Moon Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 266,
+        "chain": [
+            {
+                "from": "pidove",
+                "to": "tranquill",
+                "details": [
+                    "Level Up at level 21"
+                ],
+                "regional": null
+            },
+            {
+                "from": "tranquill",
+                "to": "unfezant",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 267,
+        "chain": [
+            {
+                "from": "blitzle",
+                "to": "zebstrika",
+                "details": [
+                    "Level Up at level 27"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 268,
+        "chain": [
+            {
+                "from": "roggenrola",
+                "to": "boldore",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "boldore",
+                "to": "gigalith",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 269,
+        "chain": [
+            {
+                "from": "woobat",
+                "to": "swoobat",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 270,
+        "chain": [
+            {
+                "from": "drilbur",
+                "to": "excadrill",
+                "details": [
+                    "Level Up at level 31"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 271,
+        "chain": []
+    },
+    {
+        "id": 272,
+        "chain": [
+            {
+                "from": "timburr",
+                "to": "gurdurr",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "gurdurr",
+                "to": "conkeldurr",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 273,
+        "chain": [
+            {
+                "from": "tympole",
+                "to": "palpitoad",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "palpitoad",
+                "to": "seismitoad",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 274,
+        "chain": []
+    },
+    {
+        "id": 275,
+        "chain": []
+    },
+    {
+        "id": 276,
+        "chain": [
+            {
+                "from": "sewaddle",
+                "to": "swadloon",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "swadloon",
+                "to": "leavanny",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 277,
+        "chain": [
+            {
+                "from": "venipede",
+                "to": "whirlipede",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            },
+            {
+                "from": "whirlipede",
+                "to": "scolipede",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 278,
+        "chain": [
+            {
+                "from": "cottonee",
+                "to": "whimsicott",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 279,
+        "chain": [
+            {
+                "from": "petilil",
+                "to": "lilligant",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": null
+            },
+            {
+                "from": "petilil",
+                "to": "lilligant-hisui",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 280,
+        "chain": [
+            {
+                "from": "basculin",
+                "to": "basculegion",
+                "details": [
+                    "Level Up after losing at least 294 HP from recoil damage without fainting"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 281,
+        "chain": [
+            {
+                "from": "sandile",
+                "to": "krokorok",
+                "details": [
+                    "Level Up at level 29"
+                ],
+                "regional": null
+            },
+            {
+                "from": "krokorok",
+                "to": "krookodile",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 282,
+        "chain": [
+            {
+                "from": "darumaka",
+                "to": "darmanitan",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "darumaka-galar",
+                "to": "darmanitan-galar",
+                "details": [
+                    "Given Ice Stone"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 283,
+        "chain": []
+    },
+    {
+        "id": 284,
+        "chain": [
+            {
+                "from": "dwebble",
+                "to": "crustle",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 285,
+        "chain": [
+            {
+                "from": "scraggy",
+                "to": "scrafty",
+                "details": [
+                    "Level Up at level 39"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 286,
+        "chain": []
+    },
+    {
+        "id": 287,
+        "chain": [
+            {
+                "from": "yamask",
+                "to": "cofagrigus",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            },
+            {
+                "from": "yamask-galar",
+                "to": "runerigus",
+                "details": [
+                    "Travel under the large rock arch in Dusty Bowl after taken at least 49 HP in damage from attacks without fainting"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 288,
+        "chain": [
+            {
+                "from": "tirtouga",
+                "to": "carracosta",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 289,
+        "chain": [
+            {
+                "from": "archen",
+                "to": "archeops",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 290,
+        "chain": [
+            {
+                "from": "trubbish",
+                "to": "garbodor",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 291,
+        "chain": [
+            {
+                "from": "zorua",
+                "to": "zoroark",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            },
+            {
+                "from": "zorua-hisui",
+                "to": "zoroark-hisui",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 292,
+        "chain": [
+            {
+                "from": "minccino",
+                "to": "cinccino",
+                "details": [
+                    "Given Shiny Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 293,
+        "chain": [
+            {
+                "from": "gothita",
+                "to": "gothorita",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "gothorita",
+                "to": "gothitelle",
+                "details": [
+                    "Level Up at level 41"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 294,
+        "chain": [
+            {
+                "from": "solosis",
+                "to": "duosion",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "duosion",
+                "to": "reuniclus",
+                "details": [
+                    "Level Up at level 41"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 295,
+        "chain": [
+            {
+                "from": "ducklett",
+                "to": "swanna",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 296,
+        "chain": [
+            {
+                "from": "vanillite",
+                "to": "vanillish",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "vanillish",
+                "to": "vanilluxe",
+                "details": [
+                    "Level Up at level 47"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 297,
+        "chain": [
+            {
+                "from": "deerling",
+                "to": "sawsbuck",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 298,
+        "chain": []
+    },
+    {
+        "id": 299,
+        "chain": [
+            {
+                "from": "karrablast",
+                "to": "escavalier",
+                "details": [
+                    "Trade with Shelmet"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 300,
+        "chain": [
+            {
+                "from": "foongus",
+                "to": "amoonguss",
+                "details": [
+                    "Level Up at level 39"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 301,
+        "chain": [
+            {
+                "from": "frillish",
+                "to": "jellicent",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 302,
+        "chain": []
+    },
+    {
+        "id": 303,
+        "chain": [
+            {
+                "from": "joltik",
+                "to": "galvantula",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 304,
+        "chain": [
+            {
+                "from": "ferroseed",
+                "to": "ferrothorn",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 305,
+        "chain": [
+            {
+                "from": "klink",
+                "to": "klang",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            },
+            {
+                "from": "klang",
+                "to": "klinklang",
+                "details": [
+                    "Level Up at level 49"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 306,
+        "chain": [
+            {
+                "from": "tynamo",
+                "to": "eelektrik",
+                "details": [
+                    "Level Up at level 39"
+                ],
+                "regional": null
+            },
+            {
+                "from": "eelektrik",
+                "to": "eelektross",
+                "details": [
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 307,
+        "chain": [
+            {
+                "from": "elgyem",
+                "to": "beheeyem",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 308,
+        "chain": [
+            {
+                "from": "litwick",
+                "to": "lampent",
+                "details": [
+                    "Level Up at level 41"
+                ],
+                "regional": null
+            },
+            {
+                "from": "lampent",
+                "to": "chandelure",
+                "details": [
+                    "Given Dusk Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 309,
+        "chain": [
+            {
+                "from": "axew",
+                "to": "fraxure",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            },
+            {
+                "from": "fraxure",
+                "to": "haxorus",
+                "details": [
+                    "Level Up at level 48"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 310,
+        "chain": [
+            {
+                "from": "cubchoo",
+                "to": "beartic",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 311,
+        "chain": []
+    },
+    {
+        "id": 312,
+        "chain": [
+            {
+                "from": "shelmet",
+                "to": "accelgor",
+                "details": [
+                    "Trade with Karrablast"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 313,
+        "chain": []
+    },
+    {
+        "id": 314,
+        "chain": [
+            {
+                "from": "mienfoo",
+                "to": "mienshao",
+                "details": [
+                    "Level Up at level 50"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 315,
+        "chain": []
+    },
+    {
+        "id": 316,
+        "chain": [
+            {
+                "from": "golett",
+                "to": "golurk",
+                "details": [
+                    "Level Up at level 43"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 317,
+        "chain": [
+            {
+                "from": "pawniard",
+                "to": "bisharp",
+                "details": [
+                    "Level Up at level 52"
+                ],
+                "regional": null
+            },
+            {
+                "from": "bisharp",
+                "to": "kingambit",
+                "details": [
+                    "Level Up after defeating three Bisharp holding Leader's Crest"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 318,
+        "chain": []
+    },
+    {
+        "id": 319,
+        "chain": [
+            {
+                "from": "rufflet",
+                "to": "braviary",
+                "details": [
+                    "Level Up at level 54"
+                ],
+                "regional": null
+            },
+            {
+                "from": "rufflet",
+                "to": "braviary-galar",
+                "details": [
+                    "Level Up at level 54"
+                ],
+                "regional": "galar"
+            }
+        ]
+    },
+    {
+        "id": 320,
+        "chain": [
+            {
+                "from": "vullaby",
+                "to": "mandibuzz",
+                "details": [
+                    "Level Up at level 54"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 321,
+        "chain": []
+    },
+    {
+        "id": 322,
+        "chain": []
+    },
+    {
+        "id": 323,
+        "chain": [
+            {
+                "from": "deino",
+                "to": "zweilous",
+                "details": [
+                    "Level Up at level 50"
+                ],
+                "regional": null
+            },
+            {
+                "from": "zweilous",
+                "to": "hydreigon",
+                "details": [
+                    "Level Up at level 64"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 324,
+        "chain": [
+            {
+                "from": "larvesta",
+                "to": "volcarona",
+                "details": [
+                    "Level Up at level 59"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 325,
+        "chain": []
+    },
+    {
+        "id": 326,
+        "chain": []
+    },
+    {
+        "id": 327,
+        "chain": []
+    },
+    {
+        "id": 328,
+        "chain": []
+    },
+    {
+        "id": 329,
+        "chain": []
+    },
+    {
+        "id": 330,
+        "chain": []
+    },
+    {
+        "id": 331,
+        "chain": []
+    },
+    {
+        "id": 332,
+        "chain": []
+    },
+    {
+        "id": 333,
+        "chain": []
+    },
+    {
+        "id": 334,
+        "chain": []
+    },
+    {
+        "id": 335,
+        "chain": []
+    },
+    {
+        "id": 336,
+        "chain": []
+    },
+    {
+        "id": 337,
+        "chain": [
+            {
+                "from": "chespin",
+                "to": "quilladin",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "quilladin",
+                "to": "chesnaught",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 338,
+        "chain": [
+            {
+                "from": "fennekin",
+                "to": "braixen",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "braixen",
+                "to": "delphox",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 339,
+        "chain": [
+            {
+                "from": "froakie",
+                "to": "frogadier",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "frogadier",
+                "to": "greninja",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 340,
+        "chain": [
+            {
+                "from": "bunnelby",
+                "to": "diggersby",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 341,
+        "chain": [
+            {
+                "from": "fletchling",
+                "to": "fletchinder",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "fletchinder",
+                "to": "talonflame",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 342,
+        "chain": [
+            {
+                "from": "scatterbug",
+                "to": "spewpa",
+                "details": [
+                    "Level Up at level 9"
+                ],
+                "regional": null
+            },
+            {
+                "from": "spewpa",
+                "to": "vivillon",
+                "details": [
+                    "Level Up at level 12"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 343,
+        "chain": [
+            {
+                "from": "litleo",
+                "to": "pyroar",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 344,
+        "chain": [
+            {
+                "from": "flabebe",
+                "to": "floette",
+                "details": [
+                    "Level Up at level 19"
+                ],
+                "regional": null
+            },
+            {
+                "from": "floette",
+                "to": "florges",
+                "details": [
+                    "Given Shiny Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 345,
+        "chain": [
+            {
+                "from": "skiddo",
+                "to": "gogoat",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 346,
+        "chain": [
+            {
+                "from": "pancham",
+                "to": "pangoro",
+                "details": [
+                    "Level Up at level 32 with Pokemon of type undefined in party"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 347,
+        "chain": []
+    },
+    {
+        "id": 348,
+        "chain": [
+            {
+                "from": "espurr",
+                "to": "meowstic",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 349,
+        "chain": [
+            {
+                "from": "honedge",
+                "to": "doublade",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "doublade",
+                "to": "aegislash",
+                "details": [
+                    "Given Dusk Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 350,
+        "chain": [
+            {
+                "from": "spritzee",
+                "to": "aromatisse",
+                "details": [
+                    "Trade holding Sachet"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 351,
+        "chain": [
+            {
+                "from": "swirlix",
+                "to": "slurpuff",
+                "details": [
+                    "Trade holding Whipped Dream"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 352,
+        "chain": [
+            {
+                "from": "inkay",
+                "to": "malamar",
+                "details": [
+                    "Level Up at level 30 while device upside down"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 353,
+        "chain": [
+            {
+                "from": "binacle",
+                "to": "barbaracle",
+                "details": [
+                    "Level Up at level 39"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 354,
+        "chain": [
+            {
+                "from": "skrelp",
+                "to": "dragalge",
+                "details": [
+                    "Level Up at level 48"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 355,
+        "chain": [
+            {
+                "from": "clauncher",
+                "to": "clawitzer",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 356,
+        "chain": [
+            {
+                "from": "helioptile",
+                "to": "heliolisk",
+                "details": [
+                    "Given Sun Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 357,
+        "chain": [
+            {
+                "from": "tyrunt",
+                "to": "tyrantrum",
+                "details": [
+                    "Level Up at level 39 during day"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 358,
+        "chain": [
+            {
+                "from": "amaura",
+                "to": "aurorus",
+                "details": [
+                    "Level Up at level 39 during night"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 359,
+        "chain": []
+    },
+    {
+        "id": 360,
+        "chain": []
+    },
+    {
+        "id": 361,
+        "chain": []
+    },
+    {
+        "id": 362,
+        "chain": [
+            {
+                "from": "goomy",
+                "to": "sliggoo",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            },
+            {
+                "from": "goomy",
+                "to": "sliggoo-hisui",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": "hisui"
+            },
+            {
+                "from": "sliggoo",
+                "to": "goodra",
+                "details": [
+                    "Level Up at level 50 in the rain"
+                ],
+                "regional": null
+            },
+            {
+                "from": "sliggoo-hisui",
+                "to": "goodra-hisui",
+                "details": [
+                    "Level Up at level 50 in the rain"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 363,
+        "chain": []
+    },
+    {
+        "id": 364,
+        "chain": [
+            {
+                "from": "phantump",
+                "to": "trevenant",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 365,
+        "chain": [
+            {
+                "from": "pumpkaboo",
+                "to": "gourgeist",
+                "details": [
+                    "Trade"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 366,
+        "chain": [
+            {
+                "from": "bergmite",
+                "to": "avalugg",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": null
+            },
+            {
+                "from": "bergmite",
+                "to": "avalugg-hisui",
+                "details": [
+                    "Level Up at level 37"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 367,
+        "chain": [
+            {
+                "from": "noibat",
+                "to": "noivern",
+                "details": [
+                    "Level Up at level 48"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 368,
+        "chain": []
+    },
+    {
+        "id": 369,
+        "chain": []
+    },
+    {
+        "id": 370,
+        "chain": []
+    },
+    {
+        "id": 371,
+        "chain": []
+    },
+    {
+        "id": 372,
+        "chain": []
+    },
+    {
+        "id": 373,
+        "chain": []
+    },
+    {
+        "id": 374,
+        "chain": [
+            {
+                "from": "rowlet",
+                "to": "dartrix",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dartrix",
+                "to": "decidueye",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dartrix",
+                "to": "decidueye-hisui",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": "hisui"
+            }
+        ]
+    },
+    {
+        "id": 375,
+        "chain": [
+            {
+                "from": "litten",
+                "to": "torracat",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "torracat",
+                "to": "incineroar",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 376,
+        "chain": [
+            {
+                "from": "popplio",
+                "to": "brionne",
+                "details": [
+                    "Level Up at level 17"
+                ],
+                "regional": null
+            },
+            {
+                "from": "brionne",
+                "to": "primarina",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 377,
+        "chain": [
+            {
+                "from": "pikipek",
+                "to": "trumbeak",
+                "details": [
+                    "Level Up at level 14"
+                ],
+                "regional": null
+            },
+            {
+                "from": "trumbeak",
+                "to": "toucannon",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 378,
+        "chain": [
+            {
+                "from": "yungoos",
+                "to": "gumshoos",
+                "details": [
+                    "Level Up at level 20 during day"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 379,
+        "chain": [
+            {
+                "from": "grubbin",
+                "to": "charjabug",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            },
+            {
+                "from": "charjabug",
+                "to": "vikavolt",
+                "details": [
+                    "Level Up",
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 380,
+        "chain": [
+            {
+                "from": "crabrawler",
+                "to": "crabominable",
+                "details": [
+                    "Level Up at Mount Lanakila"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 381,
+        "chain": []
+    },
+    {
+        "id": 382,
+        "chain": [
+            {
+                "from": "cutiefly",
+                "to": "ribombee",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 383,
+        "chain": [
+            {
+                "from": "rockruff",
+                "to": "lycanroc",
+                "details": [
+                    "Level Up at level 25 during day",
+                    "Level Up at level 25 during night",
+                    "Level Up at level 25 during dusk"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 384,
+        "chain": []
+    },
+    {
+        "id": 385,
+        "chain": [
+            {
+                "from": "mareanie",
+                "to": "toxapex",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 386,
+        "chain": [
+            {
+                "from": "mudbray",
+                "to": "mudsdale",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 387,
+        "chain": [
+            {
+                "from": "dewpider",
+                "to": "araquanid",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 388,
+        "chain": [
+            {
+                "from": "fomantis",
+                "to": "lurantis",
+                "details": [
+                    "Level Up at level 34 during day"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 389,
+        "chain": [
+            {
+                "from": "morelull",
+                "to": "shiinotic",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 390,
+        "chain": [
+            {
+                "from": "salandit",
+                "to": "salazzle",
+                "details": [
+                    "Level Up at level 33 while female"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 391,
+        "chain": [
+            {
+                "from": "stufful",
+                "to": "bewear",
+                "details": [
+                    "Level Up at level 27"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 392,
+        "chain": [
+            {
+                "from": "bounsweet",
+                "to": "steenee",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "steenee",
+                "to": "tsareena",
+                "details": [
+                    "Level Up knowing Stomp"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 393,
+        "chain": []
+    },
+    {
+        "id": 394,
+        "chain": []
+    },
+    {
+        "id": 395,
+        "chain": []
+    },
+    {
+        "id": 396,
+        "chain": [
+            {
+                "from": "wimpod",
+                "to": "golisopod",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 397,
+        "chain": [
+            {
+                "from": "sandygast",
+                "to": "palossand",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 398,
+        "chain": []
+    },
+    {
+        "id": 399,
+        "chain": [
+            {
+                "from": "type-null",
+                "to": "silvally",
+                "details": [
+                    "Level Up with high happiness"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 400,
+        "chain": []
+    },
+    {
+        "id": 401,
+        "chain": []
+    },
+    {
+        "id": 402,
+        "chain": []
+    },
+    {
+        "id": 403,
+        "chain": []
+    },
+    {
+        "id": 404,
+        "chain": []
+    },
+    {
+        "id": 405,
+        "chain": []
+    },
+    {
+        "id": 406,
+        "chain": []
+    },
+    {
+        "id": 407,
+        "chain": []
+    },
+    {
+        "id": 408,
+        "chain": [
+            {
+                "from": "jangmo-o",
+                "to": "hakamo-o",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "hakamo-o",
+                "to": "kommo-o",
+                "details": [
+                    "Level Up at level 45"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 409,
+        "chain": []
+    },
+    {
+        "id": 410,
+        "chain": []
+    },
+    {
+        "id": 411,
+        "chain": []
+    },
+    {
+        "id": 412,
+        "chain": []
+    },
+    {
+        "id": 413,
+        "chain": [
+            {
+                "from": "cosmog",
+                "to": "cosmoem",
+                "details": [
+                    "Level Up at level 43"
+                ],
+                "regional": null
+            },
+            {
+                "from": "cosmoem",
+                "to": "solgaleo",
+                "details": [
+                    "Level Up at level 53"
+                ],
+                "regional": null
+            },
+            {
+                "from": "cosmoem",
+                "to": "lunala",
+                "details": [
+                    "Level Up at level 53"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 414,
+        "chain": []
+    },
+    {
+        "id": 415,
+        "chain": []
+    },
+    {
+        "id": 416,
+        "chain": []
+    },
+    {
+        "id": 417,
+        "chain": []
+    },
+    {
+        "id": 418,
+        "chain": []
+    },
+    {
+        "id": 419,
+        "chain": []
+    },
+    {
+        "id": 420,
+        "chain": []
+    },
+    {
+        "id": 421,
+        "chain": []
+    },
+    {
+        "id": 422,
+        "chain": []
+    },
+    {
+        "id": 423,
+        "chain": []
+    },
+    {
+        "id": 424,
+        "chain": [
+            {
+                "from": "poipole",
+                "to": "naganadel",
+                "details": [
+                    "Level Up knowing Dragon Pulse"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 425,
+        "chain": []
+    },
+    {
+        "id": 426,
+        "chain": []
+    },
+    {
+        "id": 427,
+        "chain": []
+    },
+    {
+        "id": 428,
+        "chain": []
+    },
+    {
+        "id": 429,
+        "chain": []
+    },
+    {
+        "id": 430,
+        "chain": [
+            {
+                "from": "grookey",
+                "to": "thwackey",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "thwackey",
+                "to": "rillaboom",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 431,
+        "chain": [
+            {
+                "from": "scorbunny",
+                "to": "raboot",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "raboot",
+                "to": "cinderace",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 432,
+        "chain": [
+            {
+                "from": "sobble",
+                "to": "drizzile",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "drizzile",
+                "to": "inteleon",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 433,
+        "chain": [
+            {
+                "from": "skwovet",
+                "to": "greedent",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 434,
+        "chain": [
+            {
+                "from": "rookidee",
+                "to": "corvisquire",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "corvisquire",
+                "to": "corviknight",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 435,
+        "chain": [
+            {
+                "from": "blipbug",
+                "to": "dottler",
+                "details": [
+                    "Level Up at level 10"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dottler",
+                "to": "orbeetle",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 436,
+        "chain": [
+            {
+                "from": "nickit",
+                "to": "thievul",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 437,
+        "chain": [
+            {
+                "from": "gossifleur",
+                "to": "eldegoss",
+                "details": [
+                    "Level Up at level 20"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 438,
+        "chain": [
+            {
+                "from": "wooloo",
+                "to": "dubwool",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 439,
+        "chain": [
+            {
+                "from": "chewtle",
+                "to": "drednaw",
+                "details": [
+                    "Level Up at level 22"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 440,
+        "chain": [
+            {
+                "from": "yamper",
+                "to": "boltund",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 441,
+        "chain": [
+            {
+                "from": "rolycoly",
+                "to": "carkol",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "carkol",
+                "to": "coalossal",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 442,
+        "chain": [
+            {
+                "from": "applin",
+                "to": "flapple",
+                "details": [
+                    "Given Tart Apple"
+                ],
+                "regional": null
+            },
+            {
+                "from": "applin",
+                "to": "appletun",
+                "details": [
+                    "Given Sweet Apple"
+                ],
+                "regional": null
+            },
+            {
+                "from": "applin",
+                "to": "dipplin",
+                "details": [
+                    "Given Syrupy Apple"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dipplin",
+                "to": "hydrapple",
+                "details": [
+                    "Level Up knowing Dragon Cheer"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 443,
+        "chain": [
+            {
+                "from": "silicobra",
+                "to": "sandaconda",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 444,
+        "chain": []
+    },
+    {
+        "id": 445,
+        "chain": [
+            {
+                "from": "arrokuda",
+                "to": "barraskewda",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 446,
+        "chain": [
+            {
+                "from": "toxel",
+                "to": "toxtricity",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 447,
+        "chain": [
+            {
+                "from": "sizzlipede",
+                "to": "centiskorch",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 448,
+        "chain": [
+            {
+                "from": "clobbopus",
+                "to": "grapploct",
+                "details": [
+                    "Level Up knowing Taunt"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 449,
+        "chain": [
+            {
+                "from": "sinistea",
+                "to": "polteageist",
+                "details": [
+                    "Given Cracked Pot"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 450,
+        "chain": [
+            {
+                "from": "hatenna",
+                "to": "hattrem",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "hattrem",
+                "to": "hatterene",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 451,
+        "chain": [
+            {
+                "from": "impidimp",
+                "to": "morgrem",
+                "details": [
+                    "Level Up at level 32"
+                ],
+                "regional": null
+            },
+            {
+                "from": "morgrem",
+                "to": "grimmsnarl",
+                "details": [
+                    "Level Up at level 42"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 452,
+        "chain": [
+            {
+                "from": "milcery",
+                "to": "alcremie",
+                "details": [
+                    "Given a Sweet when the player spins and strikes a pose or gets dizzy"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 453,
+        "chain": []
+    },
+    {
+        "id": 454,
+        "chain": []
+    },
+    {
+        "id": 455,
+        "chain": [
+            {
+                "from": "snom",
+                "to": "frosmoth",
+                "details": [
+                    "Level Up with high happiness during night"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 456,
+        "chain": []
+    },
+    {
+        "id": 457,
+        "chain": []
+    },
+    {
+        "id": 458,
+        "chain": []
+    },
+    {
+        "id": 459,
+        "chain": []
+    },
+    {
+        "id": 460,
+        "chain": [
+            {
+                "from": "cufant",
+                "to": "copperajah",
+                "details": [
+                    "Level Up at level 34"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 461,
+        "chain": []
+    },
+    {
+        "id": 462,
+        "chain": []
+    },
+    {
+        "id": 463,
+        "chain": []
+    },
+    {
+        "id": 464,
+        "chain": []
+    },
+    {
+        "id": 465,
+        "chain": [
+            {
+                "from": "duraludon",
+                "to": "archaludon",
+                "details": [
+                    "Given Metal Alloy"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 466,
+        "chain": [
+            {
+                "from": "dreepy",
+                "to": "drakloak",
+                "details": [
+                    "Level Up at level 50"
+                ],
+                "regional": null
+            },
+            {
+                "from": "drakloak",
+                "to": "dragapult",
+                "details": [
+                    "Level Up at level 60"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 467,
+        "chain": []
+    },
+    {
+        "id": 468,
+        "chain": []
+    },
+    {
+        "id": 469,
+        "chain": []
+    },
+    {
+        "id": 470,
+        "chain": [
+            {
+                "from": "kubfu",
+                "to": "urshifu",
+                "details": [
+                    "Observing Scroll at Tower of Darkness",
+                    "Observing Scroll at Tower of Waters"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 471,
+        "chain": []
+    },
+    {
+        "id": 472,
+        "chain": []
+    },
+    {
+        "id": 473,
+        "chain": []
+    },
+    {
+        "id": 474,
+        "chain": []
+    },
+    {
+        "id": 475,
+        "chain": []
+    },
+    {
+        "id": 476,
+        "chain": []
+    },
+    {
+        "id": 477,
+        "chain": []
+    },
+    {
+        "id": 478,
+        "chain": [
+            {
+                "from": "sprigatito",
+                "to": "floragato",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "floragato",
+                "to": "meowscarada",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 479,
+        "chain": [
+            {
+                "from": "fuecoco",
+                "to": "crocalor",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "crocalor",
+                "to": "skeledirge",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 480,
+        "chain": [
+            {
+                "from": "quaxly",
+                "to": "quaxwell",
+                "details": [
+                    "Level Up at level 16"
+                ],
+                "regional": null
+            },
+            {
+                "from": "quaxwell",
+                "to": "quaquaval",
+                "details": [
+                    "Level Up at level 36"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 481,
+        "chain": [
+            {
+                "from": "lechonk",
+                "to": "oinkologne",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 482,
+        "chain": [
+            {
+                "from": "tarountula",
+                "to": "spidops",
+                "details": [
+                    "Level Up at level 15"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 483,
+        "chain": [
+            {
+                "from": "nymble",
+                "to": "lokix",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 484,
+        "chain": [
+            {
+                "from": "pawmi",
+                "to": "pawmo",
+                "details": [
+                    "Level Up at level 18"
+                ],
+                "regional": null
+            },
+            {
+                "from": "pawmo",
+                "to": "pawmot",
+                "details": [
+                    "Level Up while outside of Poké Ball after the player walks 1000 steps using the 'Let's Go!' feature"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 485,
+        "chain": [
+            {
+                "from": "tandemaus",
+                "to": "maushold",
+                "details": [
+                    "Level Up at level 25 in battle only"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 486,
+        "chain": [
+            {
+                "from": "fidough",
+                "to": "dachsbun",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 487,
+        "chain": [
+            {
+                "from": "smoliv",
+                "to": "dolliv",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            },
+            {
+                "from": "dolliv",
+                "to": "arboliva",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 488,
+        "chain": []
+    },
+    {
+        "id": 489,
+        "chain": [
+            {
+                "from": "nacli",
+                "to": "naclstack",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            },
+            {
+                "from": "naclstack",
+                "to": "garganacl",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 490,
+        "chain": [
+            {
+                "from": "charcadet",
+                "to": "armarouge",
+                "details": [
+                    "Given Auspicious Armor"
+                ],
+                "regional": null
+            },
+            {
+                "from": "charcadet",
+                "to": "ceruledge",
+                "details": [
+                    "Given Malicious Armor"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 491,
+        "chain": [
+            {
+                "from": "tadbulb",
+                "to": "bellibolt",
+                "details": [
+                    "Given Thunder Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 492,
+        "chain": [
+            {
+                "from": "wattrel",
+                "to": "kilowattrel",
+                "details": [
+                    "Level Up at level 25"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 493,
+        "chain": [
+            {
+                "from": "maschiff",
+                "to": "mabosstiff",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 494,
+        "chain": [
+            {
+                "from": "shroodle",
+                "to": "grafaiai",
+                "details": [
+                    "Level Up at level 28"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 495,
+        "chain": [
+            {
+                "from": "bramblin",
+                "to": "brambleghast",
+                "details": [
+                    "Level Up while outside of Poké Ball after the player walks 1000 steps using the 'Let's Go!' feature"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 496,
+        "chain": [
+            {
+                "from": "toedscool",
+                "to": "toedscruel",
+                "details": [
+                    "Level Up at level 30"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 497,
+        "chain": []
+    },
+    {
+        "id": 498,
+        "chain": [
+            {
+                "from": "capsakid",
+                "to": "scovillain",
+                "details": [
+                    "Given Fire Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 499,
+        "chain": [
+            {
+                "from": "rellor",
+                "to": "rabsca",
+                "details": [
+                    "Level Up while outside of Poké Ball after the player walks 1000 steps using the 'Let's Go!' feature"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 500,
+        "chain": [
+            {
+                "from": "flittle",
+                "to": "espathra",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 501,
+        "chain": [
+            {
+                "from": "tinkatink",
+                "to": "tinkatuff",
+                "details": [
+                    "Level Up at level 24"
+                ],
+                "regional": null
+            },
+            {
+                "from": "tinkatuff",
+                "to": "tinkaton",
+                "details": [
+                    "Level Up at level 38"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 502,
+        "chain": [
+            {
+                "from": "wiglett",
+                "to": "wugtrio",
+                "details": [
+                    "Level Up at level 26"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 503,
+        "chain": []
+    },
+    {
+        "id": 504,
+        "chain": [
+            {
+                "from": "finizen",
+                "to": "palafin",
+                "details": [
+                    "Level Up at level 38 while connected with another player via the Union Circle"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 505,
+        "chain": [
+            {
+                "from": "varoom",
+                "to": "revavroom",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 506,
+        "chain": []
+    },
+    {
+        "id": 507,
+        "chain": []
+    },
+    {
+        "id": 508,
+        "chain": [
+            {
+                "from": "glimmet",
+                "to": "glimmora",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 509,
+        "chain": [
+            {
+                "from": "greavard",
+                "to": "houndstone",
+                "details": [
+                    "Level Up at level 30 during night"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 510,
+        "chain": []
+    },
+    {
+        "id": 511,
+        "chain": [
+            {
+                "from": "cetoddle",
+                "to": "cetitan",
+                "details": [
+                    "Given Ice Stone"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 512,
+        "chain": []
+    },
+    {
+        "id": 513,
+        "chain": []
+    },
+    {
+        "id": 514,
+        "chain": []
+    },
+    {
+        "id": 515,
+        "chain": []
+    },
+    {
+        "id": 516,
+        "chain": []
+    },
+    {
+        "id": 517,
+        "chain": []
+    },
+    {
+        "id": 518,
+        "chain": []
+    },
+    {
+        "id": 519,
+        "chain": []
+    },
+    {
+        "id": 520,
+        "chain": []
+    },
+    {
+        "id": 521,
+        "chain": []
+    },
+    {
+        "id": 522,
+        "chain": []
+    },
+    {
+        "id": 523,
+        "chain": []
+    },
+    {
+        "id": 524,
+        "chain": []
+    },
+    {
+        "id": 525,
+        "chain": []
+    },
+    {
+        "id": 526,
+        "chain": []
+    },
+    {
+        "id": 527,
+        "chain": [
+            {
+                "from": "frigibax",
+                "to": "arctibax",
+                "details": [
+                    "Level Up at level 35"
+                ],
+                "regional": null
+            },
+            {
+                "from": "arctibax",
+                "to": "baxcalibur",
+                "details": [
+                    "Level Up at level 54"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 528,
+        "chain": [
+            {
+                "from": "gimmighoul",
+                "to": "gholdengo",
+                "details": [
+                    "Level Ip while having 999 Gimmighoul Coins"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 529,
+        "chain": []
+    },
+    {
+        "id": 530,
+        "chain": []
+    },
+    {
+        "id": 531,
+        "chain": []
+    },
+    {
+        "id": 532,
+        "chain": []
+    },
+    {
+        "id": 533,
+        "chain": []
+    },
+    {
+        "id": 534,
+        "chain": []
+    },
+    {
+        "id": 535,
+        "chain": []
+    },
+    {
+        "id": 536,
+        "chain": []
+    },
+    {
+        "id": 537,
+        "chain": []
+    },
+    {
+        "id": 538,
+        "chain": []
+    },
+    {
+        "id": 539,
+        "chain": [
+            {
+                "from": "poltchageist",
+                "to": "sinistcha",
+                "details": [
+                    "Given Unremarkable Teacup"
+                ],
+                "regional": null
+            }
+        ]
+    },
+    {
+        "id": 540,
+        "chain": []
+    },
+    {
+        "id": 541,
+        "chain": []
+    },
+    {
+        "id": 542,
+        "chain": []
+    },
+    {
+        "id": 543,
+        "chain": []
+    },
+    {
+        "id": 544,
+        "chain": []
+    },
+    {
+        "id": 545,
+        "chain": []
+    },
+    {
+        "id": 546,
+        "chain": []
+    },
+    {
+        "id": 547,
+        "chain": []
+    },
+    {
+        "id": 548,
+        "chain": []
+    },
+    {
+        "id": 549,
+        "chain": []
+    }
+]

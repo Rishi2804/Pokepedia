@@ -4,25 +4,22 @@ export const PokemonDexContext = createContext()
 
 export const dexReducer = (state, action) => {
     switch(action.type) {
+        case 'SET_ALL': {
+            return {
+                dex: action.payload.dex,
+                evoChains: action.payload.chains
+            }
+        }
         case 'SET_DEX_INFO': {
             return {
                 dex: action.payload,
-                speciesInfo: state.speciesInfo,
                 evoChains: state.evoChains
             }
         }
-        case 'ADD_SPECIES_INFO': {
+        case 'SET_EVO_CHAINS': {
             return {
                 dex: state.dex,
-                speciesInfo: [action.payload , ...state.speciesInfo],
-                evoChains: state.evoChains
-            }
-        }
-        case 'ADD_EVO_CHAIN': {
-            return {
-                dex: state.dex,
-                speciesInfo: state.speciesInfo,
-                evoChains: [action.payload, ...state.evoChains]
+                evoChains: action.payload
             }
         }
         default: 
@@ -33,7 +30,6 @@ export const dexReducer = (state, action) => {
 export const PokemonDexContextProvider = ({ children }) => {
     const [ state, dispatch ] = useReducer(dexReducer, {
         dex: [],
-        speciesInfo: [],
         evoChains: []
     })
     return (

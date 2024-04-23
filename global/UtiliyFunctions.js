@@ -142,3 +142,14 @@ export function isRegionalEvo(name) {
     }
     return null
 }
+
+export function findFormInSpecies(species, name) {
+    for (const pokemon of species) {
+        for (const form of pokemon.forms) {
+            if (form.name === name) {
+                return form
+            }
+        }
+    }
+    return null
+}
