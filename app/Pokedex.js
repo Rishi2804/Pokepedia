@@ -8,6 +8,7 @@ import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-lis
 import { dexes, types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions";
 import PokedexData from "../assets/jsonData/pokedex.json"
+import LoadingView from "../components/LoadingView";
 
 const Pokedex = () => {
     const [ loading, setLoading ] = useState(false)
@@ -32,34 +33,51 @@ const Pokedex = () => {
             } else if (state === 2) {
                 return b.name.localeCompare(a.name)
             }
+        } else if (selected === 2) {
+            // Pokemon Stat total field is messed up
+            let aTotal = 0;
+            a.stats.forEach((stat) => {aTotal += stat.stat})
+            let bTotal = 0;
+            b.stats.forEach((stat) => {bTotal += stat.stat})
+            if (state === 1) {
+                return aTotal - bTotal
+            } else if (state === 2) {
+                return bTotal - aTotal
+            }
         }
     }
 
     useEffect(() => {
-        const dexString = dexes[dexType]
+        setLoading(true);
+    
+        const dexString = dexes[dexType];
+        let pokemonToSet = [];
+    
         if (dexString !== "national") {
-            const dexIds = PokedexData.find(dex => dex.name === dexString).speciesIDs
-            const regionalDex = dex.filter(mon => dexIds.includes(mon.id))
-            const sortedPokemon = [...regionalDex].sort(sortingFunction)
-            const typeNames = filterTypes.map(index => types[index].name)
-            if (filterTypes.length > 0) {
-                const filteredPokemon = sortedPokemon.filter(mon => {
-                    return mon.types.some(type => typeNames.includes(type))
-                })
-                const regex = new RegExp(searchTerm, 'i')
-                const searchResults = filteredPokemon.filter(pokemon => regex.test(pokemon.name))
-                setPokemon(searchResults)
-            } else {
-                const regex = new RegExp(searchTerm, 'i')
-                const searchResults = sortedPokemon.filter(pokemon => regex.test(pokemon.name))
-                setPokemon(searchResults)
-            }
+            const dexIds = PokedexData.find(dex => dex.name === dexString).speciesIDs;
+            const regionalDex = dex.filter(mon => dexIds.includes(mon.id));
+            pokemonToSet = [...regionalDex].sort(sortingFunction);
         } else {
-            const sortedPokemon = [...dex].sort(sortingFunction)
-            setPokemon(sortedPokemon)
+            pokemonToSet = [...dex].sort(sortingFunction);
         }
-
-    }, [state, selected, dexType, searchTerm, filterTypes])
+    
+        const typeNames = filterTypes.map(index => types[index].name);
+        if (filterTypes.length > 0) {
+            pokemonToSet = pokemonToSet.filter(mon =>
+                mon.types.some(type => typeNames.includes(type))
+            );
+        }
+    
+        const regex = new RegExp(searchTerm, 'i');
+        const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
+    
+        // Simulate async operation to set Pokemon
+        setTimeout(() => {
+            setPokemon(searchResults);
+            setLoading(false); // Clear loading state
+        }, 0);
+    }, [state, selected, dexType, searchTerm, filterTypes]);
+    
 
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -76,6 +94,7 @@ const Pokedex = () => {
                     label="Types"
                 />
             </View>
+            {loading && <LoadingView />}
             {!loading && <View style={styles.scrollContainer}>
                 <FlatList 
                     data={pokemon}
@@ -93,7 +112,7 @@ const Pokedex = () => {
                 state={state} setState={setState}
                 selected={selected} setSelected={setSelected}
                 setSearchTerm={setSearchTerm}
-                options={["Number", "Name", "HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]}
+                options={["Number", "Name", "BST", "HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]}
             />
         </SafeAreaView>
     );
