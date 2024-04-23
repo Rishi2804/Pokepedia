@@ -18,41 +18,41 @@ const Pokedex = () => {
     const [ filterTypes, setFilterTypes] = useState([])
     const [ dexType, setDexType ] = useState("")
 
-    // useEffect(() => {
-    //     if (selected === 0) {
-    //         if (state === 1) {
-    //             setPokemon([...pokemon].sort((a, b) => a.dexNumber - b.dexNumber))
-    //         } else if (state === 2) {
-    //             setPokemon([...pokemon].sort((a, b) => b.dexNumber - a.dexNumber))
-    //         }
-    //     } else if (selected === 1) {
-    //         if (state === 1) {
-    //             setPokemon([...pokemon].sort((a, b) => {
-    //                 const nameA = a.name.toUpperCase();
-    //                 const nameB = b.name.toUpperCase();
-    //                 if (nameA < nameB) {
-    //                     return -1;
-    //                 }
-    //                 if (nameA > nameB) {
-    //                     return 1;
-    //                 }
-    //                 return 0;
-    //             }))
-    //         } else if (state === 2) {
-    //             setPokemon([...pokemon].sort((a, b) => {
-    //                 const nameA = a.name.toUpperCase();
-    //                 const nameB = b.name.toUpperCase();
-    //                 if (nameA < nameB) {
-    //                     return 1;
-    //                 }
-    //                 if (nameA > nameB) {
-    //                     return -1; 
-    //                 }
-    //                 return 0;
-    //             }))
-    //         }
-    //     }
-    // }, [state, selected])
+    useEffect(() => {
+        if (selected === 0) {
+            if (state === 1) {
+                setPokemon([...pokemon].sort((a, b) => a.id - b.id))
+            } else if (state === 2) {
+                setPokemon([...pokemon].sort((a, b) => b.id - a.id))
+            }
+        } else if (selected === 1) {
+            if (state === 1) {
+                setPokemon([...pokemon].sort((a, b) => {
+                    const nameA = a.name.toUpperCase();
+                    const nameB = b.name.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                }))
+            } else if (state === 2) {
+                setPokemon([...pokemon].sort((a, b) => {
+                    const nameA = a.name.toUpperCase();
+                    const nameB = b.name.toUpperCase();
+                    if (nameA < nameB) {
+                        return 1;
+                    }
+                    if (nameA > nameB) {
+                        return -1; 
+                    }
+                    return 0;
+                }))
+            }
+        }
+    }, [state, selected])
 
     useEffect(() => {
         const regex = new RegExp(searchTerm, 'i')
@@ -76,7 +76,7 @@ const Pokedex = () => {
     // }, [dexType])
 
     return (
-        <SafeAreaView style={{flex: 1, justifyContent: "space-between"}}>
+        <SafeAreaView style={{flex: 1}}>
             <View >
                 <SelectList 
                     data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
@@ -99,7 +99,7 @@ const Pokedex = () => {
                         )
                     }}
                     ItemSeparatorComponent={<View style={{height: 5}}/>}
-                    contentContainerStyle={{paddingBottom: 60}}
+                    contentContainerStyle={{paddingBottom: 140}}
                     keyExtractor={(item) => item.id}
                 />
             </View>}

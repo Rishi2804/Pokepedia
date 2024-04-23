@@ -897,6 +897,14 @@
                     "Given Leaf Stone"
                 ],
                 "regional": null
+            },
+            {
+                "from": "exeggcute",
+                "to": "exeggutor-alola",
+                "details": [
+                    "Given Leaf Stone"
+                ],
+                "regional": "alola"
             }
         ]
     },
@@ -907,7 +915,7 @@
                 "from": "cubone",
                 "to": "marowak",
                 "details": [
-                    "Level Up at level 28 during night"
+                    "Level Up at level 28"
                 ],
                 "regional": null
             },
@@ -4352,11 +4360,11 @@
             },
             {
                 "from": "rufflet",
-                "to": "braviary-galar",
+                "to": "braviary-hisui",
                 "details": [
                     "Level Up at level 54"
                 ],
-                "regional": "galar"
+                "regional": "hisui"
             }
         ]
     },
@@ -4820,20 +4828,20 @@
                 "regional": null
             },
             {
-                "from": "goomy",
-                "to": "sliggoo-hisui",
-                "details": [
-                    "Level Up at level 40"
-                ],
-                "regional": "hisui"
-            },
-            {
                 "from": "sliggoo",
                 "to": "goodra",
                 "details": [
                     "Level Up at level 50 in the rain"
                 ],
                 "regional": null
+            },
+            {
+                "from": "goomy",
+                "to": "sliggoo-hisui",
+                "details": [
+                    "Level Up at level 40"
+                ],
+                "regional": "hisui"
             },
             {
                 "from": "sliggoo-hisui",

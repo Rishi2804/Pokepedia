@@ -104,7 +104,11 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
 
     useEffect(() => {
         if (isRegionalVariant(pokemonInfo[formIndex].name)) {
-            setEvoChain(filterEvoChain(fullEvoChain, pokemonInfo[formIndex].name))
+            if (pokemonInfo[formIndex].name === 'darmanitan-galar-standard' || pokemonInfo[formIndex].name === 'darmanitan-galar-zen') {
+                setEvoChain(filterEvoChain(fullEvoChain, 'darmanitan-galar'))
+            } else {
+                setEvoChain(filterEvoChain(fullEvoChain, pokemonInfo[formIndex].name))
+            }
         } else {
             setEvoChain(filterEvoChain(fullEvoChain, pokemon.name))
         }
@@ -144,7 +148,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                         fromImg = fromContext.image
                                     }
                                     if (toVariant) {
-                                        toImg = findFormInSpecies(dex, line.to).image
+                                        if (line.to === 'darmanitan-galar') toImg = findFormInSpecies(dex, 'darmanitan-galar-standard').image
+                                        else toImg = findFormInSpecies(dex, line.to).image
                                     } else {
                                         const toContext = dex.find(pokemon => pokemon.name === line.to)
                                         toImg = toContext.image
@@ -156,13 +161,13 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                                 style={{width: 80, height: 80}}
                                             />
                                             <View style={{flex: 1, alignItems: "center", justifyContent: 'center'}}>
-                                                {line.details.map(detail => {
+                                                {line.details.map((detail, index) => {
                                                     let string = detail
                                                     if (!isRegionalVariant(line.from) && isRegionalVariant(line.to)) {
                                                         string += " in " 
                                                         string += formatText(isRegionalVariant(line.to))
                                                     }
-                                                    return (<Text style={[styles.defaultText2, {textAlign: "center"}]}>{string}</Text>)
+                                                    return (<Text style={[styles.defaultText2, {textAlign: "center"}]} key={index}>{string}</Text>)
                                                 })}
                                             </View>
                                             <Image 
