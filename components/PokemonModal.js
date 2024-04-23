@@ -74,9 +74,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
 
     const blankRender = () => {
         return (
-            <View style={{width: pokemonInfo.length > 1 ? '100%' : 0}}>
-
-            </View>
+            <View style={{width: pokemonInfo.length > 1 ? '100%' : 0}} />
         )
     }
 
@@ -115,6 +113,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                 <View style={styles.line} />
                 {
                     evoChain.length > 0 && (
+                        <>
                         <View style={styles.section}>
                             <Text style={styles.headerText}>Evolution Chain</Text>
                             {
@@ -161,9 +160,10 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                 })
                             }
                         </View>
+                        <View style={styles.line} />
+                        </>
                     )
                 }
-                <View style={styles.line} />
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Pokedex Entries</Text>
                     <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
@@ -245,6 +245,10 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     </View>
                 </View>
                 <View style={styles.line} />
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Base Stats</Text>
+                    
+                </View>
             </>
         );
     }
