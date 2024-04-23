@@ -18,14 +18,14 @@ const Pokedex = () => {
     const [ selected, setSelected ] = useState(0)
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
-    const [ dexType, setDexType ] = useState(0)
+    const [ dexType, setDexType ] = useState("national")
 
     const sortingFunction = (a, b) => {
         if (selected === 0) {
             if (state === 1) {
-                return a.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number - b.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number
+                return a.regionalDexNumber.find(entry => entry.name === dexType).number - b.regionalDexNumber.find(entry => entry.name === dexType).number
             } else if (state === 2) {
-                return b.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number - a.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number
+                return b.regionalDexNumber.find(entry => entry.name === dexType).number - a.regionalDexNumber.find(entry => entry.name === dexType).number
             }
         } else if (selected === 1) {
             if (state === 1) {
@@ -44,17 +44,22 @@ const Pokedex = () => {
             } else if (state === 2) {
                 return bTotal - aTotal
             }
+        } else if (selected >= 3 && selected <= 8) {
+            const statIndex = selected - 3
+            if (state === 1) {
+                return a.stats[statIndex].stat - b.stats[statIndex].stat
+            } else if (state === 2) {
+                return b.stats[statIndex].stat - a.stats[statIndex].stat
+            }
         }
     }
 
     useEffect(() => {
         setLoading(true);
-    
-        const dexString = dexes[dexType];
         let pokemonToSet = [];
     
-        if (dexString !== "national") {
-            const dexIds = PokedexData.find(dex => dex.name === dexString).speciesIDs;
+        if (dexType !== "national") {
+            const dexIds = PokedexData.find(dex => dex.name === dexType).speciesIDs;
             const regionalDex = dex.filter(mon => dexIds.includes(mon.id));
             pokemonToSet = [...regionalDex].sort(sortingFunction);
         } else {
@@ -85,7 +90,7 @@ const Pokedex = () => {
                 <SelectList 
                     data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
                     save="key"
-                    setSelected={(key) => setDexType(key)}
+                    setSelected={(key) => setDexType(dexes[key])}
                 />
                 <MultipleSelectList 
                     data={types.map((item, index) => {return{key: index, value: item.name}})} 
@@ -100,7 +105,7 @@ const Pokedex = () => {
                     data={pokemon}
                     renderItem={({ item }) => {
                         return(
-                            <PokemonListView pokemon={item} dexRegion={dexes[dexType]} key={item.id} />
+                            <PokemonListView pokemon={item} dexRegion={dexType} key={item.id} />
                         )
                     }}
                     ItemSeparatorComponent={<View style={{height: 5}}/>}
