@@ -190,18 +190,16 @@ export function filterEvoChain(chain, name) {
             const temp = chain.filter(subChain => subChain.from === subline.to)
             finalChain = [...finalChain, ...temp]
         });
-        return finalChain
     } else if (fromLines.length > 0 && toLines.length > 0) {
         finalChain = chain.filter(subchain => {
             return (subchain.from === name || subchain.to === name)
         })
-        return finalChain
     } else if (fromLines.length === 0 && toLines.length > 0) {
         toLines.forEach(subline => {
             const temp = chain.filter(subChain => subChain.to === subline.from)
             finalChain = [...finalChain, ...temp]
         });
         finalChain = [...finalChain, ...toLines]
-        return finalChain
     }
+    return finalChain
 }

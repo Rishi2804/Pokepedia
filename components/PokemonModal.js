@@ -162,7 +162,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                                         string += " in " 
                                                         string += formatText(isRegionalVariant(line.to))
                                                     }
-                                                    return (<Text>{string}</Text>)
+                                                    return (<Text style={[styles.defaultText2, {textAlign: "center"}]}>{string}</Text>)
                                                 })}
                                             </View>
                                             <Image 
