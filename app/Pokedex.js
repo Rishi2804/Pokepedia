@@ -7,6 +7,8 @@ import BottomFilters from "../components/BottomFilters";
 import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
 import { dexes, types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions";
+import PokedexData from "../assets/jsonData/pokedex.json"
+import LoadingView from "../components/LoadingView";
 
 const Pokedex = () => {
     const [ loading, setLoading ] = useState(false)
@@ -16,67 +18,69 @@ const Pokedex = () => {
     const [ selected, setSelected ] = useState(0)
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
-    const [ dexType, setDexType ] = useState("")
+    const [ dexType, setDexType ] = useState(0)
 
-    useEffect(() => {
+    const sortingFunction = (a, b) => {
         if (selected === 0) {
             if (state === 1) {
-                setPokemon([...pokemon].sort((a, b) => a.dexNumber - b.dexNumber))
+                return a.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number - b.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number
             } else if (state === 2) {
-                setPokemon([...pokemon].sort((a, b) => b.dexNumber - a.dexNumber))
+                return b.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number - a.regionalDexNumber.find(entry => entry.name === dexes[dexType]).number
             }
         } else if (selected === 1) {
             if (state === 1) {
-                setPokemon([...pokemon].sort((a, b) => {
-                    const nameA = a.name.toUpperCase();
-                    const nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                        return -1;
-                    }
-                    if (nameA > nameB) {
-                        return 1;
-                    }
-                    return 0;
-                }))
+                return a.name.localeCompare(b.name)
             } else if (state === 2) {
-                setPokemon([...pokemon].sort((a, b) => {
-                    const nameA = a.name.toUpperCase();
-                    const nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                        return 1;
-                    }
-                    if (nameA > nameB) {
-                        return -1; 
-                    }
-                    return 0;
-                }))
+                return b.name.localeCompare(a.name)
+            }
+        } else if (selected === 2) {
+            // Pokemon Stat total field is messed up
+            let aTotal = 0;
+            a.stats.forEach((stat) => {aTotal += stat.stat})
+            let bTotal = 0;
+            b.stats.forEach((stat) => {bTotal += stat.stat})
+            if (state === 1) {
+                return aTotal - bTotal
+            } else if (state === 2) {
+                return bTotal - aTotal
             }
         }
-    }, [state, selected])
+    }
 
     useEffect(() => {
-        const regex = new RegExp(searchTerm, 'i')
-        const searchResults = dex.filter(pokemon => regex.test(pokemon.name))
-        setPokemon(searchResults)
-    }, [searchTerm])
-
-    // useEffect(() => {
-    //     if (filterTypes.length > 0) setPokemon([...pokemon].filter((item) => item.types.some((type) => filterTypes.some(index => types[index].name === type))))
-    // }, [filterTypes])
-
-    // useEffect(() => {
-    //     console.log(dexes[dexType])
-    //     if (dexType.length > 0){
-    //         if (dexType === 'national') {
-    //             setPokemon(dex)
-    //         } else {
-    //             setPokemon([...pokemon].filter((item) => item.regionalDexNumbers.some((dex) => dexType.includes(index => dexes[index] === dex.name))))
-    //         }
-    //     } 
-    // }, [dexType])
+        setLoading(true);
+    
+        const dexString = dexes[dexType];
+        let pokemonToSet = [];
+    
+        if (dexString !== "national") {
+            const dexIds = PokedexData.find(dex => dex.name === dexString).speciesIDs;
+            const regionalDex = dex.filter(mon => dexIds.includes(mon.id));
+            pokemonToSet = [...regionalDex].sort(sortingFunction);
+        } else {
+            pokemonToSet = [...dex].sort(sortingFunction);
+        }
+    
+        const typeNames = filterTypes.map(index => types[index].name);
+        if (filterTypes.length > 0) {
+            pokemonToSet = pokemonToSet.filter(mon =>
+                mon.types.some(type => typeNames.includes(type))
+            );
+        }
+    
+        const regex = new RegExp(searchTerm, 'i');
+        const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
+    
+        // Simulate async operation to set Pokemon
+        setTimeout(() => {
+            setPokemon(searchResults);
+            setLoading(false); // Clear loading state
+        }, 0);
+    }, [state, selected, dexType, searchTerm, filterTypes]);
+    
 
     return (
-        <SafeAreaView style={{flex: 1, justifyContent: "space-between"}}>
+        <SafeAreaView style={{flex: 1}}>
             <View >
                 <SelectList 
                     data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
@@ -90,24 +94,25 @@ const Pokedex = () => {
                     label="Types"
                 />
             </View>
+            {loading && <LoadingView />}
             {!loading && <View style={styles.scrollContainer}>
                 <FlatList 
                     data={pokemon}
                     renderItem={({ item }) => {
                         return(
-                            <PokemonListView pokemon={item} key={item.dexNumber} />
+                            <PokemonListView pokemon={item} dexRegion={dexes[dexType]} key={item.id} />
                         )
                     }}
                     ItemSeparatorComponent={<View style={{height: 5}}/>}
-                    contentContainerStyle={{paddingBottom: 60}}
-                    keyExtractor={(item) => item.dexNumber}
+                    contentContainerStyle={{paddingBottom: 140}}
+                    keyExtractor={(item) => item.id}
                 />
             </View>}
             <BottomFilters 
                 state={state} setState={setState}
                 selected={selected} setSelected={setSelected}
                 setSearchTerm={setSearchTerm}
-                options={["Number", "Name", "HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]}
+                options={["Number", "Name", "BST", "HP", "Attack", "Defense", "Special Attack", "Special Defense", "Speed"]}
             />
         </SafeAreaView>
     );

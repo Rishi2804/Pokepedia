@@ -1,4 +1,4 @@
-import { fixFlavourText, formatText, formatName } from "../global/UtiliyFunctions";
+import { fixFlavourText, formatText, formatName, isRegionalVariant } from "../global/UtiliyFunctions";
 
 export function transformSpeciesInfoAlt(rawJson) {
     const formData = []
@@ -168,4 +168,43 @@ export function formatEvoDetails(details) {
         string += ' while device upside down'
     }
     return string
+}
+
+export function filterEvoChain(chain, name) {
+    let containsRegional = false
+    for (const subChain of chain) {
+        if (subChain.regional) {
+            containsRegional = true;
+            break;
+        }
+    }
+    if (!containsRegional) return chain
+
+    const fromLines = chain.filter(subchain => subchain.from === name)
+    const toLines = chain.filter(subchain => subchain.to === name)
+
+    let finalChain = []
+    if (fromLines.length > 0 && toLines.length === 0) {
+        finalChain = [...fromLines]
+        fromLines.forEach(subline => {
+            const temp = chain.filter(subChain => subChain.from === subline.to)
+            finalChain = [...finalChain, ...temp]
+        });
+    } else if (fromLines.length > 0 && toLines.length > 0) {
+        finalChain = chain.filter(subchain => {
+            return (subchain.from === name || subchain.to === name)
+        })
+    } else if (fromLines.length === 0 && toLines.length > 0) {
+        toLines.forEach(subline => {
+            const temp = chain.filter(subChain => subChain.to === subline.from)
+            const temp2 = chain.filter(subChain => {return((subChain.from === subline.from) && (subChain.to !== subline.to))})
+            finalChain = [...finalChain, ...temp]
+        });
+        finalChain = [...finalChain, ...toLines]
+        toLines.forEach(subline => {
+            const temp = chain.filter(subChain => (subline.from === subChain.from && subline.to !== subChain.to && (isRegionalVariant(subline.to) === isRegionalVariant(subChain.to))))
+            finalChain = [...finalChain, ...temp]
+        })
+    }
+    return finalChain
 }
