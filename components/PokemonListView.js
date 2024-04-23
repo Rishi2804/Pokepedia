@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import PokemonModal from "./PokemonModal";
 import { darkenColor, formatName } from "../global/UtiliyFunctions";
 
-const PokemonListView = ({ pokemon }) => {
+const PokemonListView = ({ pokemon, dexRegion }) => {
 
     let hasSecondType = pokemon.types.length === 2;
     return (
@@ -22,7 +22,7 @@ const PokemonListView = ({ pokemon }) => {
                         source={{uri: pokemon.image}}
                         style={{height: 70, width: 70, marginRight: 10, marginBottom: 10}}
                     />
-                    <Text style={styles.numText}>{String(pokemon.id).padStart(3 ,'0')}</Text>
+                    <Text style={styles.numText}>{pokemon.regionalDexNumber.find(entry => entry.name === dexRegion) ? String(pokemon.regionalDexNumber.find(entry => entry.name === dexRegion).number).padStart(3 ,'0') : String(pokemon.id).padStart(3, '0')}</Text>
                     <Text style={styles.nameText}>{formatName(pokemon.name)}</Text>
                 </View>
                 <View>

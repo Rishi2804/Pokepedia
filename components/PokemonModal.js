@@ -4,9 +4,9 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { darkenColor, formatName, formatGameText, formatText, returnRegionalVariants, isRegionalVariant, isRegionalEvo, findFormInSpecies } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
-import { transformSpeciesInfoAlt, transformDexDataAlt, transformEvoChain, filterEvoChain } from "../transformers/SpeciesInfoTransformer";
+import { filterEvoChain } from "../transformers/SpeciesInfoTransformer";
 
 import { useDexContext } from "./hooks/useDexContext";
 import Tabs from "./Tabs";
@@ -28,7 +28,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const handleSwipe = (dir) => {
         if (dir === "right") {
             const nextIndex = formIndex + 1
-            if (nextIndex < pokemonInfo.length) {
+            if (nextIndex < pokemon.forms.length) {
                 setFormIndex(nextIndex)
             } else {
                 setFormIndex(0)
@@ -38,7 +38,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             if (nextIndex >= 0) {
                 setFormIndex(nextIndex)
             } else {
-                setFormIndex(pokemonInfo.length - 1)
+                setFormIndex(pokemon.forms.length - 1)
             }
         }
     }
@@ -46,7 +46,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const handleOpen = (dir) => {
         if (dir === "right") {
             const nextIndex = formIndex + 1
-            if (nextIndex < pokemonInfo.length) {
+            if (nextIndex < pokemon.forms.length) {
                 setFormIndex(nextIndex)
             } else {
                 setFormIndex(0)
@@ -58,7 +58,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
             if (nextIndex >= 0) {
                 setFormIndex(nextIndex)
             } else {
-                setFormIndex(pokemonInfo.length - 1)
+                setFormIndex(pokemon.forms.length - 1)
             }
             swipeableRef.current.openRight()
             resetImagePosition()
@@ -81,25 +81,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     }
 
     const handleModalOpen = () => {
-        // function findInList(name) {
-        //     for (const speciesArray of speciesInfo) {
-        //         if (speciesArray.info[0].name === name) {
-        //             return speciesArray
-        //         }
-        //     }
-        // }
-
-        // const pokemonInfo = findInList(pokemon.name)
-        // if (!pokemonInfo) {
-        //     fetchData()
-        //     console.log("Needed to fetch")
-        // } else {
-        //     setDexEntries(pokemonInfo.dexEntries)
-        //     setPokemonInfo(pokemonInfo.info)
-        //     setEvoChain(evoChains.find((chain) => chain.id === pokemonInfo.chainId).chain)
-        //     console.log("Had info from before!")
-        // }
-        //setEvoChain()
+        
     }
 
     useEffect(() => {
@@ -296,7 +278,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     locations={[0.4, 1]}
                 >
                     <Text></Text>
-                    <Text style={styles.subTitleText}>{pokemon.dexNumber}</Text>
+                    <Text style={styles.subTitleText}>{pokemon.id}</Text>
                 </LinearGradient>
                 <View style={styles.line}/>
                 <ScrollView>

@@ -3,7 +3,7 @@ export const dexes = ["national", "kanto", "original-johto", "hoenn",
                         "original-unova", "updated-unova", "kalos-central", "kalos-coastal",
                         "kalos-mountain", "updated-hoenn", "original-alola", "original-melemele",
                         "original-akala", "original-ulaula", "original-poni", "updated-alola",
-                        "updated-melemele", "updated-akala", "updated-ulaula", "updated-poni",
+                        "updated-melemele", "updated-akala", "updated-ulaula", "updated-poni", "letsgo-kanto",
                         "galar", "isle-of-armor", "crown-tundra", "paldea", "kitakami", "blueberry"]
 
 export const types = [
