@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { filterEvoChain } from "../transformers/SpeciesInfoTransformer";
+import { BarChart } from "react-native-gifted-charts";
 
 import { useDexContext } from "./hooks/useDexContext";
 import Tabs from "./Tabs";
@@ -22,6 +23,19 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const swipeableRef = useRef(null);
     const [tab, setTab] = useState(0)
     const fullEvoChain = evoChains.find((chain) => chain.id === pokemon.evolutionChainId).chain
+    const data = [ {value: pokemon.forms[formIndex].stats[0].stat, label: "HP", frontColor: "#87d945"}, 
+                    {value: pokemon.forms[formIndex].stats[1].stat, label: "Atk", frontColor: "#e9cd49"}, 
+                    {value: pokemon.forms[formIndex].stats[2].stat, label: "Def", frontColor: "#d76c2f"}, 
+                    {value: pokemon.forms[formIndex].stats[3].stat, label: "Sp Atk", frontColor: "#5ac0eb"}, 
+                    {value: pokemon.forms[formIndex].stats[4].stat, label: "Sp Def", frontColor: "#5169d7"}, 
+                    {value: pokemon.forms[formIndex].stats[5].stat, label: "Speed", frontColor: "#c334a8"}
+                ]
+    const bst = pokemon.forms[formIndex].stats[0].stat 
+    + pokemon.forms[formIndex].stats[1].stat 
+    + pokemon.forms[formIndex].stats[2].stat 
+    + pokemon.forms[formIndex].stats[3].stat 
+    + pokemon.forms[formIndex].stats[4].stat 
+    + pokemon.forms[formIndex].stats[5].stat
 
     const threshold = Dimensions.get('window').width / 4
     
@@ -247,8 +261,32 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                 <View style={styles.line} />
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Base Stats</Text>
-                    
+                    <View style={{marginTop: -50}}>
+                        <BarChart 
+                            data={data} 
+                            horizontal 
+                            dashWidth={0} 
+                            height={265}
+                            barWidth={35}
+                            width={Dimensions.get("window").width - 90}
+                            barBorderRadius={6}
+                            spacing={5}
+                            hideYAxisText={true}
+                            maxValue={265}
+                            initialSpacing={30}
+                            yAxisIndicesWidth={0}
+                            disablePress={true}
+                            disableScroll={true}
+                            yAxisThickness={0}
+                            xAxisThickness={0}
+                            showValuesAsTopLabel={true}
+                            topLabelTextStyle={styles.defaultText2}
+                            xAxisLabelTextStyle={styles.defaultText2}
+                        />
+                    </View>
+                    <Text style={[styles.defaultText, {marginLeft: 20, marginTop: -20}]}>Base Stat Total: {bst}</Text>
                 </View>
+                <View style={styles.line} />
             </>
         );
     }
