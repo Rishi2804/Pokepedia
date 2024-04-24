@@ -6,8 +6,10 @@ import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
 import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
+import { genMapUppercase } from "../global/UniversalData";
 import { filterEvoChain } from "../transformers/SpeciesInfoTransformer";
 import { BarChart } from "react-native-gifted-charts";
+import { State, PanGestureHandler } from 'react-native-gesture-handler';
 
 import { useDexContext } from "./hooks/useDexContext";
 import Tabs from "./Tabs";
@@ -121,6 +123,33 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         <View style={{alignItems: "center"}}>
                             <Text style={styles.headerText}>Height</Text>
                             <Text style={styles.defaultText}>{pokemonInfo[formIndex].height} m</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.line} />
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Gender Ratio</Text>
+                    <View style={{justifyContent: "center", alignItems: "center"}}>
+                        <View style={{width: 250, height: 15, borderRadius: 10, flexDirection: "row", backgroundColor: "#d0d0d0", overflow: "hidden"}}>
+                            {
+                                pokemon.genderRate >= 0 && (
+                                    <>
+                                    <View style={{width: ((1 - (pokemon.genderRate / 8)) * 100) + '%', height: 15, backgroundColor: "#3b54f6"}} />
+                                    <View style={{width: ((pokemon.genderRate / 8) * 100) + '%', height: 15, backgroundColor: "#ee74d8"}} />
+                                    </>
+                                )
+                            }
+                        </View>
+                        <View style={{width: 250, flexDirection: "row", justifyContent: pokemon.genderRate > 0 ? "space-between" : "space-around"}}>
+                            {
+                                pokemon.genderRate >= 0 ? (
+                                    <>
+                                    <Text style={[styles.defaultText2, {color: "#3b54f6"}]}>{((1 - (pokemon.genderRate / 8)) * 100) + '%'} Male</Text>
+                                    <Text style={[styles.defaultText2, {color: "#ee74d8"}]}>{((pokemon.genderRate / 8) * 100) + '%'} Female</Text>
+                                    </>
+                                ) : 
+                                (<Text style={[styles.defaultText2, {color: "#808080"}]}>Genderless</Text>)
+                            }
                         </View>
                     </View>
                 </View>
@@ -259,6 +288,26 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     </View>
                 </View>
                 <View style={styles.line} />
+                {pokemon.forms[formIndex].past_abilites.length > 0 && 
+                    <>
+                    <View style={styles.section}>
+                        <Text style={styles.headerText}>Past Abilities</Text>
+                        <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
+                            {
+                                pokemon.forms[formIndex].past_abilites.map((ability, index) => (
+                                        <View style={{alignItems: "center"}} key={index}>
+                                            <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
+                                            {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
+                                            <Text style={styles.defaultText2}>(Gen {genMapUppercase.get(ability.generation)} and before)</Text>
+                                        </View>
+                                    )
+                                )
+                            }
+                        </View>
+                    </View>
+                    <View style={styles.line} />
+                    </>
+                }
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Base Stats</Text>
                     <View style={{marginTop: -50}}>
@@ -297,7 +346,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                 handleModalOpen()
                 setIsVisible(true)
             }}>
-                {children}
+                    {children}
             </Pressable>
             <Modal
                 visible={isVisible}

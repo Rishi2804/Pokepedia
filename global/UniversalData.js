@@ -6,6 +6,30 @@ export const dexes = ["national", "kanto", "original-johto", "hoenn",
                         "updated-melemele", "updated-akala", "updated-ulaula", "updated-poni", "letsgo-kanto",
                         "galar", "isle-of-armor", "crown-tundra", "paldea", "hisui", "kitakami", "blueberry"]
 
+export const genMap = new Map([
+    [1, "i"],
+    [2, "ii"],
+    [3, "iii"],
+    [4, "iv"],
+    [5, "v"],
+    [6, "vi"],
+    [7, "vii"],
+    [8, "viii"],
+    [9, "ix"]
+])
+
+export const genMapUppercase = new Map([
+    [1, "I"],
+    [2, "II"],
+    [3, "III"],
+    [4, "IV"],
+    [5, "V"],
+    [6, "VI"],
+    [7, "VII"],
+    [8, "VIII"],
+    [9, "IX"]
+])
+
 export const types = [
     {
         name: "normal",
