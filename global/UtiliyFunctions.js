@@ -153,3 +153,19 @@ export function findFormInSpecies(species, name) {
     }
     return null
 }
+
+export function addPrefixTextToNum(index, dexes) {
+    if (index === 1 && dexes[1]?.name === 'alola' && dexes[0].name === 'alola') {
+        return "US/UM"
+    } else if (index === 0 && dexes[1]?.name === 'alola' && dexes[0].name === 'alola') {
+        return "S/M"
+    } else if (index === 1 && dexes[1]?.name === 'unova' && dexes[0].name === 'unova') {
+        return "B2/W2"
+    } else if (index === 0 && dexes[1]?.name === 'unova' && dexes[0].name === 'unova') {
+        return "B/W"
+    } else if (index === 1 && dexes[1]?.name === 'sinnoh' && dexes[0].name === 'sinnoh') {
+        return "Pt"
+    } else if (index === 0 && dexes[1]?.name === 'sinnoh' && dexes[0].name === 'sinnoh') {
+        return "D/P"
+    }
+}

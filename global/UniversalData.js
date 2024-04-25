@@ -4,7 +4,7 @@ export const dexes = ["national", "kanto", "original-johto", "hoenn",
                         "kalos-mountain", "updated-hoenn", "original-alola", "original-melemele",
                         "original-akala", "original-ulaula", "original-poni", "updated-alola",
                         "updated-melemele", "updated-akala", "updated-ulaula", "updated-poni", "letsgo-kanto",
-                        "galar", "isle-of-armor", "crown-tundra", "paldea", "hisui", "kitakami", "blueberry"]
+                        "galar", "isle-of-armor", "crown-tundra", "hisui", "paldea", "kitakami", "blueberry"]
 
 export const genMap = new Map([
     [1, "i"],
@@ -28,6 +28,33 @@ export const genMapUppercase = new Map([
     [7, "VII"],
     [8, "VIII"],
     [9, "IX"]
+])
+
+export const dexToRegionMap = new Map([
+    ['kanto', 'kanto'],
+    ['letsgo-kanto', 'kanto'],
+    ['original-johto', 'johto'],
+    ['updated-johto', 'johto'],
+    ['hoenn', 'hoenn'],
+    ['updated-hoenn', 'hoenn'],
+    ['sinnoh', 'sinnoh'],
+    ['original-sinnoh', 'sinnoh'],
+    ['extended-sinnoh', 'sinnoh'],
+    ['unova', 'unova'],
+    ['original-unova', 'unova'],
+    ['updated-unova', 'unova'],
+    ['kalos-central', 'kalos'],
+    ['kalos-coastal', 'kalos'],
+    ['kalos-mountain', 'kalos'],
+    ['original-alola', 'alola'],
+    ['updated-alola', 'alola'],
+    ['galar', 'galar'],
+    ['isle-of-armor', 'isle-of-armor'],
+    ['crown-tundra', 'crown-tundra'],
+    ['hisui', 'hisui'],
+    ['paldea', 'paldea'],
+    ['kitakami', 'kitakami'],
+    ['blueberry', 'blueberry']
 ])
 
 export const types = [

@@ -4,21 +4,22 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies, addPrefixTextToNum } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { genMapUppercase } from "../global/UniversalData";
-import { filterEvoChain } from "../transformers/SpeciesInfoTransformer";
+import { filterEvoChain, sortDexEntries, catergorizeDexEntries } from "../transformers/SpeciesInfoTransformer";
 import { BarChart } from "react-native-gifted-charts";
 import { State, PanGestureHandler } from 'react-native-gesture-handler';
 
 import { useDexContext } from "./hooks/useDexContext";
 import Tabs from "./Tabs";
+import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
 
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const [pokemonInfo, setPokemonInfo] = useState(pokemon.forms)
-    const [dexEntries, setDexEntries] = useState(pokemon.dexEntries)
+    const [dexEntries, setDexEntries] = useState(sortDexEntries(pokemon.dexEntries))
     const [evoChain, setEvoChain] = useState([])
     const [formIndex, setFormIndex] = useState(0)
 
@@ -40,6 +41,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     + pokemon.forms[formIndex].stats[5].stat
 
     const threshold = Dimensions.get('window').width / 4
+
+    const categorized = catergorizeDexEntries(pokemon.dexEntries, pokemon.regionalDexNumber, pokemon.generation)
     
     const handleSwipe = (dir) => {
         if (dir === "right") {
@@ -211,14 +214,40 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     <Text style={styles.headerText}>Pokedex Entries</Text>
                     <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
                         {
-                            dexEntries.map((entry, index) => (
+                            categorized.map((genEntires, index) => (
                                 <View style={{ marginBottom: 3 }} key={index}>
-                                    <View style={{flexDirection: "row"}}>
-                                        <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 70, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}>
-                                            <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
+                                    <View>
+                                        <View style={{justifyContent: "space-between", flexDirection: "row"}}>
+                                            <View style={{width: 100, alignItems: "center", justifyContent: "center", backgroundColor: genToColorMap.get(pokemon.generation + index), borderTopEndRadius: 8, borderTopStartRadius: 8}}>
+                                                <Text style={{fontFamily: "Geologica Regular", textAlign: "center"}}>Generation {genMapUppercase.get(pokemon.generation + index)}</Text>
+                                            </View>
+                                            <View style={{flexDirection: "row"}}>
+                                                {
+                                                    genEntires.dexNumbers.map((dexEntry, numIndex) => (
+                                                        <View style={{alignItems: "center", paddingHorizontal: 2, marginHorizontal: 2, backgroundColor: regionToColorMap.get(dexEntry.name), borderTopEndRadius: 8, borderTopStartRadius: 8}} key={numIndex}>
+                                                            <Text style={styles.defaultText3}>{formatText(dexEntry.name)}</Text>
+                                                            <Text style={styles.defaultText3}>{addPrefixTextToNum(numIndex, genEntires.dexNumbers)} #{dexEntry.number ? String(dexEntry.number).padStart(3, '0') : "---"}</Text>
+                                                        </View>
+                                                    ))
+                                                }
+                                            </View>
                                         </View>
-                                        <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
-                                            <Text style={styles.defaultText2}>{entry.entry}</Text>
+                                        <View style={{borderWidth: 2, borderColor: genToColorMap.get(pokemon.generation + index), borderBottomRightRadius: 8, borderBottomLeftRadius: 8, backgroundColor: "#fff", paddingHorizontal: 2}}>
+                                        {
+                                            genEntires.entries.length > 0 ? genEntires.entries.map((entry, entryIndex) => (
+                                                <View style={{flexDirection: "row", borderColor: "black", borderWidth: 1, borderRadius: 8, marginBottom: 2, marginTop: entryIndex === 0 ? 2 : 0 }} key={entryIndex}>
+                                                    <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 72, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8, borderRightWidth: 1}}>
+                                                        <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
+                                                    </View>
+                                                    <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
+                                                        <Text style={styles.defaultText2}>{entry.entry}</Text>
+                                                    </View>
+                                                </View>
+                                            )) : 
+                                            <View style={{flex: 1, backgroundColor: "#fff", borderRadius: 8, padding: 8, alignItems: "center"}}>
+                                                <Text style={styles.defaultText2}>No Dex Entries found</Text>
+                                            </View>
+                                        }
                                         </View>
                                     </View>
                                 </View>
@@ -501,6 +530,10 @@ const styles = StyleSheet.create({
     defaultText2: {
         fontFamily: "Inconsolata Regular",
         fontSize: 16
+    },
+    defaultText3: {
+        fontFamily: "Inconsolata Regular",
+        fontSize: 14
     }
 })
 

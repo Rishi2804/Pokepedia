@@ -1,0 +1,31 @@
+export const genToColorMap = new Map([
+    [1, "#b4d279"],
+    [2, "#dbd684"],
+    [3, "#a8d5c8"],
+    [4, "#b4a4c1"],
+    [5, "#a8c9dd"],
+    [6, "#ce688b"],
+    [7, "#dc9887"],
+    [8, "#be80bc"],
+    [9, "#e4c28a"],
+])
+
+export const regionToColorMap = new Map([
+    ["kanto", "#b4d279"],
+    ["johto", "#dbd684"],
+    ["hoenn", "#a8d5c8"],
+    ["sinnoh", "#b4a4c1"],
+    ["unova", "#a8c9dd"],
+    ["kalos", "#ce688b"],
+    ["kalos-central", "#ce688b"],
+    ["kalos-coastal", "#ce688b"],
+    ["kalos-mountain", "#ce688b"],
+    ["alola", "#dc9887"],
+    ["galar", "#be80bc"],
+    ["isle-of-armor", "#be80bc"],
+    ["crown-tundra", "#be80bc"],
+    ["hisui", "#8092a7"],
+    ["paldea", "#e4c28a"],
+    ["kitakami", "#75c1ba"],
+    ["blueberry", "#6386a4"],
+])
