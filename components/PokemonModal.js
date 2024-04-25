@@ -4,7 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies, addPrefixTextToNum } from "../global/UtiliyFunctions";
+import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies, addPrefixTextToNum, getTypeMatchups } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { genMapUppercase } from "../global/UniversalData";
 import { filterEvoChain, sortDexEntries, catergorizeDexEntries } from "../transformers/SpeciesInfoTransformer";
@@ -300,6 +300,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
         );
     }
 
+    const typeRelations = getTypeMatchups(pokemon.forms[formIndex].types)
     const BattleView = () => {
         return (
             <>
@@ -337,6 +338,98 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     <View style={styles.line} />
                     </>
                 }
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Weaknesses</Text>
+                    <View>
+                        {
+                            typeRelations.doubleWeakness.length > 0 &&
+                            <View style={{flexDirection: "row", marginBottom: 5}}>
+                                <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
+                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x4</Text>
+                                </View>    
+                                {
+                                    typeRelations.doubleWeakness.map(item => {
+                                        return (
+                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                                <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                            </View>
+                                        )
+                                    })
+                                }
+                            </View>
+                        }
+                        {
+                            typeRelations.weaknesses.length > 0 &&
+                            <View style={{flexDirection: "row", marginBottom: 15}}>
+                                <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
+                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x2</Text>
+                                </View>    
+                                {
+                                    typeRelations.weaknesses.map(item => {
+                                        return (
+                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                                <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                            </View>
+                                        )
+                                    })
+                                }
+                            </View>
+                        }
+                    </View>
+                    <Text style={styles.headerText}>Resistances</Text>
+                    {
+                        typeRelations.doubleResistances.length > 0 &&
+                        <View style={{flexDirection: "row", marginBottom: 5}}>
+                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/4</Text>
+                            </View>
+                            {
+                                typeRelations.doubleResistances.map(item => {
+                                    return (
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
+                    }
+                    {
+                        typeRelations.resistances.length > 0 &&
+                        <View style={{flexDirection: "row", marginBottom: 5}}>
+                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/2</Text>
+                            </View>
+                            {
+                                typeRelations.resistances.map(item => {
+                                    return (
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
+                    }
+                    {
+                        typeRelations.immunities.length > 0 &&
+                        <View style={{flexDirection: "row"}}>
+                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x0</Text>
+                            </View>
+                            {
+                                typeRelations.immunities.map(item => {
+                                    return (
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
+                    }
+                </View>
+                <View style={styles.line} />
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Base Stats</Text>
                     <View style={{marginTop: -50}}>
@@ -387,7 +480,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                 presentationStyle="pageSheet"
             >
                 <LinearGradient 
-                    style={[styles.header, {height: startInView ? 60 : 100}]}
+                    style={styles.header}
                     colors={[
                         pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
                         pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
@@ -401,58 +494,57 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         <Text style={[styles.titleText, {fontSize: 28}]}>{!startInView && formatName(pokemon.forms[formIndex].name)}</Text>
                         <Text style={styles.subTitleText}>{String(pokemon.id).padStart(4, '0')}</Text>
                     </View>
-                    {!startInView && <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>}
                 </LinearGradient>
                 <View style={styles.line}/>
                 <ScrollView>
                     <InView onChange={(isVisible) => setStartInView(isVisible)}>
-                    <LinearGradient 
-                        style={styles.bigContainer}
-                        colors={[
-                            pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
-                            pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
-                                : hasSecondType ? darkenColor(gradientMap[pokemon.types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
-                        ]}
-                        start={{x: 0, y: 0}}
-                        end={{x: 1, y: 1}}
-                        locations={[0.2, 1]}
-                    >
-                        <Swipeable
-                            ref={swipeableRef}
-                            leftThreshold={threshold}
-                            rightThreshold={threshold}
-                            renderLeftActions={blankRender}
-                            renderRightActions={blankRender}
-                            onSwipeableOpen={(direction) => handleOpen(direction)}
-                            onSwipeableWillOpen={(direction) => handleSwipe(direction)}
+                        <LinearGradient 
+                            style={styles.bigContainer}
+                            colors={[
+                                pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
+                                pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
+                                    : hasSecondType ? darkenColor(gradientMap[pokemon.types[1]], 0.2) : darkenColor(gradientMap[pokemon.types[0]], 0.5)
+                            ]}
+                            start={{x: 0, y: 0}}
+                            end={{x: 1, y: 1}}
+                            locations={[0.2, 1]}
                         >
-                            <Image
-                                source={{uri: pokemonInfo[formIndex] ? pokemonInfo[formIndex].image : pokemon.image}}
-                                style={{width: 200, height: 200, marginTop: 40, marginBottom: 10, alignSelf: "center"}}
-                            />
-                            <Text style={styles.titleText}>{pokemonInfo[0] ? formatName(pokemonInfo[formIndex].name) : pokemon.name }</Text>
-                            <Text style={styles.subTitleText}>Types</Text>
-                            <View style={{flexDirection: "row", alignSelf: "center"}}>
-                                <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]]}]}>
-                                    <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]} width={32} height={32} fill="white"/>
-                                    <View style={styles.textContainer}>
-                                        <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[0].toUpperCase() : pokemon.types[0].toUpperCase()}</Text>
+                            <Swipeable
+                                ref={swipeableRef}
+                                leftThreshold={threshold}
+                                rightThreshold={threshold}
+                                renderLeftActions={blankRender}
+                                renderRightActions={blankRender}
+                                onSwipeableOpen={(direction) => handleOpen(direction)}
+                                onSwipeableWillOpen={(direction) => handleSwipe(direction)}
+                            >
+                                <Image
+                                    source={{uri: pokemonInfo[formIndex] ? pokemonInfo[formIndex].image : pokemon.image}}
+                                    style={{width: 200, height: 200, marginTop: 40, marginBottom: 10, alignSelf: "center"}}
+                                />
+                                <Text style={styles.titleText}>{pokemonInfo[0] ? formatName(pokemonInfo[formIndex].name) : pokemon.name }</Text>
+                                <Text style={styles.subTitleText}>Types</Text>
+                                <View style={{flexDirection: "row", alignSelf: "center"}}>
+                                    <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]]}]}>
+                                        <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[0] : pokemon.types[0]} width={32} height={32} fill="white"/>
+                                        <View style={styles.textContainer}>
+                                            <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[0].toUpperCase() : pokemon.types[0].toUpperCase()}</Text>
+                                        </View>
                                     </View>
-                                </View>
-                                    {
-                                        ((pokemonInfo[0] && pokemonInfo[formIndex].types.length === 2) || (!pokemonInfo[0] && hasSecondType)) && (
-                                            <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]]}]}>
-                                                <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]} width={32} height={32} fill="white"/>
-                                                <View style={styles.textContainer}>
-                                                    <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[1].toUpperCase() : pokemon.types[1].toUpperCase()}</Text>
+                                        {
+                                            ((pokemonInfo[0] && pokemonInfo[formIndex].types.length === 2) || (!pokemonInfo[0] && hasSecondType)) && (
+                                                <View style={[styles.typeContainter, {backgroundColor: typeToColourMap[pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]]}]}>
+                                                    <IconTypeMapper type={pokemonInfo[0] ? pokemonInfo[formIndex].types[1] : pokemon.types[1]} width={32} height={32} fill="white"/>
+                                                    <View style={styles.textContainer}>
+                                                        <Text style={styles.typeIconText}>{pokemonInfo[0] ? pokemonInfo[formIndex].types[1].toUpperCase() : pokemon.types[1].toUpperCase()}</Text>
+                                                    </View>
                                                 </View>
-                                            </View>
-                                        )
-                                    }
-                            </View>
-                        </Swipeable>
-                        <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>
-                    </LinearGradient>
+                                            )
+                                        }
+                                </View>
+                            </Swipeable>
+                            <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>
+                        </LinearGradient>
                     </InView>
                     <View style={styles.line}/>
                     {
@@ -537,6 +629,15 @@ const styles = StyleSheet.create({
     defaultText3: {
         fontFamily: "Inconsolata Regular",
         fontSize: 14
+    },
+    typeInfoContainer: {
+        width: 80,
+        height: 40,
+        borderRadius: 5,
+        borderWidth: 2,
+        marginRight: 3,
+        alignItems: "center",
+        justifyContent: "center"
     }
 })
 

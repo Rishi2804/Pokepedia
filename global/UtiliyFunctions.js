@@ -1,3 +1,5 @@
+import { types } from "./UniversalData";
+
 export function darkenColor(color, darkeningFactor) {
     // Convert hex color to RGB
     var r = parseInt(color.substring(1, 3), 16);
@@ -168,4 +170,49 @@ export function addPrefixTextToNum(index, dexes) {
     } else if (index === 0 && dexes[1]?.name === 'sinnoh' && dexes[0].name === 'sinnoh') {
         return "D/P"
     }
+}
+
+export function getTypeMatchups(monTypes) {
+    const type1 = monTypes[0]
+    const type2 = monTypes[1]
+
+    if (type2) {
+        const type1Data = types.find(data => data.name === type1)
+        const type2Data = types.find(data => data.name === type2)
+
+        const doubleWeakness = type1Data.double_damage_from.filter(type => type2Data.double_damage_from.includes(type))
+
+        const immunities = Array.from(new Set([...type1Data.no_damage_from, ...type2Data.no_damage_from]))
+
+        const weaknesses1 = type1Data.double_damage_from.filter(type => {
+            return (!type2Data.half_damage_from.includes(type) && !doubleWeakness.includes(type) && !immunities.includes(type))
+        })
+        const weaknesses2 = type2Data.double_damage_from.filter(type => {
+            return (!type1Data.half_damage_from.includes(type) && !doubleWeakness.includes(type) && !immunities.includes(type))
+        })
+        
+        const weaknesses = [ ...weaknesses1, ...weaknesses2]
+
+        const doubleResistances = type1Data.half_damage_from.filter(type => type2Data.half_damage_from.includes(type))
+
+        const resistances1 = type1Data.half_damage_from.filter(type => {
+            return (!type2Data.double_damage_from.includes(type) && !doubleResistances.includes(type) && !immunities.includes(type))
+        })
+
+        const resistances2 = type2Data.half_damage_from.filter(type => {
+            return (!type1Data.double_damage_from.includes(type) && !doubleResistances.includes(type) && !immunities.includes(type))
+        })
+
+        const resistances = [ ...resistances1, ...resistances2]
+
+
+        return {doubleWeakness, weaknesses, doubleResistances, resistances, immunities}
+    } else {
+
+        const data = types.find(data => data.name === type1)
+
+        return {doubleWeakness: [], weaknesses: data.double_damage_from, doubleResistances: [], resistances: data.half_damage_from, immunities: data.no_damage_from}
+    }
+
+    
 }
