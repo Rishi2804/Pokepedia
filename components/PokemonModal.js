@@ -9,7 +9,7 @@ import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { genMapUppercase } from "../global/UniversalData";
 import { filterEvoChain, sortDexEntries, catergorizeDexEntries } from "../transformers/SpeciesInfoTransformer";
 import { BarChart } from "react-native-gifted-charts";
-import { State, PanGestureHandler } from 'react-native-gesture-handler';
+import InView from 'react-native-component-inview'
 
 import { useDexContext } from "./hooks/useDexContext";
 import Tabs from "./Tabs";
@@ -19,8 +19,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const [pokemonInfo, setPokemonInfo] = useState(pokemon.forms)
-    const [dexEntries, setDexEntries] = useState(sortDexEntries(pokemon.dexEntries))
     const [evoChain, setEvoChain] = useState([])
+    const [ startInView, setStartInView] = useState(true)
     const [formIndex, setFormIndex] = useState(0)
 
     const swipeableRef = useRef(null);
@@ -387,7 +387,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                 presentationStyle="pageSheet"
             >
                 <LinearGradient 
-                    style={styles.header}
+                    style={[styles.header, {height: startInView ? 60 : 100}]}
                     colors={[
                         pokemonInfo[0] ? gradientMap[pokemonInfo[formIndex].types[0]] : gradientMap[pokemon.types[0]], 
                         pokemonInfo[0] ? pokemonInfo[formIndex].types.length === 2 ? darkenColor(gradientMap[pokemonInfo[formIndex].types[1]], 0.2) : darkenColor(gradientMap[pokemonInfo[formIndex].types[0]], 0.5)
@@ -397,11 +397,15 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     end={{x: 1, y: 0}}
                     locations={[0.4, 1]}
                 >
-                    <Text></Text>
-                    <Text style={styles.subTitleText}>{pokemon.id}</Text>
+                    <View style={{justifyContent: "space-between", alignItems: "center", flexDirection :"row", flex: 1, width: '100%'}}>
+                        <Text style={[styles.titleText, {fontSize: 28}]}>{!startInView && formatName(pokemon.forms[formIndex].name)}</Text>
+                        <Text style={styles.subTitleText}>{String(pokemon.id).padStart(4, '0')}</Text>
+                    </View>
+                    {!startInView && <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>}
                 </LinearGradient>
                 <View style={styles.line}/>
                 <ScrollView>
+                    <InView onChange={(isVisible) => setStartInView(isVisible)}>
                     <LinearGradient 
                         style={styles.bigContainer}
                         colors={[
@@ -449,6 +453,7 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         </Swipeable>
                         <Tabs tabText={["General", "Battle"]} tab={tab} setTab={setTab}/>
                     </LinearGradient>
+                    </InView>
                     <View style={styles.line}/>
                     {
                         pokemonInfo[0] && (
@@ -469,8 +474,6 @@ const styles = StyleSheet.create({
         height: 60,
         width: '100%',
         alignItems: "center",
-        justifyContent: "space-between",
-        flexDirection: "row",
         paddingHorizontal: 10
     },
     line: {
