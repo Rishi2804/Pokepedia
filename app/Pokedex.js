@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, View, StyleSheet } from "react-native";
+import { FlatList, SafeAreaView, View, StyleSheet, ScrollView } from "react-native";
 import PokemonListView from "../components/PokemonListView";
 
 import { useDexContext } from "../components/hooks/useDexContext";
 import BottomFilters from "../components/BottomFilters";
+import ToggleButtons from "../components/ToggleButtons"
 import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
 import { dexes, types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions";
@@ -16,9 +17,14 @@ const Pokedex = () => {
     const [ pokemon, setPokemon ] = useState(dex)
     const [ state, setState ] = useState(1)
     const [ selected, setSelected ] = useState(0)
+    const [ toggled, setToggled ] = useState(0)
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
     const [ dexType, setDexType ] = useState("national")
+    const [ generation, setGeneration ] = useState(0)
+    const genList = ["All", "Generation I", "Generation II", "Generation III",
+                        "Generation IV", "Generation V", "Generation VI",
+                        "Generation VII", "Generation VIII", "Generation IX"]
 
     const sortingFunction = (a, b) => {
         if (selected === 0) {
@@ -72,6 +78,12 @@ const Pokedex = () => {
                 mon.types.some(type => typeNames.includes(type))
             );
         }
+
+        if (generation > 0) {
+            pokemonToSet = pokemonToSet.filter(mon =>
+                mon.generation === generation
+            );
+        }
     
         const regex = new RegExp(searchTerm, 'i');
         const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
@@ -81,23 +93,37 @@ const Pokedex = () => {
             setPokemon(searchResults);
             setLoading(false); // Clear loading state
         }, 0);
-    }, [state, selected, dexType, searchTerm, filterTypes]);
+    }, [state, selected, dexType, searchTerm, filterTypes, generation]);
     
-
     return (
         <SafeAreaView style={{flex: 1}}>
-            <View >
-                <SelectList 
-                    data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
-                    save="key"
-                    setSelected={(key) => setDexType(dexes[key])}
-                />
-                <MultipleSelectList 
-                    data={types.map((item, index) => {return{key: index, value: item.name}})} 
-                    save="key"
-                    setSelected={(key) => setFilterTypes(key)}
-                    label="Types"
-                />
+            <View>
+                <ScrollView horizontal style={{flexDirection: "row"}}>    
+                    <SelectList 
+                        data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
+                        save="key"
+                        setSelected={(key) => setDexType(dexes[key])}
+                        defaultOption={{key: 0, value: "National"}}
+                        boxStyles={{backgroundColor: "white"}}
+                        dropdownStyles={{backgroundColor: "white"}}
+                    />
+                    <SelectList 
+                        data={genList.map((gen, index) => {return{key: index, value: gen}})} 
+                        save="key"
+                        setSelected={(key) => setGeneration(key)}
+                        boxStyles={{backgroundColor: "white"}}
+                        dropdownStyles={{backgroundColor: "white"}}
+                        defaultOption={{key: 0, value: "All"}}
+                    />
+                    <MultipleSelectList 
+                        data={types.map((item, index) => {return{key: index, value: formatText(item.name)}})} 
+                        save="key"
+                        setSelected={(key) => setFilterTypes(key)}
+                        label="Types"
+                        boxStyles={{backgroundColor: "white"}}
+                        dropdownStyles={{backgroundColor: "white"}}
+                    />
+                </ScrollView>
             </View>
             {loading && <LoadingView />}
             {!loading && <View style={styles.scrollContainer}>

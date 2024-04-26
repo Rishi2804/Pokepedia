@@ -348,9 +348,9 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                     <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x4</Text>
                                 </View>    
                                 {
-                                    typeRelations.doubleWeakness.map(item => {
+                                    typeRelations.doubleWeakness.map((item, index) => {
                                         return (
-                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
                                                 <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
                                             </View>
                                         )
@@ -365,9 +365,9 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                     <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x2</Text>
                                 </View>    
                                 {
-                                    typeRelations.weaknesses.map(item => {
+                                    typeRelations.weaknesses.map((item, index) => {
                                         return (
-                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
                                                 <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
                                             </View>
                                         )
@@ -378,32 +378,34 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     </View>
                     <Text style={styles.headerText}>Resistances</Text>
                     {
+                        typeRelations.resistances.length > 0 &&
+                        <View style={{flexDirection: "row", marginBottom: 5}}>
+                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/2</Text>
+                            </View>
+                            <View style={{flexDirection: "row", flexWrap: "wrap", flex: 1}}>
+                            {
+                                typeRelations.resistances.map((item, index) => {
+                                    return (
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5, marginBottom: 2}} key={index}>
+                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                        </View>
+                                    )
+                                })
+                            }
+                            </View>
+                        </View>
+                    }
+                    {
                         typeRelations.doubleResistances.length > 0 &&
                         <View style={{flexDirection: "row", marginBottom: 5}}>
                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
                                 <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/4</Text>
                             </View>
                             {
-                                typeRelations.doubleResistances.map(item => {
+                                typeRelations.doubleResistances.map((item, index) => {
                                     return (
-                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
-                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                        </View>
-                                    )
-                                })
-                            }
-                        </View>
-                    }
-                    {
-                        typeRelations.resistances.length > 0 &&
-                        <View style={{flexDirection: "row", marginBottom: 5}}>
-                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/2</Text>
-                            </View>
-                            {
-                                typeRelations.resistances.map(item => {
-                                    return (
-                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
                                             <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
                                         </View>
                                     )
@@ -418,9 +420,9 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                                 <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x0</Text>
                             </View>
                             {
-                                typeRelations.immunities.map(item => {
+                                typeRelations.immunities.map((item, index) => {
                                     return (
-                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}}>
+                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
                                             <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
                                         </View>
                                     )
