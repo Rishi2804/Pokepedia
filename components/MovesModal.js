@@ -79,7 +79,7 @@ import LoadingView from "./LoadingView";
                                 <IconMoveClassMapper moveClass={move.class} width={35} height={35} />
                             </View>
                             <View style={{marginRight: 15, justifyContent: "center", flex: 1}}>
-                                <Text style={styles.descriptionText}>{displayDescription ? displayDescription.entry : move.descriptions[move.descriptions.length - 1].entry}</Text>
+                                <Text style={styles.descriptionText}>{displayDescription ? displayDescription.entry : move.descriptions[move.descriptions.length - 1]?.entry}</Text>
                             </View>
                         </View>
                         <View style={[styles.line, {backgroundColor: typeToColourMap[move.type]}]}/>
@@ -114,8 +114,8 @@ import LoadingView from "./LoadingView";
                                                         </View>
                                                         {
                                                             details.type && 
-                                                            <View>
-                                                                <Text>{"type:" + details.type}</Text>
+                                                            <View style={{alignItems: "center"}}>
+                                                                <Text style={[styles.descriptionText2, {color: typeToColourMap[details.type]}]}>{"Type: " + formatText(details.type)}</Text>
                                                             </View>
                                                         }
                                                     </View>
