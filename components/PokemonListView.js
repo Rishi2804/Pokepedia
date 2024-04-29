@@ -24,7 +24,7 @@ const PokemonListView = ({ pokemon, dexRegion, displayForm }) => {
     }
 
     return (
-        <PokemonModal pokemon={pokemon} hasSecondType={hasSecondType} longPress={changeDisplay}>
+        <PokemonModal pokemon={pokemon} startingFormIndex={formDisplay} hasSecondType={hasSecondType} longPress={changeDisplay}>
             <LinearGradient 
                 style={styles.container}
                 colors={[typeToGradientDarkColorMap[type1], hasSecondType ? darkenColor(typeToGradientDarkColorMap[type2], 0.2) : darkenColor(typeToGradientDarkColorMap[type1], 0.5)]}

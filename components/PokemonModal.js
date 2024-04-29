@@ -20,14 +20,14 @@ import Tabs from "./Tabs";
 import MovesView from "./MovesView"
 import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
 
-const PokemonModal = ({ children, pokemon, hasSecondType, longPress }) => {
+const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, longPress }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const { moves } = useMovesContext()
     const [pokemonInfo, setPokemonInfo] = useState(pokemon.forms)
     const [evoChain, setEvoChain] = useState([])
     const [ startInView, setStartInView] = useState(true)
-    const [formIndex, setFormIndex] = useState(0)
+    const [formIndex, setFormIndex] = useState(startingFormIndex)
     const [ pokemonMoves, setPokemonMoves ] = useState([])
     const [ versionMoveSet, setVersionMoveSet ] = useState(0)
     const [ moveTab, setMoveTab ] = useState("level-up")
