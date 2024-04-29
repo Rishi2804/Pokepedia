@@ -4,7 +4,7 @@ import PokemonListView from "../components/PokemonListView";
 
 import { useDexContext } from "../components/hooks/useDexContext";
 import BottomFilters from "../components/BottomFilters";
-import ToggleButtons from "../components/ToggleButtons"
+import Dropdown from "react-native-input-select"
 import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
 import { dexes, types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions";
@@ -119,10 +119,9 @@ const Pokedex = () => {
             })
         }
     
-        const typeNames = filterTypes.map(index => types[index].name);
         if (filterTypes.length > 0) {
             pokemonToSet = pokemonToSet.filter(mon =>
-                mon.types.some(type => typeNames.includes(type))
+                mon.types.some(type => filterTypes.includes(type))
             );
         }
 
@@ -134,13 +133,6 @@ const Pokedex = () => {
     
         const regex = new RegExp(searchTerm, 'i');
         const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
-
-        // searchResults.forEach(mon => {
-        //     if (mon['formIndex'] > 0) {
-        //         console.log(mon.name)
-        //         console.log(mon.formIndex, " second log")
-        //     }
-        // })
     
         // Simulate async operation to set Pokemon
         setTimeout(() => {
@@ -152,30 +144,43 @@ const Pokedex = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View>
-                <ScrollView horizontal style={{flexDirection: "row"}}>    
-                    <SelectList 
-                        data={dexes.map((item, index) => {return{key: index, value: formatText(item)}})} 
-                        save="key"
-                        setSelected={(key) => setDexType(dexes[key])}
-                        defaultOption={{key: 0, value: "National"}}
-                        boxStyles={{backgroundColor: "white"}}
-                        dropdownStyles={{backgroundColor: "white"}}
+                <ScrollView horizontal style={{flexDirection: "row"}}>   
+                    <Dropdown
+                        options={dexes.map(item => {return{value: item, label: formatText(item)}})}
+                        placeholder="Select a Dex"
+                        selectedValue={dexType}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setDexType(value)
+                            } else {
+                                setDexType(dexType)
+                            }
+                        }}
+                        dropdownStyle={{paddingRight: 50}}
+                        dropdownContainerStyle={{flex: 1}}
                     />
-                    <SelectList 
-                        data={genList.map((gen, index) => {return{key: index, value: gen}})} 
-                        save="key"
-                        setSelected={(key) => setGeneration(key)}
-                        boxStyles={{backgroundColor: "white"}}
-                        dropdownStyles={{backgroundColor: "white"}}
-                        defaultOption={{key: 0, value: "All"}}
+                    <Dropdown
+                        options={genList.map((gen, index) => {return{value: index, label: gen}})}
+                        placeholder=""
+                        selectedValue={generation}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setGeneration(value)
+                            } else {
+                                setGeneration(0)
+                            }
+                        }}
+                        dropdownStyle={{paddingRight: 50}}
+                        dropdownContainerStyle={{flex: 1}}
                     />
-                    <MultipleSelectList 
-                        data={types.map((item, index) => {return{key: index, value: formatText(item.name)}})} 
-                        save="key"
-                        setSelected={(key) => setFilterTypes(key)}
-                        label="Types"
-                        boxStyles={{backgroundColor: "white"}}
-                        dropdownStyles={{backgroundColor: "white"}}
+                    <Dropdown
+                        isMultiple
+                        options={types.map(item => {return{value: item.name, label: formatText(item.name)}})}
+                        placeholder="Select Types"
+                        selectedValue={filterTypes}
+                        onValueChange={(value) => {setFilterTypes(value)}}
+                        dropdownStyle={{paddingRight: 50}}
+                        dropdownContainerStyle={{flex: 1}}
                     />
                 </ScrollView>
             </View>
