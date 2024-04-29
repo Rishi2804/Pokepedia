@@ -6,7 +6,8 @@ import { darkenColor, formatText } from "../global/UtiliyFunctions";
 import IconMoveClassMapper from "../maps/MoveClassToIconMap";
 import MovesModal from "./MovesModal";
 
-const MovesView = ({ move, level }) => {
+const MovesView = ({ move, level, versionGroup }) => {
+    const pastVersion = move.pastValues.find(group => group.games.includes(versionGroup))
     return (
         <MovesModal move={move}>
             <LinearGradient
@@ -31,15 +32,15 @@ const MovesView = ({ move, level }) => {
                 <View style={{flexDirection: "row"}}>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.headerText}>pow</Text>
-                        <Text style={[styles.numText, {color: "#fff"}]}>{move.power ? move.power : "--"}</Text>
+                        <Text style={[styles.numText, {color: "#fff"}]}>{pastVersion ? pastVersion ? pastVersion.power : "--" : move.power ? move.power : "--"}</Text>
                     </View>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.headerText}>acc</Text>
-                        <Text style={styles.numText}>{move.accuracy ? move.accuracy + "%" : "--"}</Text>
+                        <Text style={styles.numText}>{pastVersion ? pastVersion ? pastVersion.accuracy + "%" : "--" : move.accuracy ? move.accuracy + "%" : "--"}</Text>
                     </View>
                     <View style={styles.sectionContainer}>
                         <Text style={styles.headerText}>pp</Text>
-                        <Text style={styles.numText}>{move.pp ? move.pp : "--"}</Text>
+                        <Text style={styles.numText}>{pastVersion ? pastVersion ? pastVersion.pp : "--" : move.pp ? move.pp : "--"}</Text>
                     </View>
                     <View style={styles.sectionContainer}>
                         <IconTypeMapper type={move.type} width={40} height={40} fill={typeToColourMap[move.type]}/>

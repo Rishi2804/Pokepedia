@@ -4,31 +4,46 @@ import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
 import PokemonModal from "./PokemonModal";
 import { darkenColor, formatName } from "../global/UtiliyFunctions";
+import { useState } from "react";
 
-const PokemonListView = ({ pokemon, dexRegion }) => {
+const PokemonListView = ({ pokemon, dexRegion, displayForm }) => {
+    const [ formDisplay, setFormDisplay ] = useState(displayForm && pokemon.forms[formDisplay] ? displayForm : 0)
+    let hasSecondType = pokemon.forms[formDisplay].types.length === 2;
+    const type1 = pokemon.forms[formDisplay].types[0]
+    const type2 = pokemon.forms[formDisplay].types[1]
 
-    let hasSecondType = pokemon.types.length === 2;
+    const changeDisplay = () => {
+        if (pokemon.forms.length > 0) {
+            const nextIndex = formDisplay + 1
+            if (nextIndex >= pokemon.forms.length) {
+                setFormDisplay(0)
+            } else {
+                setFormDisplay(nextIndex)
+            }
+        }
+    }
+
     return (
-        <PokemonModal pokemon={pokemon} hasSecondType={hasSecondType}>
+        <PokemonModal pokemon={pokemon} hasSecondType={hasSecondType} longPress={changeDisplay}>
             <LinearGradient 
                 style={styles.container}
-                colors={[typeToGradientDarkColorMap[pokemon.types[0]], hasSecondType ? darkenColor(typeToGradientDarkColorMap[pokemon.types[1]], 0.2) : darkenColor(typeToGradientDarkColorMap[pokemon.types[0]], 0.5)]}
+                colors={[typeToGradientDarkColorMap[type1], hasSecondType ? darkenColor(typeToGradientDarkColorMap[type2], 0.2) : darkenColor(typeToGradientDarkColorMap[type1], 0.5)]}
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
                 locations={[0.4, 1]}
             >
                 <View style={styles.pokemonContainer}>
                     <Image 
-                        source={{uri: pokemon.image}}
+                        source={{uri: pokemon.forms[formDisplay] ? pokemon.forms[formDisplay].image : pokemon.image}}
                         style={{height: 70, width: 70, marginRight: 10, marginBottom: 10}}
                     />
                     <Text style={styles.numText}>{pokemon.regionalDexNumber.find(entry => entry.name === dexRegion) ? String(pokemon.regionalDexNumber.find(entry => entry.name === dexRegion).number).padStart(3 ,'0') : String(pokemon.id).padStart(3, '0')}</Text>
                     <Text style={styles.nameText}>{formatName(pokemon.name)}</Text>
                 </View>
                 <View>
-                <IconTypeMapper type={pokemon.types[0]} width={40} height={40} fill={typeToColourMap[pokemon.types[0]]}/>
+                <IconTypeMapper type={type1} width={40} height={40} fill={typeToColourMap[type1]}/>
                     {
-                        hasSecondType ? <IconTypeMapper type={pokemon.types[1]} width={40} height={40} fill={typeToColourMap[pokemon.types[1]]}/> : <View style={{height: 40, width: 40}}/>
+                        hasSecondType ? <IconTypeMapper type={type2} width={40} height={40} fill={typeToColourMap[type2]}/> : <View style={{height: 40, width: 40}}/>
                     }
                 </View>
             </LinearGradient>

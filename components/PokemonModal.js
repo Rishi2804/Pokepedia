@@ -20,7 +20,7 @@ import Tabs from "./Tabs";
 import MovesView from "./MovesView"
 import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
 
-const PokemonModal = ({ children, pokemon, hasSecondType }) => {
+const PokemonModal = ({ children, pokemon, hasSecondType, longPress }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const { moves } = useMovesContext()
@@ -562,14 +562,14 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                         }}
                     />
                     {
-                        pokemonMoves[formIndex][versionMoveSet] && pokemonMoves[formIndex][versionMoveSet][moveTab].map(move => {
+                        pokemonMoves[formIndex][versionMoveSet] && pokemonMoves[formIndex][versionMoveSet][moveTab].map((move, index) => {
                             const moveInfo = moves.find(item => item.name === move.name)
                             if (moveInfo) {
                                 return (
-                                    <>
-                                        <MovesView move={moveInfo} level={move.level_learned}/>
+                                    <View key={index}>
+                                        <MovesView move={moveInfo} level={move.level_learned} versionGroup={pokemonMoves[formIndex][versionMoveSet].version}/>
                                         <View style={{height: 5}}/>
-                                    </>
+                                    </View>
                                 )
                             }
                         })
@@ -581,10 +581,13 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
 
     return (
         <View>
-            <Pressable onPress={ () => {
-                handleModalOpen()
-                setIsVisible(true)
-            }}>
+            <Pressable 
+                onPress={ () => {
+                    handleModalOpen()
+                    setIsVisible(true)
+                }} 
+                onLongPress={() => longPress()}
+            >
                     {children}
             </Pressable>
             <Modal
