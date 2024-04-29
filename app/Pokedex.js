@@ -66,10 +66,57 @@ const Pokedex = () => {
     
         if (dexType !== "national") {
             const dexIds = PokedexData.find(dex => dex.name === dexType).speciesIDs;
-            const regionalDex = dex.filter(mon => dexIds.includes(mon.id));
+            let regionalDex = dex.filter(mon => dexIds.includes(mon.id));
+            const alolaDexes = ['original-alola', 'original-melemele', 'original-akala', 'original-ulaula', 'original-poni',
+            'updated-alola', 'updated-melemele', 'updated-akala', 'updated-ulaula', 'updated-poni']
+            const galarDexes = ['galar', 'isle-of-armor', 'crown-tundra']
+            if (alolaDexes.includes(dexType)) {
+                regionalDex.forEach(mon => {
+                    const alolanForm = mon.forms.findIndex(form => form.name.split('-').includes('alola'))
+                    if (alolanForm > 0) {
+                        mon['formIndex'] = alolanForm
+                    } else {
+                        mon['formIndex'] = undefined
+                    }
+                })
+            } else if (galarDexes.includes(dexType)) {
+                regionalDex.forEach(mon => {
+                    const galarianForm = mon.forms.findIndex(form => form.name.split('-').includes('galar'))
+                    if (galarianForm > 0) {
+                        mon['formIndex'] = galarianForm
+                    } else {
+                        mon['formIndex'] = undefined
+                    }
+                })
+            } else if (dexType === 'hisui') {
+                regionalDex.forEach(mon => {
+                    const hisuianForm = mon.forms.findIndex(form => form.name.split('-').includes('hisui'))
+                    if (hisuianForm > 0) {
+                        mon['formIndex'] = hisuianForm
+                    } else {
+                        mon['formIndex'] = undefined
+                    }
+                })
+            } else if (dexType === 'paldea') {
+                regionalDex.forEach(mon => {
+                    const paldeanForm = mon.forms.findIndex(form => form.name.split('-').includes('paldea'))
+                    if (paldeanForm > 0) {
+                        mon['formIndex'] = paldeanForm
+                    } else {
+                        mon['formIndex'] = undefined
+                    }
+                })
+            } else {
+                regionalDex.forEach(mon => {
+                    mon['formIndex'] = undefined
+                })
+            }
             pokemonToSet = [...regionalDex].sort(sortingFunction);
         } else {
             pokemonToSet = [...dex].sort(sortingFunction);
+            pokemonToSet.forEach(mon => {
+                mon['formIndex'] = undefined
+            })
         }
     
         const typeNames = filterTypes.map(index => types[index].name);
@@ -87,6 +134,13 @@ const Pokedex = () => {
     
         const regex = new RegExp(searchTerm, 'i');
         const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
+
+        // searchResults.forEach(mon => {
+        //     if (mon['formIndex'] > 0) {
+        //         console.log(mon.name)
+        //         console.log(mon.formIndex, " second log")
+        //     }
+        // })
     
         // Simulate async operation to set Pokemon
         setTimeout(() => {
@@ -131,7 +185,7 @@ const Pokedex = () => {
                     data={pokemon}
                     renderItem={({ item }) => {
                         return(
-                            <PokemonListView pokemon={item} dexRegion={dexType} key={item.id} />
+                            <PokemonListView pokemon={item} displayForm={item.formIndex} dexRegion={dexType} key={item.id} />
                         )
                     }}
                     ItemSeparatorComponent={<View style={{height: 5}}/>}
