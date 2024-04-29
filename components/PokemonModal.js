@@ -4,25 +4,34 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
+import { SelectList } from "react-native-dropdown-select-list"
+import Dropdown from 'react-native-input-select';
 import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies, addPrefixTextToNum, getTypeMatchups } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
 import { genMapUppercase } from "../global/UniversalData";
-import { filterEvoChain, sortDexEntries, catergorizeDexEntries } from "../transformers/SpeciesInfoTransformer";
+import { filterEvoChain, catergorizeDexEntries } from "../transformers/SpeciesInfoTransformer";
 import { BarChart } from "react-native-gifted-charts";
+import { versionGroupFull } from "../maps/VersionGroupMap";
 import InView from 'react-native-component-inview'
 
 import { useDexContext } from "./hooks/useDexContext";
+import { useMovesContext } from "./hooks/useMovesContext";
 import Tabs from "./Tabs";
+import MovesView from "./MovesView"
 import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
 
 const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
+    const { moves } = useMovesContext()
     const [pokemonInfo, setPokemonInfo] = useState(pokemon.forms)
     const [evoChain, setEvoChain] = useState([])
     const [ startInView, setStartInView] = useState(true)
     const [formIndex, setFormIndex] = useState(0)
-
+    const [ pokemonMoves, setPokemonMoves ] = useState([])
+    const [ versionMoveSet, setVersionMoveSet ] = useState(0)
+    const [ moveTab, setMoveTab ] = useState("level-up")
+    
     const swipeableRef = useRef(null);
     const [tab, setTab] = useState(0)
     const fullEvoChain = evoChains.find((chain) => chain.id === pokemon.evolutionChainId).chain
@@ -45,6 +54,8 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     const categorized = catergorizeDexEntries(pokemon.dexEntries, pokemon.regionalDexNumber, pokemon.generation)
     
     const handleSwipe = (dir) => {
+        setMoveTab("level-up")
+        setVersionMoveSet(0)
         if (dir === "right") {
             const nextIndex = formIndex + 1
             if (nextIndex < pokemon.forms.length) {
@@ -98,7 +109,67 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
     }
 
     const handleModalOpen = () => {
+        const versionGroups = ["red-blue", "yellow", "gold-silver", "crystal", "ruby-sapphire", "emerald", 
+                                "firered-leafgreen", "diamond-pearl", "platinum", "heartgold-soulsilver", "black-white", 
+                                "black-2-white-2", "x-y", "omega-ruby-alpha-sapphire", "sun-moon", "ultra-sun-ultra-moon", 
+                                "lets-go-pikachu-lets-go-eevee", "sword-shield", "brilliant-diamond-and-shining-pearl", 
+                                "legends-arceus", "scarlet-violet"]
+        function transformMoves(data) {
+            // Create an object to store the transformed data
+            const transformedData = {};
         
+            // Iterate over each entry in the dataset
+            data.forEach(entry => {
+                // Iterate over each detail in the entry
+                entry.details.forEach(detail => {
+                    // Check if the version is included in the provided array
+                    if (versionGroups.includes(detail.version)) {
+                        // Check if the version already exists in the transformed data
+                        if (!transformedData[detail.version]) {
+                            // If not, initialize an object for the version
+                            transformedData[detail.version] = {};
+                        }
+        
+                        // Check if the method already exists for the version
+                        if (!transformedData[detail.version][detail.method]) {
+                            // If not, initialize an array for the method
+                            transformedData[detail.version][detail.method] = [];
+                        }
+        
+                        // Push the detail to the array for the method
+                        transformedData[detail.version][detail.method].push({
+                            name: entry.name,
+                            level_learned: detail.level_learned
+                        });
+                    }
+                });
+            });
+        
+            // Convert the transformed data object into an array of objects
+            const result = Object.entries(transformedData).map(([version, methods]) => {
+                // Initialize an object for the version
+                const versionObject = { version };
+        
+                // Iterate over each method in the version
+                Object.entries(methods).forEach(([method, details]) => {
+                    // Sort the "level-up" moves by the "level_learned" property
+                    if (method === "level-up") {
+                        details.sort((a, b) => a.level_learned - b.level_learned);
+                    }
+        
+                    // Add the method array to the version object
+                    versionObject[method] = details;
+                });
+        
+                return versionObject;
+            });
+
+            const sortedResults = result.sort((a, b) => versionGroups.indexOf(a.version) - versionGroups.indexOf(b.version))
+        
+            return sortedResults;
+        }
+        const moveList = pokemon.forms.map(form => transformMoves(form.moves))
+        if (pokemonMoves.length === 0) setPokemonMoves(moveList)
     }
 
     useEffect(() => {
@@ -460,6 +531,50 @@ const PokemonModal = ({ children, pokemon, hasSecondType }) => {
                     <Text style={[styles.defaultText, {marginLeft: 20, marginTop: -20}]}>Base Stat Total: {bst}</Text>
                 </View>
                 <View style={styles.line} />
+                <View style={styles.section}>
+                    <Text style={styles.headerText}>Moves</Text>
+                    <Dropdown
+                        label="Version Group"
+                        placeholder=""
+                        options={pokemonMoves[formIndex].map((list, index) => {return {label: versionGroupFull[list.version], value: index}})}
+                        selectedValue={versionMoveSet}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setVersionMoveSet(value)
+                                setMoveTab("level-up")
+                            } else {
+                                setVersionMoveSet(0)
+                                setMoveTab("level-up")
+                            }
+                        }}
+                    />
+                    <Dropdown
+                        label="Learn Method"
+                        placeholder=""
+                        options={pokemonMoves[formIndex][versionMoveSet] ? Object.keys(pokemonMoves[formIndex][versionMoveSet]).filter(item => item !== "version").map(method => {return{label: formatText(method), value: method}}) : []}
+                        selectedValue={moveTab}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setMoveTab(value)
+                            } else {
+                                setMoveTab("level-up")
+                            }
+                        }}
+                    />
+                    {
+                        pokemonMoves[formIndex][versionMoveSet] && pokemonMoves[formIndex][versionMoveSet][moveTab].map(move => {
+                            const moveInfo = moves.find(item => item.name === move.name)
+                            if (moveInfo) {
+                                return (
+                                    <>
+                                        <MovesView move={moveInfo} level={move.level_learned}/>
+                                        <View style={{height: 5}}/>
+                                    </>
+                                )
+                            }
+                        })
+                    }
+                </View>
             </>
         );
     }

@@ -18,10 +18,10 @@ const MovesView = ({ move, level }) => {
             >
                 <View style={{flexDirection: "row"}}>
                     {
-                        level && 
+                        level !== 0 && level !== undefined && 
                         <View style={{justifyContent: "space-between", alignItems: "center", marginLeft: 4}}>
                             <Text style={styles.headerText}>lvl</Text>
-                            <Text style={[styles.numText, {color: "#fff"}]}>40</Text>
+                            <Text style={[styles.numText, {color: "#fff"}]}>{level}</Text>
                         </View>
                     }
                     <View style={{justifyContent: "center"}}>

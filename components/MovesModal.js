@@ -5,7 +5,7 @@ import { darkenColor, formatText } from "../global/UtiliyFunctions";
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import IconMoveClassMapper from "../maps/MoveClassToIconMap";
-import { versionGroupAbr } from "../maps/VersionGroupAbrMap";
+import { versionGroupAbr } from "../maps/VersionGroupMap";
 
 import { useDexContext } from "./hooks/useDexContext"
 import PokemonListView from "./PokemonListView";

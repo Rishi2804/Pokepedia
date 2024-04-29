@@ -1,7 +1,7 @@
 import React, { createRef, forwardRef, useEffect, useRef, useState } from "react";
 import { StyleSheet, View, Text, Pressable, Animated } from "react-native";
 
-const Indicator = ({ measures, tab }) => {
+const Indicator = ({ measures, tab, color }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -17,22 +17,23 @@ const Indicator = ({ measures, tab }) => {
         styles.indicator,
         {
           width: measures[tab].width,
-          left: animatedValue
+          left: animatedValue,
+          backgroundColor: color ? color : "white"
         }
       ]}
     />
   );
 };
 
-const Tab = forwardRef(({ text, isSelected }, ref) => {
+const Tab = forwardRef(({ text, isSelected, color }, ref) => {
   return (
     <View style={[styles.tab]} ref={ref}>
-      <Text style={{ opacity: isSelected ? 1 : 0.8, color: "white", fontWeight: "700" }}>{text}</Text>
+      <Text style={{ opacity: isSelected ? 1 : 0.8, color: color ? color : "white", fontWeight: "700" }}>{text}</Text>
     </View>
   );
 });
 
-const Tabs = ({ tabText, tab, setTab }) => {
+const Tabs = ({ tabText, tab, setTab, color }) => {
   const [measures, setMeasures] = useState([]);
   const containerRef = useRef();
   const data = tabText.map((title, index) => ({
@@ -62,11 +63,11 @@ const Tabs = ({ tabText, tab, setTab }) => {
       {data.map((data, index) => {
         return (
           <Pressable onPress={() => setTab(index)} style={{ flex: 1 }} key={index}>
-            <Tab text={data.title} isSelected={tab === index} ref={data.ref} />
+            <Tab text={data.title} isSelected={tab === index} ref={data.ref} color={color} />
           </Pressable>
         );
       })}
-      {measures.length > 0 && <Indicator measures={measures} tab={tab} />}
+      {measures.length > 0 && <Indicator measures={measures} tab={tab} color={color}/>}
     </View>
   );
 };
