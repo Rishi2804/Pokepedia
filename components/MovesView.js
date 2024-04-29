@@ -7,7 +7,7 @@ import IconMoveClassMapper from "../maps/MoveClassToIconMap";
 import MovesModal from "./MovesModal";
 
 const MovesView = ({ move, level, versionGroup }) => {
-    const pastVersion = move.pastValues.find(group => group.games.includes(versionGroup))
+    const pastVersion = move.pastValues.find(group => group.games?.includes(versionGroup))
     return (
         <MovesModal move={move}>
             <LinearGradient
