@@ -42,9 +42,17 @@ const Pokedex = () => {
         } else if (selected === 2) {
             // Pokemon Stat total field is messed up
             let aTotal = 0;
-            a.stats.forEach((stat) => {aTotal += stat.stat})
             let bTotal = 0;
-            b.stats.forEach((stat) => {bTotal += stat.stat})
+            if (a.formIndex) {
+                a.forms[a.formIndex].stats.forEach((stat) => {aTotal += stat.stat})
+            } else {
+                a.stats.forEach((stat) => {aTotal += stat.stat})    
+            }
+            if (b.formIndex) {
+                b.forms[b.formIndex].stats.forEach((stat) => {bTotal += stat.stat})
+            } else {
+                b.stats.forEach((stat) => {bTotal += stat.stat})
+            }
             if (state === 1) {
                 return aTotal - bTotal
             } else if (state === 2) {
@@ -52,10 +60,18 @@ const Pokedex = () => {
             }
         } else if (selected >= 3 && selected <= 8) {
             const statIndex = selected - 3
+            let aStat = a.stats[statIndex].stat
+            let bStat = b.stats[statIndex].stat
+            if (a.formIndex) {
+                aStat = a.forms[a.formIndex].stats[statIndex].stat
+            }
+            if (b.formIndex) {
+                bStat = b.forms[b.formIndex].stats[statIndex].stat
+            }
             if (state === 1) {
-                return a.stats[statIndex].stat - b.stats[statIndex].stat
+                return aStat - bStat
             } else if (state === 2) {
-                return b.stats[statIndex].stat - a.stats[statIndex].stat
+                return bStat - aStat
             }
         }
     }
@@ -120,8 +136,12 @@ const Pokedex = () => {
         }
     
         if (filterTypes.length > 0) {
-            pokemonToSet = pokemonToSet.filter(mon =>
-                mon.types.some(type => filterTypes.includes(type))
+            pokemonToSet = pokemonToSet.filter(mon => {
+                if (mon.formIndex > 0) {
+                    return mon.forms[mon.formIndex].types.some(type => filterTypes.includes(type))
+                }
+                return mon.types.some(type => filterTypes.includes(type))
+            }
             );
         }
 
