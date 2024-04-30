@@ -24,7 +24,7 @@ export const versionGroupAbr = {
 
 export const versionGroupFull = {
     "red-blue": "Red/Blue",
-    "yellow": "Yeloow",
+    "yellow": "Yellow",
     "gold-silver": "Gold/Silver",
     "crystal": "Crystal",
     "ruby-sapphire": "Ruby/Sapphire",

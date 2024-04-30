@@ -37,7 +37,7 @@ const PokemonListView = ({ pokemon, dexRegion, displayForm }) => {
                         source={{uri: pokemon.forms[formDisplay] ? pokemon.forms[formDisplay].image : pokemon.image}}
                         style={{height: 70, width: 70, marginRight: 10, marginBottom: 10}}
                     />
-                    <Text style={styles.numText}>{pokemon.regionalDexNumber.find(entry => entry.name === dexRegion) ? String(pokemon.regionalDexNumber.find(entry => entry.name === dexRegion).number).padStart(3 ,'0') : String(pokemon.id).padStart(3, '0')}</Text>
+                    <Text style={styles.numText}>{pokemon.regionalDexNumber.find(entry => entry.name === dexRegion) ? dexRegion === 'national' ? String(pokemon.regionalDexNumber.find(entry => entry.name === dexRegion).number).padStart(4 ,'0') : String(pokemon.regionalDexNumber.find(entry => entry.name === dexRegion).number).padStart(3 ,'0') : String(pokemon.id).padStart(4, '0')}</Text>
                     <Text style={styles.nameText}>{formatName(pokemon.name)}</Text>
                 </View>
                 <View>
