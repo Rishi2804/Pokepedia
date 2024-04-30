@@ -22,8 +22,8 @@ const Pokedex = () => {
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
     const [ dexType, setDexType ] = useState("national")
-    const [ generation, setGeneration ] = useState(0)
-    const genList = ["All", "Generation I", "Generation II", "Generation III",
+    const [ generation, setGeneration ] = useState([])
+    const genList = ["Generation I", "Generation II", "Generation III",
                         "Generation IV", "Generation V", "Generation VI",
                         "Generation VII", "Generation VIII", "Generation IX"]
 
@@ -146,10 +146,8 @@ const Pokedex = () => {
             );
         }
 
-        if (generation > 0) {
-            pokemonToSet = pokemonToSet.filter(mon =>
-                mon.generation === generation
-            );
+        if (generation.length > 0) {
+            pokemonToSet = pokemonToSet.filter(mon => generation.includes(mon.generation))
         }
     
         const regex = new RegExp(searchTerm, 'i');
@@ -181,16 +179,11 @@ const Pokedex = () => {
                         dropdownContainerStyle={{flex: 1}}
                     />
                     <Dropdown
-                        options={genList.map((gen, index) => {return{value: index, label: gen}})}
-                        placeholder=""
+                        isMultiple
+                        options={genList.map((gen, index) => {return{value: index + 1, label: gen}})}
+                        placeholder="Select Generations"
                         selectedValue={generation}
-                        onValueChange={(value) => {
-                            if (value) {
-                                setGeneration(value)
-                            } else {
-                                setGeneration(0)
-                            }
-                        }}
+                        onValueChange={(value) => {setGeneration(value)}}
                         dropdownStyle={{paddingRight: 50}}
                         dropdownContainerStyle={{flex: 1}}
                     />
