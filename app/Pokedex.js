@@ -10,6 +10,7 @@ import { dexes, types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions";
 import PokedexData from "../assets/jsonData/pokedex.json"
 import LoadingView from "../components/LoadingView";
+import { dexToNameLabel } from "../maps/DexToNameLabelMap";
 
 const Pokedex = () => {
     const [ loading, setLoading ] = useState(false)
@@ -166,7 +167,7 @@ const Pokedex = () => {
             <View>
                 <ScrollView horizontal style={{flexDirection: "row"}}>   
                     <Dropdown
-                        options={dexes.map(item => {return{value: item, label: formatText(item)}})}
+                        options={dexes.map(item => {return{value: item, label: dexToNameLabel[item]}})}
                         placeholder="Select a Dex"
                         selectedValue={dexType}
                         onValueChange={(value) => {
