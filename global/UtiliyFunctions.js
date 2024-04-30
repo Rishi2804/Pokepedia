@@ -1,4 +1,4 @@
-import { types } from "./UniversalData";
+import { types, versionGroups } from "./UniversalData";
 
 export function darkenColor(color, darkeningFactor) {
     // Convert hex color to RGB
@@ -212,7 +212,60 @@ export function getTypeMatchups(monTypes) {
         const data = types.find(data => data.name === type1)
 
         return {doubleWeakness: [], weaknesses: data.double_damage_from, doubleResistances: [], resistances: data.half_damage_from, immunities: data.no_damage_from}
-    }
+    }   
+}
 
-    
+export function transformMoves(data) {
+    // Create an object to store the transformed data
+    const transformedData = {};
+
+    // Iterate over each entry in the dataset
+    data.forEach(entry => {
+        // Iterate over each detail in the entry
+        entry.details.forEach(detail => {
+            // Check if the version is included in the provided array
+            if (versionGroups.includes(detail.version)) {
+                // Check if the version already exists in the transformed data
+                if (!transformedData[detail.version]) {
+                    // If not, initialize an object for the version
+                    transformedData[detail.version] = {};
+                }
+
+                // Check if the method already exists for the version
+                if (!transformedData[detail.version][detail.method]) {
+                    // If not, initialize an array for the method
+                    transformedData[detail.version][detail.method] = [];
+                }
+
+                // Push the detail to the array for the method
+                transformedData[detail.version][detail.method].push({
+                    name: entry.name,
+                    level_learned: detail.level_learned
+                });
+            }
+        });
+    });
+
+    // Convert the transformed data object into an array of objects
+    const result = Object.entries(transformedData).map(([version, methods]) => {
+        // Initialize an object for the version
+        const versionObject = { version };
+
+        // Iterate over each method in the version
+        Object.entries(methods).forEach(([method, details]) => {
+            // Sort the "level-up" moves by the "level_learned" property
+            if (method === "level-up") {
+                details.sort((a, b) => a.level_learned - b.level_learned);
+            }
+
+            // Add the method array to the version object
+            versionObject[method] = details;
+        });
+
+        return versionObject;
+    });
+
+    const sortedResults = result.sort((a, b) => versionGroups.indexOf(a.version) - versionGroups.indexOf(b.version))
+
+    return sortedResults;
 }

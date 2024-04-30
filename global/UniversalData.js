@@ -6,6 +6,12 @@ export const dexes = ["national", "kanto", "original-johto", "hoenn",
                         "updated-melemele", "updated-akala", "updated-ulaula", "updated-poni", "letsgo-kanto",
                         "galar", "isle-of-armor", "crown-tundra", "hisui", "paldea", "kitakami", "blueberry"]
 
+export const versionGroups = ["red-blue", "yellow", "gold-silver", "crystal", "ruby-sapphire", "emerald", 
+                                "firered-leafgreen", "diamond-pearl", "platinum", "heartgold-soulsilver", "black-white", 
+                                "black-2-white-2", "x-y", "omega-ruby-alpha-sapphire", "sun-moon", "ultra-sun-ultra-moon", 
+                                "lets-go-pikachu-lets-go-eevee", "sword-shield", "brilliant-diamond-and-shining-pearl", 
+                                "legends-arceus", "scarlet-violet"]
+
 export const genMap = new Map([
     [1, "i"],
     [2, "ii"],
