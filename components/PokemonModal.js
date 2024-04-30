@@ -116,8 +116,8 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
 
     useEffect(() => {
         if (isRegionalVariant(pokemonInfo[formIndex].name)) {
-            if (pokemonInfo[formIndex].name === 'darmanitan-galar-standard' || pokemonInfo[formIndex].name === 'darmanitan-galar-zen') {
-                setEvoChain(filterEvoChain(fullEvoChain, 'darmanitan-galar'))
+            if (pokemonInfo[formIndex].name === 'darmanitan-galar-zen') {
+                setEvoChain(filterEvoChain(fullEvoChain, 'darmanitan-galar-standard'))
             } else {
                 setEvoChain(filterEvoChain(fullEvoChain, pokemonInfo[formIndex].name))
             }
@@ -181,25 +181,34 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                                     const toVariant = isRegionalVariant(line.to)
                                     let toImg = ""
                                     let fromImg = ""
+                                    let fromContext = {}
+                                    let fromIndex = 0
+                                    let toContext = {}
+                                    let toIndex = 0
                                     if (fromVariant) {
                                         fromImg = findFormInSpecies(dex, line.from).image
+                                        fromContext = dex.find(pokemon => pokemon.forms.map(form => form.name).includes(line.from))
+                                        fromIndex = fromContext.forms.findIndex(form => form.name === line.from)
                                     } else {
-                                        const fromContext = dex.find(pokemon => pokemon.name === line.from)
+                                        fromContext = dex.find(pokemon => pokemon.name === line.from)
                                         fromImg = fromContext.image
                                     }
                                     if (toVariant) {
-                                        if (line.to === 'darmanitan-galar') toImg = findFormInSpecies(dex, 'darmanitan-galar-standard').image
-                                        else toImg = findFormInSpecies(dex, line.to).image
+                                        toImg = findFormInSpecies(dex, line.to).image
+                                        toContext = dex.find(pokemon => pokemon.forms.map(form => form.name).includes(line.to))
+                                        toIndex = toContext.forms.findIndex(form => form.name === line.to)
                                     } else {
-                                        const toContext = dex.find(pokemon => pokemon.name === line.to)
+                                        toContext = dex.find(pokemon => pokemon.name === line.to)
                                         toImg = toContext.image
                                     }
                                     return (
                                         <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}} key={index}>
-                                            <Image 
-                                                source={{url: fromImg}}
-                                                style={{width: 80, height: 80}}
-                                            />
+                                            <PokemonModal pokemon={fromContext} startingFormIndex={fromIndex} hasSecondType={false} longPress={() => {}}>
+                                                <Image 
+                                                    source={{url: fromImg}}
+                                                    style={{width: 80, height: 80}}
+                                                />
+                                            </PokemonModal>
                                             <View style={{flex: 1, alignItems: "center", justifyContent: 'center'}}>
                                                 {line.details.map((detail, index) => {
                                                     let string = detail
@@ -210,10 +219,12 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                                                     return (<Text style={[styles.defaultText2, {textAlign: "center"}]} key={index}>{string}</Text>)
                                                 })}
                                             </View>
-                                            <Image 
-                                                source={{url: toImg}}
-                                                style={{width: 80, height: 80}}
-                                            />
+                                            <PokemonModal pokemon={toContext} startingFormIndex={toIndex} hasSecondType={false} longPress={() => {}}>
+                                                <Image 
+                                                    source={{url: toImg}}
+                                                    style={{width: 80, height: 80}}
+                                                />
+                                            </PokemonModal>
                                         </View>
                                     )
                                 })
