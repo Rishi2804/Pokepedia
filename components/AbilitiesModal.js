@@ -45,7 +45,7 @@ const AbilitiesModal = ({ children, ability }) => {
                                     ability.descriptions.map((details, index) => {
                                         const gamesAbr = details.versionGroup.map(version => versionGroupAbr[version]).join(",")
                                         return (
-                                            <View style={{flexDirection: "row", marginBottom: 10, paddingBottom: index !== ability.descriptions.length - 1 ? 15 : 0, borderBottomWidth: index !== ability.descriptions.length - 1 ? 1 : 0, borderBottomColor: "white"}} key={index}>
+                                            <View style={{flexDirection: "row", marginBottom: 10, paddingBottom: index !== ability.descriptions.length - 1 ? 15 : 0, borderBottomWidth: index !== ability.descriptions.length - 1 ? 1 : 0, borderBottomColor: "#c7c7c8"}} key={index}>
                                                 <View style={{width: 120, justifyContent: "center"}}>
                                                     <Text style={styles.gameListText}>{gamesAbr}</Text>
                                                 </View>
@@ -60,7 +60,7 @@ const AbilitiesModal = ({ children, ability }) => {
                         </View>
                         <View style={styles.line}/>
                         <View style={styles.section}>
-                            <Text style={styles.sectionHeaderText}>Pokemon</Text>
+                            <Text style={styles.sectionHeaderText}>Pokemon with Ability</Text>
                             {
                                 pokemonWith.map((mon, index) => {
                                     return (
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     },
     line: {
         height: 0.5,
-        backgroundColor: "#000"
+        backgroundColor: "#c7c7c8"
     },
 })
 
