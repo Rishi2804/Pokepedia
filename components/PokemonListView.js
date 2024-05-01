@@ -6,14 +6,14 @@ import PokemonModal from "./PokemonModal";
 import { darkenColor, formatName } from "../global/UtiliyFunctions";
 import { useState } from "react";
 
-const PokemonListView = ({ pokemon, dexRegion, displayForm }) => {
+const PokemonListView = ({ pokemon, dexRegion, disableLongPress, displayForm }) => {
     const [ formDisplay, setFormDisplay ] = useState((displayForm && pokemon.forms[displayForm]) ? displayForm : 0)
     let hasSecondType = pokemon.forms[formDisplay].types.length === 2;
     const type1 = pokemon.forms[formDisplay].types[0]
     const type2 = pokemon.forms[formDisplay].types[1]
 
     const changeDisplay = () => {
-        if (pokemon.forms.length > 0) {
+        if (pokemon.forms.length > 0 && !disableLongPress) {
             const nextIndex = formDisplay + 1
             if (nextIndex >= pokemon.forms.length) {
                 setFormDisplay(0)

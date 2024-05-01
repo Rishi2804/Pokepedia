@@ -9,14 +9,23 @@ const AbilitiesModal = ({ children, ability }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex } = useDexContext()
     const [ pokemonWith, setPokemonWith ] = useState([])
+    const [ formIndex, setFormIndex ] = useState([])
 
     useEffect(() => {
         const fetchPokemon = async () => {
-            const temp = dex.filter(mon => {
-                return ability.pokemon.includes(mon.name)
+            let finalContexts = []
+            let finalIndecies = []
+            ability.pokemon.forEach(mon => {
+                const findContext = dex.find(item => item.forms.map(form => form.name).includes(mon))
+                if (findContext) {
+                    const index = findContext.forms.findIndex(form => form.name === mon)
+                    finalContexts.push(findContext)
+                    finalIndecies.push(index)
+                }
             })
             setTimeout(() => {
-                setPokemonWith(temp)
+                setPokemonWith(finalContexts)
+                setFormIndex(finalIndecies)
             }, 0)
         }
         if (pokemonWith.length === 0) fetchPokemon()
@@ -65,7 +74,7 @@ const AbilitiesModal = ({ children, ability }) => {
                                 pokemonWith.map((mon, index) => {
                                     return (
                                         <View style={{paddingBottom: 5}} key={index}>
-                                            <PokemonListView pokemon={mon}/>
+                                            <PokemonListView pokemon={mon} disableLongPress={true} displayForm={formIndex[index]}/>
                                         </View>
                                     )
                                 })
