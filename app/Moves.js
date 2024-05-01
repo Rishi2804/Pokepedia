@@ -2,7 +2,7 @@ import { FlatList, SafeAreaView, ScrollView, View } from "react-native";
 import { useMovesContext } from "../components/hooks/useMovesContext";
 import { useEffect, useState } from "react";
 import MovesView from "../components/MovesView";
-import { MultipleSelectList } from 'react-native-dropdown-select-list'
+import Dropdown from "react-native-input-select"
 import { types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions"
 import BottomFilters from "../components/BottomFilters";
@@ -69,13 +69,12 @@ const Moves = () => {
         let movesToSet = []
         movesToSet = [...moves].sort(sortingFunction)
 
-        const typeNames = filterTypes.map(index => types[index].name);
         if (filterTypes.length > 0) {
-            movesToSet = movesToSet.filter(move => typeNames.includes(move.type))
+            movesToSet = movesToSet.filter(move => filterTypes.includes(move.type))
         }
 
         const regex = new RegExp(searchTerm, 'i');
-        const searchResults = movesToSet.filter(move => regex.test(move.name));
+        const searchResults = movesToSet.filter(move => regex.test(formatText(move.name)));
 
         setTimeout(() => {
             setMoveList(searchResults)
@@ -88,13 +87,14 @@ const Moves = () => {
         <SafeAreaView style={{flex: 1}}>
             <View>
                 <ScrollView horizontal style={{flexDirection: "row"}}>    
-                    <MultipleSelectList
-                        data={types.map((item, index) => {return{key: index, value: formatText(item.name)}})} 
-                        save="key"
-                        setSelected={(key) => setFilterTypes(key)}
-                        label="Types"
-                        boxStyles={{backgroundColor: "white"}}
-                        dropdownStyles={{backgroundColor: "white"}}
+                    <Dropdown
+                        isMultiple
+                        placeholder="Select Types"
+                        options={types.map(item => {return{value: item.name, label: formatText(item.name)}})}
+                        selectedValue={filterTypes}
+                        onValueChange={(value) => setFilterTypes(value)}
+                        dropdownStyle={{paddingRight: 50}}
+                        dropdownContainerStyle={{flex: 1}}
                     />
                 </ScrollView>
             </View>
