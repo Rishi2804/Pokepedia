@@ -19,11 +19,14 @@ import { useMovesContext } from "./hooks/useMovesContext";
 import Tabs from "./Tabs";
 import MovesView from "./MovesView"
 import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
+import { useAbilitiesContext } from "./hooks/useAbilitiesContext";
+import AbilitiesModal from "./AbilitiesModal";
 
 const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, longPress }) => {
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const { moves } = useMovesContext()
+    const { abilities } = useAbilitiesContext()
     const [pokemonInfo, setPokemonInfo] = useState(pokemon.forms)
     const [evoChain, setEvoChain] = useState([])
     const [ startInView, setStartInView] = useState(true)
@@ -332,12 +335,17 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                     <Text style={styles.headerText}>Abilites</Text>
                     <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
                         {
-                            pokemonInfo[formIndex].abilities.map((ability, index) => (
-                                <View style={{alignItems: "center"}} key={index}>
-                                    <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
-                                    {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
-                                </View>
-                            ))
+                            pokemonInfo[formIndex].abilities.map((ability, index) => {
+                                const context = abilities.find(item => item.name === ability.name)
+                                // console.log(context ? context.name : ability, "not found")
+                                return (
+                                    <AbilitiesModal ability={context} key={index}>
+                                        <View style={{alignItems: "center"}}>
+                                            <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
+                                            {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
+                                        </View>
+                                    </AbilitiesModal>
+                                )})
                         }
                     </View>
                 </View>

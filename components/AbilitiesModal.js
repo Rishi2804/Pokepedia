@@ -33,7 +33,7 @@ const AbilitiesModal = ({ children, ability }) => {
                 animationType="slide"
                 presentationStyle="pageSheet"
             >
-                <View style={{backgroundColor: "#f2f2f7"}}>
+                <View style={{backgroundColor: "#f2f2f7", flex: 1}}>
                     <View style={styles.header}>
                         <Text style={styles.titleText}>{formatText(ability.name)}</Text>
                     </View>
