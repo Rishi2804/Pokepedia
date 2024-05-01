@@ -7,7 +7,7 @@ import BottomFilters from "../components/BottomFilters";
 import Dropdown from "react-native-input-select"
 import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
 import { dexes, types } from "../global/UniversalData";
-import { formatText } from "../global/UtiliyFunctions";
+import { formatName, formatText } from "../global/UtiliyFunctions";
 import PokedexData from "../assets/jsonData/pokedex.json"
 import LoadingView from "../components/LoadingView";
 import { dexToNameLabel } from "../maps/DexToNameLabelMap";
@@ -151,7 +151,7 @@ const Pokedex = () => {
         }
     
         const regex = new RegExp(searchTerm, 'i');
-        const searchResults = pokemonToSet.filter(pokemon => regex.test(pokemon.name));
+        const searchResults = pokemonToSet.filter(pokemon => regex.test(formatName(pokemon.name)));
     
         // Simulate async operation to set Pokemon
         setTimeout(() => {
