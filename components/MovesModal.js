@@ -16,15 +16,24 @@ import LoadingView from "./LoadingView";
     const displayDescription = move.descriptions.find(item => item.versionGroup.includes("sword-shield"))
     const { dex } = useDexContext()
     const [ pokemonLearnable, setPokemonLearnable ] = useState([])
+    const [ formIndicies, setFormIndicies ] = useState([])
     const [ loading, setLoading ] = useState(true)
 
     useEffect(() => {
         const fetchPokemon = async () => {
-            const temp = dex.filter(mon => {
-                return move.learnedBy.includes(mon.name)
+            let finalContexts = []
+            let finalIndicies = []
+            move.learnedBy.forEach(mon => {
+                const findContext = dex.find(item => item.forms.map(form => form.name).includes(mon))
+                if (findContext) {
+                    const index = findContext.forms.findIndex(form => form.name === mon)
+                    finalContexts.push(findContext)
+                    finalIndicies.push(index)
+                }
             })
             setTimeout(() => {
-                setPokemonLearnable(temp)
+                setPokemonLearnable(finalContexts)
+                setFormIndicies(finalIndicies)
                 setLoading(false)
             }, 0)
         }
@@ -166,15 +175,16 @@ import LoadingView from "./LoadingView";
                             <FlatList 
                                 ListHeaderComponent={() => <MoveDetails />}
                                 data={pokemonLearnable}
-                                renderItem={({ item }) => {
+                                renderItem={({ item, index }) => {
                                     return(
-                                        <View style={{marginHorizontal: 10}}>
-                                            <PokemonListView pokemon={item} key={item.id} />
+                                        <View style={{marginHorizontal: 10}} key={index}>
+                                            <PokemonListView pokemon={item} disableLongPress={true} displayForm={formIndicies[index]} />
                                         </View>
                                     )
                                 }}
                                 ItemSeparatorComponent={<View style={{height: 5}}/>}
-                                keyExtractor={(item) => item.id}
+                                keyExtractor={(item, index) => index}
+                                contentContainerStyle={{paddingBottom: 140}}
                             />
                         </View>
                             }
