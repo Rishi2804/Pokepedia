@@ -38,6 +38,13 @@ export default function Layout() {
                         }}
                     />
                     <Drawer.Screen
+                        name='Compare'
+                        options={{
+                            drawerLabel: "Pokemon Compare",
+                            headerTitle: "Head 2 Head"
+                        }}
+                    />
+                    <Drawer.Screen
                         name='index'
                         options={{
                             drawerItemStyle: {display: "none"}
