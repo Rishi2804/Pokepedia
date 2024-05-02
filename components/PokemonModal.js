@@ -23,6 +23,10 @@ import { useAbilitiesContext } from "./hooks/useAbilitiesContext";
 import AbilitiesModal from "./AbilitiesModal";
 
 const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, longPress }) => {
+    if (pokemon === undefined || pokemon.forms[startingFormIndex] === undefined) {
+        return
+    }
+    
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const { moves } = useMovesContext()

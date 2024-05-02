@@ -7,10 +7,15 @@ import { darkenColor, formatName } from "../global/UtiliyFunctions";
 import { useState } from "react";
 
 const PokemonListView = ({ pokemon, dexRegion, disableLongPress, displayForm }) => {
+
+    if (pokemon === undefined) {
+        return <View />
+    }
+
     const [ formDisplay, setFormDisplay ] = useState((displayForm && pokemon.forms[displayForm]) ? displayForm : 0)
-    let hasSecondType = pokemon.forms[formDisplay].types.length === 2;
-    const type1 = pokemon.forms[formDisplay].types[0]
-    const type2 = pokemon.forms[formDisplay].types[1]
+    let hasSecondType = pokemon.forms[formDisplay]?.types.length === 2;
+    const type1 = pokemon.forms[formDisplay]?.types[0]
+    const type2 = pokemon.forms[formDisplay]?.types[1]
 
     const changeDisplay = () => {
         if (pokemon.forms.length > 0 && !disableLongPress) {
@@ -27,7 +32,7 @@ const PokemonListView = ({ pokemon, dexRegion, disableLongPress, displayForm }) 
         <PokemonModal pokemon={pokemon} startingFormIndex={formDisplay} hasSecondType={hasSecondType} longPress={changeDisplay}>
             <LinearGradient 
                 style={styles.container}
-                colors={[typeToGradientDarkColorMap[type1], hasSecondType ? darkenColor(typeToGradientDarkColorMap[type2], 0.2) : darkenColor(typeToGradientDarkColorMap[type1], 0.5)]}
+                colors={[type1 ? typeToGradientDarkColorMap[type1] : "white", hasSecondType ? darkenColor(typeToGradientDarkColorMap[type2], 0.2) : type1 ? darkenColor(typeToGradientDarkColorMap[type1], 0.5) : "white"]}
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
                 locations={[0.4, 1]}
