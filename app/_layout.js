@@ -30,6 +30,12 @@ export default function Layout() {
                             headerTitle: "Abilities"
                         }}
                     />
+                    <Drawer.Screen
+                        name='index'
+                        options={{
+                            drawerItemStyle: {display: "none"}
+                        }}
+                    />
                 </Drawer>
             </AbilitiesContextProvider>
         </MovesContextProvider>
