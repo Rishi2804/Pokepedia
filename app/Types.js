@@ -64,8 +64,8 @@ const Types = () => {
                             {
                                 types.map(item => item.name).map((type, index) => {
                                     return(
-                                        <View style={[styles.selectTypeContainter, {borderColor:typeToColourMap[type] + (selectedTypes.includes(type) ? "" : "00")}]}>
-                                            <Pressable style={[styles.selectTypeContainterInner, {backgroundColor: typeToColourMap[type]}]} key={index} onPress={() => handlePress(type)}>
+                                        <View style={[styles.selectTypeContainter, {borderColor:typeToColourMap[type] + (selectedTypes.includes(type) ? "" : "00")}]} key={index}>
+                                            <Pressable style={[styles.selectTypeContainterInner, {backgroundColor: typeToColourMap[type]}]} onPress={() => handlePress(type)}>
                                                 <IconTypeMapper type={type} width={37} height={37} fill="#fff" />
                                                 <View style={styles.textContainer}>
                                                     <Text style={styles.typeIconText}>{formatText(type)}</Text>
@@ -76,127 +76,129 @@ const Types = () => {
                                 })
                             }
                         </View>
-                        <Text style={styles.subHeaderText}>{selectedTypes.length === 2 ? "Selected Type Combo" : selectedTypes.length === 1 ? "Selected Type" : ""}</Text>
-                        <View style={{flexDirection: "row", flexWrap: "wrap", marginLeft: 10}}>
-                            {
-                                selectedTypes.map((type, index) => {
-                                    return(
-                                        <View style={[styles.selectedTypeContainer, {backgroundColor: typeToColourMap[type]}]} key={index}>
-                                            <IconTypeMapper type={type} width={37} height={37} fill="#fff" />
-                                            <View style={styles.textContainer}>
-                                                <Text style={styles.typeIconText}>{formatText(type)}</Text>
-                                            </View>
-                                        </View>
-                                    )
-                                })
-                            }
-                        </View>
                         {
                             selectedTypes.length > 0 &&
-                            <View style={{marginLeft: 15}}>
-                                <Text style={styles.typeHeaderText}>Weaknesses</Text>
-                                <View>
+                            <>    
+                                <Text style={styles.subHeaderText}>{selectedTypes.length === 2 ? "Selected Type Combo" : selectedTypes.length === 1 ? "Selected Type" : ""}</Text>
+                                <View style={{flexDirection: "row", flexWrap: "wrap", marginLeft: 10}}>
                                     {
-                                        typeRelations.doubleWeakness.length > 0 &&
-                                        <View style={{flexDirection: "row", marginBottom: 5}}>
-                                            <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                                <Text style={styles.relationText}>x4</Text>
-                                            </View>    
-                                            {
-                                                typeRelations.doubleWeakness.map((item, index) => {
-                                                    return (
-                                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
-                                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                                        </View>
-                                                    )
-                                                })
-                                            }
-                                        </View>
-                                    }
-                                    {
-                                        typeRelations.weaknesses.length > 0 &&
-                                        <View style={{flexDirection: "row", marginBottom: 15}}>
-                                            <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                                <Text style={styles.relationText}>x2</Text>
-                                            </View>    
-                                            {
-                                                typeRelations.weaknesses.map((item, index) => {
-                                                    return (
-                                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
-                                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                                        </View>
-                                                    )
-                                                })
-                                            }
-                                        </View>
+                                        selectedTypes.map((type, index) => {
+                                            return(
+                                                <View style={[styles.selectedTypeContainer, {backgroundColor: typeToColourMap[type]}]} key={index}>
+                                                    <IconTypeMapper type={type} width={37} height={37} fill="#fff" />
+                                                    <View style={styles.textContainer}>
+                                                        <Text style={styles.typeIconText}>{formatText(type)}</Text>
+                                                    </View>
+                                                </View>
+                                            )
+                                        })
                                     }
                                 </View>
-                                <Text style={styles.typeHeaderText}>Resistances</Text>
-                                {
-                                    typeRelations.resistances.length > 0 &&
-                                    <View style={{flexDirection: "row", marginBottom: 5}}>
-                                        <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                            <Text style={styles.relationText}>x1/2</Text>
-                                        </View>
-                                        <View style={{flexDirection: "row", flexWrap: "wrap", flex: 1}}>
+                                <View style={{marginLeft: 15}}>
+                                    <Text style={styles.typeHeaderText}>Weaknesses</Text>
+                                    <View>
                                         {
-                                            typeRelations.resistances.map((item, index) => {
-                                                return (
-                                                    <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5, marginBottom: 2}} key={index}>
-                                                        <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                                    </View>
-                                                )
-                                            })
+                                            typeRelations.doubleWeakness.length > 0 &&
+                                            <View style={{flexDirection: "row", marginBottom: 5}}>
+                                                <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
+                                                    <Text style={styles.relationText}>x4</Text>
+                                                </View>    
+                                                {
+                                                    typeRelations.doubleWeakness.map((item, index) => {
+                                                        return (
+                                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
+                                                                <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                                            </View>
+                                                        )
+                                                    })
+                                                }
+                                            </View>
                                         }
-                                        </View>
-                                    </View>
-                                }
-                                {
-                                    typeRelations.doubleResistances.length > 0 &&
-                                    <View style={{flexDirection: "row", marginBottom: 5}}>
-                                        <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                            <Text style={styles.relationText}>x1/4</Text>
-                                        </View>
                                         {
-                                            typeRelations.doubleResistances.map((item, index) => {
-                                                return (
-                                                    <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
-                                                        <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                                    </View>
-                                                )
-                                            })
-                                        }
-                                    </View>
-                                }
-                                {
-                                    typeRelations.immunities.length > 0 &&
-                                    <View style={{flexDirection: "row"}}>
-                                        <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                            <Text style={styles.relationText}>x0</Text>
-                                        </View>
-                                        {
-                                            typeRelations.immunities.map((item, index) => {
-                                                return (
-                                                    <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
-                                                        <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
-                                                    </View>
-                                                )
-                                            })
+                                            typeRelations.weaknesses.length > 0 &&
+                                            <View style={{flexDirection: "row", marginBottom: 15}}>
+                                                <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
+                                                    <Text style={styles.relationText}>x2</Text>
+                                                </View>    
+                                                {
+                                                    typeRelations.weaknesses.map((item, index) => {
+                                                        return (
+                                                            <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
+                                                                <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                                            </View>
+                                                        )
+                                                    })
+                                                }
+                                            </View>
                                         }
                                     </View>
-                                }
-                                <Text style={[styles.subHeaderText, {marginLeft: 0}]}>Pokemon with Types</Text>
+                                    <Text style={styles.typeHeaderText}>Resistances</Text>
+                                    {
+                                        typeRelations.resistances.length > 0 &&
+                                        <View style={{flexDirection: "row", marginBottom: 5}}>
+                                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                                <Text style={styles.relationText}>x1/2</Text>
+                                            </View>
+                                            <View style={{flexDirection: "row", flexWrap: "wrap", flex: 1}}>
+                                            {
+                                                typeRelations.resistances.map((item, index) => {
+                                                    return (
+                                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5, marginBottom: 2}} key={index}>
+                                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                                        </View>
+                                                    )
+                                                })
+                                            }
+                                            </View>
+                                        </View>
+                                    }
+                                    {
+                                        typeRelations.doubleResistances.length > 0 &&
+                                        <View style={{flexDirection: "row", marginBottom: 5}}>
+                                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                                <Text style={styles.relationText}>x1/4</Text>
+                                            </View>
+                                            {
+                                                typeRelations.doubleResistances.map((item, index) => {
+                                                    return (
+                                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
+                                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                                        </View>
+                                                    )
+                                                })
+                                            }
+                                        </View>
+                                    }
+                                    {
+                                        typeRelations.immunities.length > 0 &&
+                                        <View style={{flexDirection: "row"}}>
+                                            <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
+                                                <Text style={styles.relationText}>x0</Text>
+                                            </View>
+                                            {
+                                                typeRelations.immunities.map((item, index) => {
+                                                    return (
+                                                        <View style={{backgroundColor: typeToColourMap[item], marginHorizontal: 3, borderRadius: 5}} key={index}>
+                                                            <IconTypeMapper type={item} width={40} height={40} fill="#fff"/>
+                                                        </View>
+                                                    )
+                                                })
+                                            }
+                                        </View>
+                                    }
+                                    <Text style={[styles.subHeaderText, {marginLeft: 0}]}>Pokemon with Types</Text>
+                                </View>
                                 {
                                     pokemonWith.length > 0 &&
                                     pokemonWith.map((mon, index) => {
                                         return (
-                                            <View style={{marginBottom: 5, marginRight: 5, marginLeft: -10}} key={index}>
+                                            <View style={{marginBottom: 5, marginHorizontal: 5}} key={index}>
                                                 <PokemonListView pokemon={mon} displayForm={pokemonIndecies[index]} disableLongPress={true}/>
                                             </View>
                                         )
                                     })
                                 }
-                            </View>
+                            </>
                         }
                 </ScrollView>
             </View>
