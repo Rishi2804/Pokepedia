@@ -31,6 +31,13 @@ export default function Layout() {
                         }}
                     />
                     <Drawer.Screen
+                        name='Types'
+                        options={{
+                            drawerLabel: "Type Analysis",
+                            headerTitle: "Type Analysis"
+                        }}
+                    />
+                    <Drawer.Screen
                         name='index'
                         options={{
                             drawerItemStyle: {display: "none"}
