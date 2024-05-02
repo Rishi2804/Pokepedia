@@ -173,6 +173,10 @@ export function addPrefixTextToNum(index, dexes) {
 }
 
 export function getTypeMatchups(monTypes) {
+    if (monTypes.length === 0) {
+        return {doubleWeakness: [], weaknesses: [], doubleResistances: [], resistances: [], immunities: []}
+    }
+
     const type1 = monTypes[0]
     const type2 = monTypes[1]
 
