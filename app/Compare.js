@@ -96,9 +96,9 @@ const Compare = () => {
                                         </View>
                                         <View style={{alignItems: "center", justifyContent: 'center', borderBottomWidth: 1, height: 70}}>
                                             {
-                                                mon.abilities.map(ability => {
+                                                mon.abilities.map((ability, index) => {
                                                     return (
-                                                        <View style={{flexDirection: "row"}}>
+                                                        <View style={{flexDirection: "row"}} key={index}>
                                                             <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
                                                             {
                                                                 ability.hidden && 
