@@ -1,18 +1,19 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Image, Text, StyleSheet } from "react-native"
 import { useDexContext } from "./hooks/useDexContext";
-import { typeToColourMap } from "../maps/typeToColourMap";
+import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColourMap";
 import { darkenColor } from "../global/UtiliyFunctions";
+import ExpandedTeamView from "./ExpandedTeamView";
 
 const PokemonTeamView = ({ team }) => {
     const { dex } = useDexContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
     const teamInfo = team.map(member => dexForms.find(info => info.name === member))
     return (
-        <View>
+        <ExpandedTeamView team={teamInfo}>
             <LinearGradient
                 style={styles.container}
-                colors={[teamInfo[0]?.types[0] ? typeToColourMap[teamInfo[0].types[0]] : "white", 
+                colors={[teamInfo[0]?.types[0] ? typeToGradientDarkColorMap[teamInfo[0].types[0]] : "white", 
                             teamInfo[teamInfo.length - 1]?.types[0] ? darkenColor(typeToColourMap[teamInfo[teamInfo.length - 1].types[0]], 0.2) : "white", ]}
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
@@ -32,7 +33,7 @@ const PokemonTeamView = ({ team }) => {
                 }
                 </View>
             </LinearGradient>
-        </View>
+        </ExpandedTeamView>
     );
 }
 
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingVertical: 8,
         borderColor: "black",
-        borderWidth: 2
+        borderWidth: 2,
+        marginVertical: 5
     },
     teamNameText: {
         fontFamily: "Inconsolata Regular",

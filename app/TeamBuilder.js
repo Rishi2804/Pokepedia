@@ -5,7 +5,8 @@ import PokemonTeamView from "../components/PokemonTeamView";
 
 const TeamBuilder = () => {
     const sampleTeam = [ "greninja", "venusaur-mega", "talonflame", "diancie", "tyrantrum", "aegislash-shield" ]
-    const [ userTeams, setUserTeams ] = useState([sampleTeam])
+    const sampleTeam2 = [ "rillaboom", "toxtricity-amped", "sirfetchd", "perrserker", "centiskorch" ]
+    const [ userTeams, setUserTeams ] = useState([sampleTeam, sampleTeam2])
 
     const sample = [
         {name: "greninja", moves: ["water-shuriken", "dark-pulse", "hydro-pump", 'gunk-shot']},
