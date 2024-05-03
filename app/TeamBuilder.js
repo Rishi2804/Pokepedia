@@ -1,32 +1,29 @@
 import { useState } from "react";
-import { View, Text, Image } from "react-native"
+import { View, Text, Image, SafeAreaView } from "react-native"
 import { useDexContext } from "../components/hooks/useDexContext";
+import PokemonTeamView from "../components/PokemonTeamView";
 
 const TeamBuilder = () => {
     const sampleTeam = [ "greninja", "venusaur-mega", "talonflame", "diancie", "tyrantrum", "aegislash-shield" ]
     const [ userTeams, setUserTeams ] = useState([sampleTeam])
-    const { dex } = useDexContext()
-    const dexForms = dex.flatMap(mon => Object.values(mon.forms))
+
+    const sample = [
+        {name: "greninja", moves: ["water-shuriken", "dark-pulse", "hydro-pump", 'gunk-shot']},
+        {name: "venusaur-mega", moves: ["energy-ball", "sludge-bomb", "earthquake", 'leech-seed']},
+        {name: "talonflame", moves: ["flare-blitz", "brave-bird", "steel-wing", 'roost']},
+        {name: "diancie", moves: ["diamond-storm", "moonblast", "psychic", 'gyro-ball']},
+        {name: "goodra", moves: ["dragon-pulse", "flamethrower", "ice-beam", 'thunderbolt']},
+        {name: "aegislash-sheild", moves: ["kings-shield", "sacred-sword", "iron-head", 'shadow-sneak']},
+    ]
 
     return (
-        <View>
-            {userTeams.map((team, index) => (
-                <View key={index}>
-                    {team.map(mon => {
-                        const member = dexForms.find(info => info.name === mon)
-                        return (
-                            <View key={mon}>
-                                <Image
-                                    source={{uri: member.image}}
-                                    style={{height: 40, width: 40}}
-                                />
-                                <Text>{member.name}</Text>
-                            </View>
-                        )
-                    })}
-                </View>
-            ))}
-        </View>
+        <SafeAreaView style={{flex: 1}}>
+            <View style={{paddingHorizontal: 5}}>
+                {userTeams.map((team, index) => (
+                    <PokemonTeamView team={team} key={index}/>
+                ))}
+            </View>
+        </SafeAreaView>
     );
 }
 
