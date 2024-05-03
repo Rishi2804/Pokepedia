@@ -10,22 +10,22 @@ const TeamBuilder = () => {
 
     return (
         <View>
-            {
-                userTeams.map(team => {
-                    const teamInfo = team.map(mon => dexForms.find(info => info.name === mon))
-                    teamInfo.map(mon => {
+            {userTeams.map((team, index) => (
+                <View key={index}>
+                    {team.map(mon => {
+                        const member = dexForms.find(info => info.name === mon)
                         return (
-                            <View>
+                            <View key={mon}>
                                 <Image
-                                    source={{uri: mon.image}}
+                                    source={{uri: member.image}}
                                     style={{height: 40, width: 40}}
                                 />
-                                <Text>{mon.name}</Text>
+                                <Text>{member.name}</Text>
                             </View>
                         )
-                    })
-                })
-            }
+                    })}
+                </View>
+            ))}
         </View>
     );
 }
