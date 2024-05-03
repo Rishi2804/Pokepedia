@@ -45,6 +45,13 @@ export default function Layout() {
                         }}
                     />
                     <Drawer.Screen
+                        name='TeamBuilder'
+                        options={{
+                            drawerLabel: "Team Builder",
+                            headerTitle: "Build your Teams"
+                        }}
+                    />
+                    <Drawer.Screen
                         name='index'
                         options={{
                             drawerItemStyle: {display: "none"}
