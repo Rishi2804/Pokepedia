@@ -10,12 +10,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { darkenColor, formatName, formatText, isRegionalVariant, returnRegionalVariants } from "../global/UtiliyFunctions";
 import IconTypeMapper from "../maps/typeToIconMap";
 import { dexToNameLabel } from "../maps/DexToNameLabelMap";
+import { useTeamsContext } from "./hooks/useTeamsContext";
 
-const TeamBuildingModal = ({ children, team }) => {
+const TeamBuildingModal = ({ children, teamInfo, team }) => {
     const { dex } = useDexContext()
+    const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
     const [ filteredPokemon, setFilteredPokemon ] = useState(dexForms)
-    const [ teamInEdit, setTeamInEdit ] = useState(team)
+    const [ teamInEdit, setTeamInEdit ] = useState(teamInfo)
     const [ selected, setSelected ] = useState(-1)
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
@@ -164,7 +166,7 @@ const TeamBuildingModal = ({ children, team }) => {
         setFilteredPokemon(searchResults)
     }, [searchTerm, generation, filterTypes, dexType])
     
-                        const getGradientColorArray = (types) => {
+    const getGradientColorArray = (types) => {
         let finalColors = []
         if (types[0]) {
             finalColors.push(typeToGradientDarkColorMap[types[0]])
@@ -228,6 +230,28 @@ const TeamBuildingModal = ({ children, team }) => {
         }
     }
 
+    const handleSave = () => {
+        let updatedTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
+        let update = false
+
+        if (updatedTeam.length !== team.team.length) {
+            update = true
+        }
+        
+        for (let i = 0; i < updatedTeam.length; i++) {
+            if (updatedTeam[i]?.name === team.team[i]?.name) {
+                updatedTeam[i] = team.team[i]
+            } else {
+                update = true
+            }
+        }
+
+        if (update) {
+            dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: updatedTeam}})
+        }
+
+    }
+
     return (
         <View>
             <Pressable onPress={() => setIsVisible(true)}>
@@ -239,8 +263,14 @@ const TeamBuildingModal = ({ children, team }) => {
                 animationType="slide"
             >
                 <SafeAreaView style={{flex: 1}}>
-                    <TouchableOpacity style={styles.saveButton} onPress={() => setIsVisible(false)}>
+                    <TouchableOpacity style={styles.saveButton} onPress={() => {
+                        handleSave()
+                        setIsVisible(false)
+                    }}>
                         <Text style={styles.saveButtonText}>Save</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.saveButton} onPress={() => setIsVisible(false)}>
+                        <Text style={styles.saveButtonText}>Quit</Text>
                     </TouchableOpacity>
                     <LinearGradient 
                         style={styles.currentTeamContainer}

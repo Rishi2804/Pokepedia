@@ -8,9 +8,9 @@ import ExpandedTeamView from "./ExpandedTeamView";
 const PokemonTeamView = ({ team }) => {
     const { dex } = useDexContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
-    const teamInfo = team.map(member => dexForms.find(info => info.name === member.name))
+    const teamInfo = team.team.map(member => dexForms.find(info => info.name === member.name))
     return (
-        <ExpandedTeamView team={teamInfo}>
+        <ExpandedTeamView teamInfo={teamInfo} team={team}>
             <LinearGradient
                 style={styles.container}
                 colors={[teamInfo[0]?.types[0] ? typeToGradientDarkColorMap[teamInfo[0].types[0]] : "white", 

@@ -4,7 +4,7 @@ import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
 import TeamBuildingModal from "./TeamBuildingModal";
  
- const ExpandedTeamView = ({ children, team }) => {
+ const ExpandedTeamView = ({ children, teamInfo, team }) => {
     const [ isVisible, setIsVisible ] = useState(false)
 
     return (
@@ -29,16 +29,16 @@ import TeamBuildingModal from "./TeamBuildingModal";
                     </View>
                     <View style={{paddingHorizontal: 5}}>
                         {
-                            team.map((member, index) => {
+                            teamInfo.map((member, index) => {
                                 return (
-                                    <TeamBuildingModal team={team} key={index}>
+                                    <TeamBuildingModal teamInfo={teamInfo} team={team} key={index}>
                                         <TeamMemberView member={member}/>
                                     </TeamBuildingModal>
                                 )
                             })
                         }
                         {
-                            team.length < 6 &&
+                            teamInfo.length < 6 &&
                             <View style={{height: 100, backgroundColor: "white", borderRadius: 10, borderWidth: 2, justifyContent: "center", alignItems: "center"}}>
                                 <Text style={{fontSize: 50}}>+</Text>
                             </View>

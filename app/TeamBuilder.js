@@ -10,7 +10,7 @@ const TeamBuilder = () => {
         <SafeAreaView style={{flex: 1}}>
             <View style={{paddingHorizontal: 5}}>
                 {teams.map((team, index) => (
-                    <PokemonTeamView team={team.team} key={index}/>
+                    <PokemonTeamView team={team} key={index}/>
                 ))}
             </View>
         </SafeAreaView>
