@@ -32,7 +32,11 @@ const EditMemberModal = ({ children, team, index, member }) => {
 
     const handleMoveChange = (move) => {
         setMoves(prev => {
-            prev[selectedMove] = move.name
+            if (prev.length < selectedMove) {
+                prev[prev.length] = move.name    
+            } else {
+                prev[selectedMove] = move.name
+            }
             return [...prev]
         })
     }
