@@ -39,9 +39,11 @@ import TeamBuildingModal from "./TeamBuildingModal";
                         }
                         {
                             teamInfo.length < 6 &&
-                            <View style={{height: 100, backgroundColor: "white", borderRadius: 10, borderWidth: 2, justifyContent: "center", alignItems: "center"}}>
-                                <Text style={{fontSize: 50}}>+</Text>
-                            </View>
+                            <TeamBuildingModal teamInfo={teamInfo} team={team}>
+                                <View style={{height: 100, backgroundColor: "white", borderRadius: 10, borderWidth: 2, justifyContent: "center", alignItems: "center"}}>
+                                    <Text style={{fontSize: 50}}>+</Text>
+                                </View>
+                            </TeamBuildingModal>
                         }
                     </View>
                 </SafeAreaView>

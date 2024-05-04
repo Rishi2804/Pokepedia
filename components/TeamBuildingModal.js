@@ -12,12 +12,12 @@ import IconTypeMapper from "../maps/typeToIconMap";
 import { dexToNameLabel } from "../maps/DexToNameLabelMap";
 import { useTeamsContext } from "./hooks/useTeamsContext";
 
-const TeamBuildingModal = ({ children, teamInfo, team }) => {
+const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
     const { dex } = useDexContext()
     const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
     const [ filteredPokemon, setFilteredPokemon ] = useState(dexForms)
-    const [ teamInEdit, setTeamInEdit ] = useState(teamInfo)
+    const [ teamInEdit, setTeamInEdit ] = useState(creation ? [] : teamInfo)
     const [ selected, setSelected ] = useState(-1)
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
@@ -231,24 +231,32 @@ const TeamBuildingModal = ({ children, teamInfo, team }) => {
     }
 
     const handleSave = () => {
-        let updatedTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
-        let update = false
 
-        if (updatedTeam.length !== team.team.length) {
-            update = true
-        }
-
-        for (let i = 0; i < updatedTeam.length; i++) {
-            if (updatedTeam[i]?.name === team.team[i]?.name) {
-                updatedTeam[i] = team.team[i]
-            } else {
+        if (creation) {
+            const newTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
+            dispatch({type: 'CREATE_TEAM', payload: {id: Math.floor(Math.random() * 1000000), team: newTeam}})
+            setTeamInEdit([])
+        } else {
+            let updatedTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
+            let update = false
+    
+            if (updatedTeam.length !== team.team.length) {
                 update = true
+            }
+    
+            for (let i = 0; i < updatedTeam.length; i++) {
+                if (updatedTeam[i]?.name === team.team[i]?.name) {
+                    updatedTeam[i] = team.team[i]
+                } else {
+                    update = true
+                }
+            }
+    
+            if (update) {
+                dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: updatedTeam}})
             }
         }
 
-        if (update) {
-            dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: updatedTeam}})
-        }
 
     }
 
@@ -277,7 +285,7 @@ const TeamBuildingModal = ({ children, teamInfo, team }) => {
                     </TouchableOpacity>
                     <LinearGradient 
                         style={styles.currentTeamContainer}
-                        colors={getGradientColorArray([teamInEdit[0].types[0], teamInEdit[teamInEdit.length - 1].types[0]])}
+                        colors={teamInEdit.length === 0 ? ["#909090", "#909090"] : getGradientColorArray([teamInEdit[0].types[0], teamInEdit[teamInEdit.length - 1].types[0]])}
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}
                     >
