@@ -1,19 +1,43 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { View, Image, Text, StyleSheet } from "react-native"
+import { View, Image, Text, StyleSheet, Pressable, Alert } from "react-native"
 import { useDexContext } from "./hooks/useDexContext";
 import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColourMap";
 import { darkenColor } from "../global/UtiliyFunctions";
 import ExpandedTeamView from "./ExpandedTeamView";
+import { useTeamsContext } from "./hooks/useTeamsContext";
 
 const PokemonTeamView = ({ team }) => {
     const { dex } = useDexContext()
+    const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
     const teamInfo = team.team?.map(member => dexForms.find(info => info.name === member.name))
+
+    const handleDelete = () => {
+        Alert.alert(
+            'Delete Confirmation',
+            'Are you sure you want to delete?',
+            [
+            {
+                text: 'Cancel',
+                style: 'cancel',
+            },
+            {
+                text: 'Delete',
+                onPress: () => {
+                dispatch({type: 'DELETE_TEAM', payload: team})
+                console.log('Item deleted');
+                },
+                style: 'destructive',
+            },
+            ],
+            { cancelable: true }
+        )
+    }
 
     return (
         <View>
         { teamInfo &&
-        <ExpandedTeamView teamInfo={teamInfo} team={team}>
+        <ExpandedTeamView teamInfo={teamInfo} team={team} handleDelete={handleDelete}>
             <LinearGradient
                 style={styles.container}
                 colors={[teamInfo[0]?.types[0] ? typeToGradientDarkColorMap[teamInfo[0].types[0]] : "white", 

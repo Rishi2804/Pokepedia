@@ -4,12 +4,12 @@ import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
 import TeamBuildingModal from "./TeamBuildingModal";
  
- const ExpandedTeamView = ({ children, teamInfo, team }) => {
+ const ExpandedTeamView = ({ children, teamInfo, team, handleDelete }) => {
     const [ isVisible, setIsVisible ] = useState(false)
 
     return (
         <View>
-            <Pressable onPress={() => setIsVisible(true)}>
+            <Pressable onPress={() => setIsVisible(true)} onLongPress={() => handleDelete()}>
                 { children }
             </Pressable>
             <Modal
