@@ -233,11 +233,11 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
     const handleSave = () => {
 
         if (creation) {
-            const newTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
+            const newTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
             dispatch({type: 'CREATE_TEAM', payload: {id: Math.floor(Math.random() * 1000000), team: newTeam}})
             setTeamInEdit([])
         } else {
-            let updatedTeam = teamInEdit.map(member => {return{name: member.name, moves: []}})
+            let updatedTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
             let update = false
     
             if (updatedTeam.length !== team.team.length) {

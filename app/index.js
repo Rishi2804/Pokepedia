@@ -29,31 +29,25 @@ export default function Page() {
         if (dex.length === 0) dispatch({type: 'SET_ALL', payload: {dex: PokemonData, chains: EvoChains}})
         if (moves.length === 0) movesDispatch({type: 'SET_MOVES', payload: Moves})
         if (abilities.length === 0) abilitiesDispatch({type: 'SET_ABILITIES', payload: Abilities})
-        const sample = [
-            {name: "greninja", moves: ["water-shuriken", "dark-pulse", "hydro-pump", 'gunk-shot']},
-            {name: "venusaur-mega", moves: ["energy-ball", "sludge-bomb", "earthquake", 'leech-seed']},
-            {name: "talonflame", moves: ["flare-blitz", "brave-bird", "steel-wing", 'roost']},
-            {name: "diancie", moves: ["diamond-storm", "moonblast", "psychic", 'gyro-ball']},
-            {name: "goodra", moves: ["dragon-pulse", "flamethrower", "ice-beam", 'thunderbolt']},
-            {name: "aegislash-shield", moves: ["kings-shield", "sacred-sword", "iron-head", 'shadow-sneak']},
-        ]
     
-        const sample2 = [
-            {name: "rillaboom", moves: []},
-            {name: "toxtricity-amped", moves: []},
-            {name: "sirfetchd", moves: []},
-            {name: "perrserker", moves: []},
-            {name: "centiskorch", moves: []},
+        const sample = [
+            {name: "pikachu", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "lucario-mega", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "gengar-gmax", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "dragonite", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "sirfetchd", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "dracovish", teraType: null, shiny: 0, female: 0, moves: []},
         ]
         
-        const sample3 = [
-            {name: "charizard", moves: []},
-            {name: "venusaur", moves: []},
-            {name: "blastoise", moves: []},
-            {name: "pikachu", moves: []},
+        const sample2 = [
+            {name: "charizard", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "venusaur", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "blastoise", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "pikachu", teraType: null, shiny: 0, female: 0, moves: []},
+            {name: "snorlax", teraType: null, shiny: 0, female: 0, moves: []},
         ]
     
-        if (teams.length === 0) teamsDispatch({type: 'SET_TEAMS', payload: [{id: 1, team: sample}, {id: 2, team: sample2}, {id: 3, team: sample3}]})
+        if (teams.length === 0) teamsDispatch({type: 'SET_TEAMS', payload: [{id: 1, name: "Ash's Team", team: sample}, {id: 2, name: "Red's Team", team: sample2}]})
     }, [])
 
     useEffect(() => {
