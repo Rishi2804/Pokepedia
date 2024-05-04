@@ -237,7 +237,7 @@ const TeamBuildingModal = ({ children, teamInfo, team }) => {
         if (updatedTeam.length !== team.team.length) {
             update = true
         }
-        
+
         for (let i = 0; i < updatedTeam.length; i++) {
             if (updatedTeam[i]?.name === team.team[i]?.name) {
                 updatedTeam[i] = team.team[i]
@@ -269,7 +269,10 @@ const TeamBuildingModal = ({ children, teamInfo, team }) => {
                     }}>
                         <Text style={styles.saveButtonText}>Save</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.saveButton} onPress={() => setIsVisible(false)}>
+                    <TouchableOpacity style={styles.saveButton} onPress={() => {
+                        setTeamInEdit(teamInfo)
+                        setIsVisible(false)
+                    }}>
                         <Text style={styles.saveButtonText}>Quit</Text>
                     </TouchableOpacity>
                     <LinearGradient 
