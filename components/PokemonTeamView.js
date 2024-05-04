@@ -8,7 +8,7 @@ import ExpandedTeamView from "./ExpandedTeamView";
 const PokemonTeamView = ({ team }) => {
     const { dex } = useDexContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
-    const teamInfo = team.map(member => dexForms.find(info => info.name === member))
+    const teamInfo = team.map(member => dexForms.find(info => info.name === member.name))
     return (
         <ExpandedTeamView team={teamInfo}>
             <LinearGradient
