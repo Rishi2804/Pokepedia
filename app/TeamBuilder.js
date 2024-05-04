@@ -3,22 +3,25 @@ import { View, Text, Image, SafeAreaView, StyleSheet } from "react-native"
 import { useTeamsContext } from "../components/hooks/useTeamsContext"
 import PokemonTeamView from "../components/PokemonTeamView";
 import TeamBuildingModal from "../components/TeamBuildingModal";
+import { ScrollView } from "react-native-gesture-handler";
 
 const TeamBuilder = () => {
     const { teams, dispatch } = useTeamsContext()
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <View style={{paddingHorizontal: 5}}>
-                {teams.map((team, index) => (
-                    <PokemonTeamView team={team} key={index}/>
-                ))}
-            </View>
-            <TeamBuildingModal creation={true}>
-                <View style={styles.container}>
-                    <Text style={styles.teamNameText}>+</Text>
+            <ScrollView>
+                <View style={{paddingHorizontal: 5}}>
+                    {teams.map((team, index) => (
+                        <PokemonTeamView team={team} key={index}/>
+                    ))}
                 </View>
-            </TeamBuildingModal>
+                <TeamBuildingModal creation={true}>
+                    <View style={styles.container}>
+                        <Text style={styles.teamNameText}>+</Text>
+                    </View>
+                </TeamBuildingModal>
+            </ScrollView>
         </SafeAreaView>
     );
 }
