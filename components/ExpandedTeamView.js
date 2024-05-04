@@ -32,7 +32,7 @@ import TeamBuildingModal from "./TeamBuildingModal";
                             teamInfo.map((member, index) => {
                                 return (
                                     <TeamBuildingModal teamInfo={teamInfo} team={team} key={index}>
-                                        <TeamMemberView member={member} moves={team.team[index].moves}/>
+                                        <TeamMemberView member={member} moves={team.team[index].moves} team={team} index={index}/>
                                     </TeamBuildingModal>
                                 )
                             })
