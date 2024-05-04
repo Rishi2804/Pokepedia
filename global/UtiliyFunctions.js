@@ -100,7 +100,7 @@ export function returnRegionalVariants(obj, type) {
     if (obj.name === 'pikachu') return []
     let forms = []
     if (!type) {
-        for (const form of obj.altForms) {
+        for (const form of obj.forms) {
             const words = form.name.split('-')
             const region = words.find((word) => (word === 'alola' ||
                                                     word === 'galar' ||
@@ -112,7 +112,7 @@ export function returnRegionalVariants(obj, type) {
         }
         return forms
     } else {
-        for (const form of obj.altForms) {
+        for (const form of obj.forms) {
             const words = form.name.split('-')
             if (words.find((word) => word === type)) {
                 forms.push({region: type, obj: form})
