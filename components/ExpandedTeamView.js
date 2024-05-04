@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Pressable, Text, View, SafeAreaView, TouchableOpacity, StyleSheet } from "react-native"
 import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
+import TeamBuildingModal from "./TeamBuildingModal";
  
  const ExpandedTeamView = ({ children, team }) => {
     const [ isVisible, setIsVisible ] = useState(false)
@@ -30,7 +31,9 @@ import TeamMemberView from "./TeamMemberView";
                         {
                             team.map((member, index) => {
                                 return (
-                                    <TeamMemberView member={member} key={index}/>
+                                    <TeamBuildingModal team={team} key={index}>
+                                        <TeamMemberView member={member}/>
+                                    </TeamBuildingModal>
                                 )
                             })
                         }
