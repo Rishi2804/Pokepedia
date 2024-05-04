@@ -45,7 +45,7 @@ const PokemonTeamView = ({ team }) => {
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
             >
-                <Text style={styles.teamNameText}>Sample Team</Text>
+                <Text style={styles.teamNameText}>{team.name}</Text>
                 <View style={{flexDirection: "row"}}>
                 {
                     teamInfo.map((member, index) => {

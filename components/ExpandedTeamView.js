@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Modal, Pressable, Text, View, SafeAreaView, TouchableOpacity, StyleSheet } from "react-native"
+import { Modal, Pressable, Text, View, SafeAreaView, TouchableOpacity, StyleSheet, TextInput } from "react-native"
 import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
 import TeamBuildingModal from "./TeamBuildingModal";
+import { useTeamsContext } from "./hooks/useTeamsContext";
  
  const ExpandedTeamView = ({ children, teamInfo, team, handleDelete }) => {
     const [ isVisible, setIsVisible ] = useState(false)
-
+    const [ teamName, setTeamName ] = useState(team.name)
+    const { dispatch } = useTeamsContext()
     return (
         <View>
             <Pressable onPress={() => setIsVisible(true)} onLongPress={() => handleDelete()}>
@@ -22,7 +24,14 @@ import TeamBuildingModal from "./TeamBuildingModal";
                         <TouchableOpacity onPress={() => setIsVisible(false)} style={styles.backButton}>
                             <MaterialIcons name="arrow-back-ios-new" size={18} color={"white"}/>
                         </TouchableOpacity>
-                        <Text style={styles.teamNameText}>Sample Text</Text>
+                        <TextInput
+                            value={teamName}
+                            onChange={(event) => setTeamName(event.nativeEvent.text)}
+                            style={styles.teamNameText}
+                            onSubmitEditing={(event) => {
+                                if (event.nativeEvent.text.length > 0) dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: event.nativeEvent.text, team: team.team}})
+                            }}
+                        />
                         <TouchableOpacity onPress={() => {}} style={styles.backButton}>
                             <Foundation name="credit-card" size={20} color={"white"}/>
                         </TouchableOpacity>

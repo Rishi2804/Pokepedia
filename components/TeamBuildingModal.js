@@ -231,10 +231,10 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
     }
 
     const handleSave = () => {
-
+        if (teamInEdit.length === 0) return
         if (creation) {
             const newTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
-            dispatch({type: 'CREATE_TEAM', payload: {id: Math.floor(Math.random() * 1000000), team: newTeam}})
+            dispatch({type: 'CREATE_TEAM', payload: {id: Math.floor(Math.random() * 1000000), name: "New Team", team: newTeam}})
             setTeamInEdit([])
         } else {
             let updatedTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
@@ -253,7 +253,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
             }
     
             if (update) {
-                dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: updatedTeam}})
+                dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: team.name, team: updatedTeam}})
             }
         }
 
