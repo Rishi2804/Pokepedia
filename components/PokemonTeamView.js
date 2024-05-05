@@ -12,7 +12,28 @@ const PokemonTeamView = ({ team }) => {
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
     const teamInfo = team.team?.map(member => dexForms.find(info => info.name === member.name))
 
+    
     const handleDelete = () => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `DELETE FROM teams WHERE id = ?`,
+                [team.id],
+                (_, result) => {
+                    if (result.rowsAffected > 0) {
+                        console.log("Team successfully deleted")
+                        dispatch({type: 'DELETE_TEAM', payload: team})
+                    } else {
+                        console.log("No rows were updated")
+                    }
+                },
+                (_, error) => {
+                    console.log(error)
+                }
+            )
+        })
+    }
+
+    const handleDeletePress = () => {
         Alert.alert(
             'Delete Confirmation',
             'Are you sure you want to delete?',
@@ -24,7 +45,7 @@ const PokemonTeamView = ({ team }) => {
             {
                 text: 'Delete',
                 onPress: () => {
-                dispatch({type: 'DELETE_TEAM', payload: team})
+                handleDelete()
                 console.log('Item deleted');
                 },
                 style: 'destructive',
@@ -37,7 +58,7 @@ const PokemonTeamView = ({ team }) => {
     return (
         <View>
         { teamInfo &&
-        <ExpandedTeamView teamInfo={teamInfo} team={team} handleDelete={handleDelete}>
+        <ExpandedTeamView teamInfo={teamInfo} team={team} handleDelete={handleDeletePress}>
             <LinearGradient
                 style={styles.container}
                 colors={[teamInfo[0]?.types[0] ? typeToGradientDarkColorMap[teamInfo[0].types[0]] : "white", 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as SQLite from "expo-sqlite"
 import { Modal, Pressable, Text, View, SafeAreaView, TouchableOpacity, StyleSheet, TextInput } from "react-native"
 import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
@@ -6,9 +7,31 @@ import TeamBuildingModal from "./TeamBuildingModal";
 import { useTeamsContext } from "./hooks/useTeamsContext";
  
  const ExpandedTeamView = ({ children, teamInfo, team, handleDelete }) => {
+    const db = SQLite.openDatabase('teams.db')
     const [ isVisible, setIsVisible ] = useState(false)
     const [ teamName, setTeamName ] = useState(team.name)
     const { dispatch } = useTeamsContext()
+
+    const handleUpdateName = (newName) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `UPDATE teams SET name = ? WHERE id = ?`,
+                [newName, team.id],
+                (_, result) => {
+                    if (result.rowsAffected > 0) {
+                        console.log("Name successfully changed")
+                        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: newName, team: team.team}})
+                    } else {
+                        console.log("No rows were updated")
+                    }
+                },
+                (_, error) => {
+                    console.log(error)
+                }
+            )
+        })
+    }
+
     return (
         <View>
             <Pressable onPress={() => setIsVisible(true)} onLongPress={() => handleDelete()}>
@@ -29,7 +52,7 @@ import { useTeamsContext } from "./hooks/useTeamsContext";
                             onChange={(event) => setTeamName(event.nativeEvent.text)}
                             style={styles.teamNameText}
                             onSubmitEditing={(event) => {
-                                if (event.nativeEvent.text.length > 0) dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: event.nativeEvent.text, team: team.team}})
+                                if (event.nativeEvent.text.length > 0) handleUpdateName(event.nativeEvent.text)
                             }}
                         />
                         <TouchableOpacity onPress={() => {}} style={styles.backButton}>

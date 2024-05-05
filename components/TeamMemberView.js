@@ -1,4 +1,5 @@
 import { View, StyleSheet, Image, Text, Pressable } from "react-native"
+import * as SQLite from "expo-sqlite"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from "expo-linear-gradient";
 import { typeToGradientDarkColorMap } from "../maps/typeToColourMap";
@@ -11,6 +12,7 @@ import { useTeamsContext } from "./hooks/useTeamsContext";
 import EditMemberModal from "./EditMemberModal";
 
 const TeamMemberView = ({ member, moves, team, index }) => {
+    const db = SQLite.openDatabase('teams.db')
     const { moves: moveList } = useMovesContext()
     const { dispatch } = useTeamsContext()
     const swipeableRef = useRef(null)
@@ -18,8 +20,25 @@ const TeamMemberView = ({ member, moves, team, index }) => {
     const handleDelete = () => {
         const newTeam = [...team.team]
         newTeam.splice(index, 1)
-        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: newTeam}})
-        swipeableRef.current.close()
+
+        db.transaction(tx => {
+            tx.executeSql(
+                `UPDATE teams SET team = ? WHERE id = ?`,
+                [JSON.stringify(newTeam), team.id],
+                (_, result) => {
+                    if (result.rowsAffected > 0) {
+                        console.log("Team successfully changed")
+                        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: team.name, team: newTeam}})
+                        swipeableRef.current?.close()
+                    } else {
+                        console.log("No rows were updated")
+                    }
+                },
+                (_, error) => {
+                    console.log(error)
+                }
+            )
+        })
     }
 
     const DeleteRightAction = () => {

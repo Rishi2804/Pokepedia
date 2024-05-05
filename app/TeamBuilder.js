@@ -6,7 +6,7 @@ import TeamBuildingModal from "../components/TeamBuildingModal";
 import { ScrollView } from "react-native-gesture-handler";
 
 const TeamBuilder = () => {
-    const { teams, dispatch } = useTeamsContext()
+    const { teams } = useTeamsContext()
 
     return (
         <SafeAreaView style={{flex: 1}}>

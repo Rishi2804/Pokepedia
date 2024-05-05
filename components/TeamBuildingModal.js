@@ -1,5 +1,6 @@
 import PokedexData from "../assets/jsonData/pokedex.json"
 import { SafeAreaView, View, Pressable, Modal, Text, StyleSheet, Image, Alert, FlatList, TextInput } from "react-native";
+import * as SQLite from "expo-sqlite"
 import { useDexContext } from "./hooks/useDexContext";
 import { useEffect, useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
@@ -13,6 +14,7 @@ import { dexToNameLabel } from "../maps/DexToNameLabelMap";
 import { useTeamsContext } from "./hooks/useTeamsContext";
 
 const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
+    const db = SQLite.openDatabase('teams.db')
     const { dex } = useDexContext()
     const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
@@ -234,8 +236,17 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
         if (teamInEdit.length === 0) return
         if (creation) {
             const newTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
-            dispatch({type: 'CREATE_TEAM', payload: {id: Math.floor(Math.random() * 1000000), name: "New Team", team: newTeam}})
-            setTeamInEdit([])
+            db.transaction(tx => {
+                tx.executeSql(
+                    `INSERT INTO teams (name, team) VALUES (?, ?)`,
+                    ["New Team", JSON.stringify(newTeam)],
+                    (_, result) => {
+                        console.log("Team succesfully created")
+                        dispatch({type: 'CREATE_TEAM', payload: {id: result.insertId, name: "New Team", team: newTeam}})
+                        setTeamInEdit([])
+                    }
+                )
+            })
         } else {
             let updatedTeam = teamInEdit.map(member => {return{name: member.name, shiny: 0, female: 0, teraType: null, moves: []}})
             let update = false
@@ -253,7 +264,23 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
             }
     
             if (update) {
-                dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: team.name, team: updatedTeam}})
+                db.transaction(tx => {
+                    tx.executeSql(
+                        `UPDATE teams SET team = ? WHERE id = ?`,
+                        [JSON.stringify(updatedTeam), team.id],
+                        (_, result) => {
+                            if (result.rowsAffected > 0) {
+                                console.log("Team successfully changed")
+                                dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: team.name, team: updatedTeam}})
+                            } else {
+                                console.log("No rows were updated")
+                            }
+                        },
+                        (_, error) => {
+                            console.log(error)
+                        }
+                    )
+                })
             }
         }
 

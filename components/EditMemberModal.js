@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import * as SQLite from "expo-sqlite"
 import { View, Text, Modal, SafeAreaView, Pressable, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Checkbox from "expo-checkbox"
 import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColourMap";
@@ -11,6 +12,7 @@ import MovesView from "./MovesView";
 import { useTeamsContext } from "./hooks/useTeamsContext";
 
 const EditMemberModal = ({ children, team, index, member }) => {
+    const db = SQLite.openDatabase('teams.db')
     const { moves: moveList } = useMovesContext()
     const { dispatch } = useTeamsContext()
     const [ isVisible, setIsVisible ] = useState(false)
@@ -27,7 +29,23 @@ const EditMemberModal = ({ children, team, index, member }) => {
     const handleSave = () => {
         const updatedTeam = [...team.team]
         updatedTeam[index].moves = moves
-        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: updatedTeam}})
+        db.transaction(tx => {
+            tx.executeSql(
+                `UPDATE teams SET team = ? WHERE id = ?`,
+                [JSON.stringify(updatedTeam), team.id],
+                (_, result) => {
+                    if (result.rowsAffected > 0) {
+                        console.log("Team successfully changed")
+                        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: team.name, team: updatedTeam}})
+                    } else {
+                        console.log("No rows were updated")
+                    }
+                },
+                (_, error) => {
+                    console.log(error)
+                }
+            )
+        })
     }
 
     const handleMoveChange = (move) => {
