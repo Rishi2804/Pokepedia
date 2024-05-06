@@ -5,7 +5,7 @@ import PokemonListView from "../components/PokemonListView";
 import { useDexContext } from "../components/hooks/useDexContext";
 import BottomFilters from "../components/BottomFilters";
 import Dropdown from "react-native-input-select"
-import { SelectList, MultipleSelectList } from 'react-native-dropdown-select-list'
+import { useThemeContext } from "../components/hooks/useThemeContext";
 import { dexes, types } from "../global/UniversalData";
 import { formatName, formatText } from "../global/UtiliyFunctions";
 import PokedexData from "../assets/jsonData/pokedex.json"
@@ -18,7 +18,7 @@ const Pokedex = () => {
     const [ pokemon, setPokemon ] = useState(dex)
     const [ state, setState ] = useState(1)
     const [ selected, setSelected ] = useState(0)
-    const [ toggled, setToggled ] = useState(0)
+    const { theme } = useThemeContext()
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ filterTypes, setFilterTypes] = useState([])
     const [ dexType, setDexType ] = useState("national")
@@ -161,7 +161,7 @@ const Pokedex = () => {
     }, [state, selected, dexType, searchTerm, filterTypes, generation]);
     
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7"}}>
             <View>
                 <ScrollView horizontal style={{flexDirection: "row"}}>   
                     <Dropdown
@@ -175,7 +175,8 @@ const Pokedex = () => {
                                 setDexType(dexType)
                             }
                         }}
-                        dropdownStyle={{paddingRight: 50}}
+                        dropdownStyle={{paddingRight: 50, backgroundColor: theme.mode === 'dark' ? "black" : "white"}}
+                        selectedItemStyle={{color: theme.mode === 'dark' ? "white" : "black"}}
                         dropdownContainerStyle={{flex: 1}}
                     />
                     <Dropdown
