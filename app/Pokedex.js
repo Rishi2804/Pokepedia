@@ -11,6 +11,7 @@ import { formatName, formatText } from "../global/UtiliyFunctions";
 import PokedexData from "../assets/jsonData/pokedex.json"
 import LoadingView from "../components/LoadingView";
 import { dexToNameLabel } from "../maps/DexToNameLabelMap";
+import { AntDesign } from '@expo/vector-icons';
 
 const Pokedex = () => {
     const [ loading, setLoading ] = useState(false)
@@ -26,6 +27,10 @@ const Pokedex = () => {
     const genList = ["Generation I", "Generation II", "Generation III",
                         "Generation IV", "Generation V", "Generation VI",
                         "Generation VII", "Generation VIII", "Generation IX"]
+
+    const themeSetting1 = theme.mode === 'dark' ? "black" : "white"
+    const themeSetting2 = theme.mode === 'dark' ? "white" : "black"
+    const themeSetting3 = theme.mode === 'dark' ? "#1c1c1e" : "white"
 
     const sortingFunction = (a, b) => {
         if (selected === 0) {
@@ -175,8 +180,10 @@ const Pokedex = () => {
                                 setDexType(dexType)
                             }
                         }}
-                        dropdownStyle={{paddingRight: 50, backgroundColor: theme.mode === 'dark' ? "black" : "white"}}
-                        selectedItemStyle={{color: theme.mode === 'dark' ? "white" : "black"}}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
                         dropdownContainerStyle={{flex: 1}}
                     />
                     <Dropdown
@@ -185,7 +192,11 @@ const Pokedex = () => {
                         placeholder="Select Generations"
                         selectedValue={generation}
                         onValueChange={(value) => {setGeneration(value)}}
-                        dropdownStyle={{paddingRight: 50}}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        placeholderStyle={{color: themeSetting2}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
                         dropdownContainerStyle={{flex: 1}}
                     />
                     <Dropdown
@@ -194,7 +205,11 @@ const Pokedex = () => {
                         placeholder="Select Types"
                         selectedValue={filterTypes}
                         onValueChange={(value) => {setFilterTypes(value)}}
-                        dropdownStyle={{paddingRight: 50}}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        placeholderStyle={{color: themeSetting2}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
                         dropdownContainerStyle={{flex: 1}}
                     />
                 </ScrollView>

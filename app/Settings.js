@@ -10,29 +10,20 @@ import { TouchableOpacity } from "react-native-gesture-handler";
         <SafeAreaView style={styles.background}>
             <Text style={styles.settingHeaderText}>Theme Settings</Text>
             <View style={styles.settingContainer}>
-                <TouchableOpacity onPress={() => {
-                    updateTheme({mode: "light"})
-                    console.log(theme)
-                }}>
+                <TouchableOpacity onPress={() => {updateTheme({mode: "light"})}}>
                     <View style={styles.settingSection}>
                         <Text>Light Mode</Text>
                         <View style={[styles.radioButton, {backgroundColor: "#b0d85d"}]}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    updateTheme({mode: "dark"})
-                    console.log(theme)
-                }}>
+                <TouchableOpacity onPress={() => {updateTheme({mode: "dark"})}}>
                 <View style={{height: 1, backgroundColor: "#b0d85d"}}/>
                     <View style={styles.settingSection}>
                         <Text>Dark Mode</Text>
                         <View style={[styles.radioButton, {backgroundColor: "#b0d85d"}]}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                    updateTheme({system: true})
-                    console.log(theme)
-                }}>
+                <TouchableOpacity onPress={() => {updateTheme({system: true})}}>
                 <View style={{height: 1, backgroundColor: "#b0d85d"}}/>
                     <View style={styles.settingSection}>
                         <Text>System</Text>
