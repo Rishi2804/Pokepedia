@@ -5,14 +5,16 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { darkenColor, formatText } from "../global/UtiliyFunctions";
 import IconMoveClassMapper from "../maps/MoveClassToIconMap";
 import MovesModal from "./MovesModal";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const MovesView = ({ move, level, versionGroup, disableModal }) => {
+    const { theme } = useThemeContext()
     const pastVersion = move.pastValues.find(group => group.games?.includes(versionGroup))
 
     if (disableModal) {
         return (
             <LinearGradient
-                style={styles.container}
+                style={[styles.container, {borderColor: theme.mode === 'dark' ? "white" : "black"}]}
                 colors={[typeToGradientDarkColorMap[move.type], darkenColor(typeToGradientDarkColorMap[move.type], 0.5)]}
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
@@ -56,7 +58,7 @@ const MovesView = ({ move, level, versionGroup, disableModal }) => {
     return (
         <MovesModal move={move}>
             <LinearGradient
-                style={styles.container}
+                style={[styles.container, {borderColor: theme.mode === 'dark' ? "white" : "black"}]}
                 colors={[typeToGradientDarkColorMap[move.type], darkenColor(typeToGradientDarkColorMap[move.type], 0.5)]}
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems: "center",
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         borderRadius: 10,
         justifyContent: "space-between",
         height: 80

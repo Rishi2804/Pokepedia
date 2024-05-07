@@ -7,8 +7,11 @@ import { types } from "../global/UniversalData";
 import { formatText } from "../global/UtiliyFunctions"
 import BottomFilters from "../components/BottomFilters";
 import LoadingView from "../components/LoadingView";
+import { useThemeContext } from "../components/hooks/useThemeContext";
+import { AntDesign } from '@expo/vector-icons';
 
 const Moves = () => {
+    const { theme } = useThemeContext()
     const { moves } = useMovesContext()
     const [ moveList, setMoveList ] = useState(moves)
     const [ state, setState ] = useState(1)
@@ -16,6 +19,9 @@ const Moves = () => {
     const [ searchTerm, setSearchTerm ] = useState("")
     const [ loading, setLoading ] = useState(true)
     const [ filterTypes, setFilterTypes] = useState([])
+
+    const themeSetting2 = theme.mode === 'dark' ? "white" : "black"
+    const themeSetting3 = theme.mode === 'dark' ? "#1c1c1e" : "white"
 
     useEffect(() => {
         const sortingFunction = (a, b) => {
@@ -84,7 +90,7 @@ const Moves = () => {
     }, [state, selected, searchTerm, filterTypes])
 
     return(
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7"}}>
             <View>
                 <ScrollView horizontal style={{flexDirection: "row"}}>    
                     <Dropdown
@@ -93,7 +99,11 @@ const Moves = () => {
                         options={types.map(item => {return{value: item.name, label: formatText(item.name)}})}
                         selectedValue={filterTypes}
                         onValueChange={(value) => setFilterTypes(value)}
-                        dropdownStyle={{paddingRight: 50}}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        placeholderStyle={{color: themeSetting2}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
                         dropdownContainerStyle={{flex: 1}}
                     />
                 </ScrollView>
