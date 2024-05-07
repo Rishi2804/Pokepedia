@@ -4,7 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { typeToColourMap, typeToGradientDarkColorMap as gradientMap } from "../maps/typeToColourMap"
 import IconTypeMapper from "../maps/typeToIconMap";
 import { LinearGradient } from 'expo-linear-gradient'
-import { SelectList } from "react-native-dropdown-select-list"
+import { AntDesign } from "@expo/vector-icons"
 import Dropdown from 'react-native-input-select';
 import { darkenColor, formatName, formatGameText, formatText, isRegionalVariant, findFormInSpecies, addPrefixTextToNum, getTypeMatchups, transformMoves } from "../global/UtiliyFunctions";
 import { gameToColorMap, gameToTextColor } from "../maps/GameToColourMap";
@@ -21,12 +21,13 @@ import MovesView from "./MovesView"
 import { genToColorMap, regionToColorMap } from "../maps/GenToColorMap";
 import { useAbilitiesContext } from "./hooks/useAbilitiesContext";
 import AbilitiesModal from "./AbilitiesModal";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, longPress }) => {
     if (pokemon === undefined || pokemon.forms[startingFormIndex] === undefined) {
         return
     }
-    
+    const { theme } = useThemeContext()
     const [isVisible, setIsVisible] = useState(false)
     const { dex, evoChains } = useDexContext()
     const { moves } = useMovesContext()
@@ -59,6 +60,10 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
     const threshold = Dimensions.get('window').width / 4
 
     const categorized = catergorizeDexEntries(pokemon.dexEntries, pokemon.regionalDexNumber, pokemon.generation)
+    
+    const themeSettings1 = theme.mode === "dark" ? "#fff" : "#000"
+    const themeSettings2 = theme.mode === "dark" ? "#fff" : "#000"
+    const themeSettings3 = theme.mode === "dark" ? "#0c0c0c" : "#fff"
     
     const handleSwipe = (dir) => {
         setMoveTab("level-up")
@@ -141,11 +146,11 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                     <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>
                         <View style={{alignItems: "center"}}>
                             <Text style={styles.headerText}>Weight</Text>
-                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].weight} kg</Text>
+                            <Text style={[styles.defaultText, {color: themeSettings2}]}>{pokemonInfo[formIndex].weight} kg</Text>
                         </View>
                         <View style={{alignItems: "center"}}>
                             <Text style={styles.headerText}>Height</Text>
-                            <Text style={styles.defaultText}>{pokemonInfo[formIndex].height} m</Text>
+                            <Text style={[styles.defaultText, {color: themeSettings2}]}>{pokemonInfo[formIndex].height} m</Text>
                         </View>
                     </View>
                 </View>
@@ -223,7 +228,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                                                         string += " in " 
                                                         string += formatText(isRegionalVariant(line.to))
                                                     }
-                                                    return (<Text style={[styles.defaultText2, {textAlign: "center"}]} key={index}>{string}</Text>)
+                                                    return (<Text style={[styles.defaultText2, {textAlign: "center", color: themeSettings2}]} key={index}>{string}</Text>)
                                                 })}
                                             </View>
                                             <PokemonModal pokemon={toContext} startingFormIndex={toIndex} hasSecondType={false} longPress={() => {}}>
@@ -243,7 +248,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                 }
                 <View style={styles.section}>
                     <Text style={styles.headerText}>Pokedex Entries</Text>
-                    <View style={{borderWidth: 2, borderColor: "#909090", borderRadius: 8, paddingHorizontal: 1, backgroundColor: "#909090"}}>
+                    <View style={{borderWidth: 2, borderColor: theme.mode === "dark" ? "#42424a" : "#909090", borderRadius: 8, paddingHorizontal: 1, backgroundColor: theme.mode === "dark" ? "#42424a" : "#909090"}}>
                         {
                             categorized.map((genEntires, index) => (
                                 <View style={{ marginBottom: 3 }} key={index}>
@@ -263,20 +268,20 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                                                 }
                                             </View>
                                         </View>
-                                        <View style={{borderWidth: 2, borderColor: genToColorMap.get(pokemon.generation + index), borderBottomRightRadius: 8, borderBottomLeftRadius: 8, backgroundColor: "#fff", paddingHorizontal: 2}}>
+                                        <View style={{borderWidth: 2, borderColor: genToColorMap.get(pokemon.generation + index), borderBottomRightRadius: 8, borderBottomLeftRadius: 8, backgroundColor: themeSettings3, paddingHorizontal: 2}}>
                                         {
                                             genEntires.entries.length > 0 ? genEntires.entries.map((entry, entryIndex) => (
-                                                <View style={{flexDirection: "row", borderColor: "black", borderWidth: 1, borderRadius: 8, marginBottom: 2, marginTop: entryIndex === 0 ? 2 : 0 }} key={entryIndex}>
-                                                    <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 72, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8, borderRightWidth: 1}}>
+                                                <View style={{flexDirection: "row", borderColor: themeSettings1, borderWidth: 1, borderRadius: 8, marginBottom: 2, marginTop: entryIndex === 0 ? 2 : 0 }} key={entryIndex}>
+                                                    <View style={{backgroundColor: gameToColorMap[entry.game] ? gameToColorMap[entry.game] : "#fff", width: 72, alignItems: "center", justifyContent: "center", borderTopLeftRadius: 8, borderBottomLeftRadius: 8, borderRightWidth: 1, borderColor: themeSettings1}}>
                                                         <Text style={{textAlign: "center", fontFamily: "Geologica Regular", color: gameToTextColor[entry.game] ? gameToTextColor[entry.game] : "#000"}}>{formatGameText(entry.game)}</Text>
                                                     </View>
-                                                    <View style={{flex: 1, backgroundColor: "#fff", borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
-                                                        <Text style={styles.defaultText2}>{entry.entry}</Text>
+                                                    <View style={{flex: 1, backgroundColor: themeSettings3, borderTopRightRadius: 8, borderBottomRightRadius: 8}}>
+                                                        <Text style={[styles.defaultText2, {color: themeSettings2}]}>{entry.entry}</Text>
                                                     </View>
                                                 </View>
                                             )) : 
-                                            <View style={{flex: 1, backgroundColor: "#fff", borderRadius: 8, padding: 8, alignItems: "center"}}>
-                                                <Text style={styles.defaultText2}>No Dex Entries found</Text>
+                                            <View style={{flex: 1, backgroundColor: themeSettings3, borderRadius: 8, padding: 8, alignItems: "center"}}>
+                                                <Text style={[styles.defaultText2, {color: themeSettings2}]}>No Dex Entries found</Text>
                                             </View>
                                         }
                                         </View>
@@ -326,7 +331,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                             )
                         }
                     </View>
-                <View style={styles.line} />
+                <View style={{height: 50}} />
             </>
         );
     }
@@ -341,12 +346,11 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         {
                             pokemonInfo[formIndex].abilities.map((ability, index) => {
                                 const context = abilities.find(item => item.name === ability.name)
-                                // console.log(context ? context.name : ability, "not found")
                                 return (
                                     <AbilitiesModal ability={context} key={index}>
                                         <View style={{alignItems: "center"}}>
-                                            <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
-                                            {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
+                                            <Text style={[styles.defaultText, {color: themeSettings2}]}>{formatText(ability.name)}</Text>
+                                            {ability.hidden && <Text style={[styles.defaultText2, {color: themeSettings2}]}>(Hidden)</Text>}
                                         </View>
                                     </AbilitiesModal>
                                 )})
@@ -362,9 +366,9 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                             {
                                 pokemon.forms[formIndex].past_abilites.map((ability, index) => (
                                         <View style={{alignItems: "center"}} key={index}>
-                                            <Text style={styles.defaultText}>{formatText(ability.name)}</Text>
-                                            {ability.hidden && <Text style={styles.defaultText2}>(Hidden)</Text>}
-                                            <Text style={styles.defaultText2}>(Gen {genMapUppercase.get(ability.generation)} and before)</Text>
+                                            <Text style={[styles.defaultText, {color: themeSettings2}]}>{formatText(ability.name)}</Text>
+                                            {ability.hidden && <Text style={[styles.defaultText2, {color: themeSettings2}]}>(Hidden)</Text>}
+                                            <Text style={[styles.defaultText2, {color: themeSettings2}]}>(Gen {genMapUppercase.get(ability.generation)} and before)</Text>
                                         </View>
                                     )
                                 )
@@ -381,7 +385,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                             typeRelations.doubleWeakness.length > 0 &&
                             <View style={{flexDirection: "row", marginBottom: 5}}>
                                 <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x4</Text>
+                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25, color: themeSettings2}}>x4</Text>
                                 </View>    
                                 {
                                     typeRelations.doubleWeakness.map((item, index) => {
@@ -398,7 +402,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                             typeRelations.weaknesses.length > 0 &&
                             <View style={{flexDirection: "row", marginBottom: 15}}>
                                 <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x2</Text>
+                                    <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25, color: themeSettings2}}>x2</Text>
                                 </View>    
                                 {
                                     typeRelations.weaknesses.map((item, index) => {
@@ -417,7 +421,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         typeRelations.resistances.length > 0 &&
                         <View style={{flexDirection: "row", marginBottom: 5}}>
                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/2</Text>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25, color: themeSettings2}}>x1/2</Text>
                             </View>
                             <View style={{flexDirection: "row", flexWrap: "wrap", flex: 1}}>
                             {
@@ -436,7 +440,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         typeRelations.doubleResistances.length > 0 &&
                         <View style={{flexDirection: "row", marginBottom: 5}}>
                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x1/4</Text>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25, color: themeSettings2}}>x1/4</Text>
                             </View>
                             {
                                 typeRelations.doubleResistances.map((item, index) => {
@@ -453,7 +457,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         typeRelations.immunities.length > 0 &&
                         <View style={{flexDirection: "row"}}>
                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25}}>x0</Text>
+                                <Text style={{fontFamily: "Inconsolata Regular", fontSize: 25, color: themeSettings2}}>x0</Text>
                             </View>
                             {
                                 typeRelations.immunities.map((item, index) => {
@@ -489,11 +493,11 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                             yAxisThickness={0}
                             xAxisThickness={0}
                             showValuesAsTopLabel={true}
-                            topLabelTextStyle={styles.defaultText2}
-                            xAxisLabelTextStyle={styles.defaultText2}
+                            topLabelTextStyle={[styles.defaultText2, {color: themeSettings2}]}
+                            xAxisLabelTextStyle={[styles.defaultText2, {color: themeSettings2}]}
                         />
                     </View>
-                    <Text style={[styles.defaultText, {marginLeft: 20, marginTop: -20}]}>Base Stat Total: {bst}</Text>
+                    <Text style={[styles.defaultText, {marginLeft: 20, marginTop: -20, color: themeSettings2}]}>Base Stat Total: {bst}</Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.section}>
@@ -503,6 +507,24 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         placeholder=""
                         options={pokemonMoves[formIndex].map((list, index) => {return {label: versionGroupFull[list.version], value: index}})}
                         selectedValue={versionMoveSet}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSettings2, backgroundColor: themeSettings3}}
+                        placeholderStyle={{color: themeSettings2}}
+                        selectedItemStyle={{color: themeSettings2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSettings2} />}
+                        dropdownIconStyle={{top: 20}}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSettings3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSettings2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSettings2
+                            },
+                        }}
                         onValueChange={(value) => {
                             if (value) {
                                 setVersionMoveSet(value)
@@ -518,6 +540,23 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         placeholder=""
                         options={pokemonMoves[formIndex][versionMoveSet] ? Object.keys(pokemonMoves[formIndex][versionMoveSet]).filter(item => item !== "version").map(method => {return{label: formatText(method), value: method}}) : []}
                         selectedValue={moveTab}
+                        dropdownStyle={{paddingRight: 50, borderColor: themeSettings2, backgroundColor: themeSettings3}}
+                        placeholderStyle={{color: themeSettings2}}
+                        selectedItemStyle={{color: themeSettings2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSettings2} />}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSettings3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSettings2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSettings2
+                            },
+                        }}
                         onValueChange={(value) => {
                             if (value) {
                                 setMoveTab(value)
@@ -533,7 +572,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                                 return (
                                     <View key={index}>
                                         <MovesView move={moveInfo} level={move.level_learned} versionGroup={pokemonMoves[formIndex][versionMoveSet].version}/>
-                                        <View style={{height: 5}}/>
+                                        <View style={{height: index === pokemonMoves[formIndex][versionMoveSet][moveTab].length - 1 ? 50 : 5}}/>
                                     </View>
                                 )
                             }
@@ -564,6 +603,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                 animationType="slide"
                 presentationStyle="pageSheet"
             >
+                <View style={{backgroundColor: themeSettings3}}>
                 <LinearGradient 
                     style={styles.header}
                     colors={[
@@ -641,6 +681,7 @@ const PokemonModal = ({ children, pokemon, startingFormIndex, hasSecondType, lon
                         )
                     }
                 </ScrollView>
+                </View>
             </Modal>
         </View>
     );
