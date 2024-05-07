@@ -6,13 +6,18 @@ import IconTypeMapper from "../maps/typeToIconMap";
 import { useEffect, useState } from "react";
 import { useDexContext } from "../components/hooks/useDexContext";
 import PokemonListView from "../components/PokemonListView";
+import { useThemeContext } from "../components/hooks/useThemeContext";
 
 const Types = () => {
+    const { theme } = useThemeContext()
     const { dex } = useDexContext()
     const [ selectedTypes, setSelectedTypes ] = useState(['dragon', 'psychic'])
     const [ pokemonWith, setPokemonWith ] = useState([])
     const [ pokemonIndecies, setPokemonIndices ] = useState([])
     const typeRelations = getTypeMatchups(selectedTypes)
+
+    const themeSetting1 = theme.mode === "dark" ? "#000" : "#f2f2f7"
+    const themeSetting2 = theme.mode === "dark" ? "#fff" : "#000"
 
     useEffect(() => {
         const filterPokemonAndSet = () => {
@@ -56,10 +61,10 @@ const Types = () => {
     }
     
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: themeSetting1}}>
             <View>
                 <ScrollView>
-                    <Text style={styles.headerText}>Select Types</Text>
+                    <Text style={[styles.headerText, {color: themeSetting2}]}>Select Types</Text>
                         <View style={{flexDirection: "row", flexWrap: "wrap"}}>
                             {
                                 types.map(item => item.name).map((type, index) => {
@@ -79,7 +84,7 @@ const Types = () => {
                         {
                             selectedTypes.length > 0 &&
                             <>    
-                                <Text style={styles.subHeaderText}>{selectedTypes.length === 2 ? "Selected Type Combo" : selectedTypes.length === 1 ? "Selected Type" : ""}</Text>
+                                <Text style={[styles.subHeaderText, {color: themeSetting2}]}>{selectedTypes.length === 2 ? "Selected Type Combo" : selectedTypes.length === 1 ? "Selected Type" : ""}</Text>
                                 <View style={{flexDirection: "row", flexWrap: "wrap", marginLeft: 10}}>
                                     {
                                         selectedTypes.map((type, index) => {
@@ -95,13 +100,13 @@ const Types = () => {
                                     }
                                 </View>
                                 <View style={{marginLeft: 15}}>
-                                    <Text style={styles.typeHeaderText}>Weaknesses</Text>
+                                    <Text style={[styles.typeHeaderText, {color: themeSetting2}]}>Weaknesses</Text>
                                     <View>
                                         {
                                             typeRelations.doubleWeakness.length > 0 &&
                                             <View style={{flexDirection: "row", marginBottom: 5}}>
                                                 <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                                    <Text style={styles.relationText}>x4</Text>
+                                                    <Text style={[styles.relationText, {color: themeSetting2}]}>x4</Text>
                                                 </View>    
                                                 {
                                                     typeRelations.doubleWeakness.map((item, index) => {
@@ -118,7 +123,7 @@ const Types = () => {
                                             typeRelations.weaknesses.length > 0 &&
                                             <View style={{flexDirection: "row", marginBottom: 15}}>
                                                 <View style={[styles.typeInfoContainer, {borderColor: "#eb5545"}]}>
-                                                    <Text style={styles.relationText}>x2</Text>
+                                                    <Text style={[styles.relationText, {color: themeSetting2}]}>x2</Text>
                                                 </View>    
                                                 {
                                                     typeRelations.weaknesses.map((item, index) => {
@@ -132,12 +137,12 @@ const Types = () => {
                                             </View>
                                         }
                                     </View>
-                                    <Text style={styles.typeHeaderText}>Resistances</Text>
+                                    <Text style={[styles.typeHeaderText, {color: themeSetting2}]}>Resistances</Text>
                                     {
                                         typeRelations.resistances.length > 0 &&
                                         <View style={{flexDirection: "row", marginBottom: 5}}>
                                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                                <Text style={styles.relationText}>x1/2</Text>
+                                                <Text style={[styles.relationText, {color: themeSetting2}]}>x1/2</Text>
                                             </View>
                                             <View style={{flexDirection: "row", flexWrap: "wrap", flex: 1}}>
                                             {
@@ -156,7 +161,7 @@ const Types = () => {
                                         typeRelations.doubleResistances.length > 0 &&
                                         <View style={{flexDirection: "row", marginBottom: 5}}>
                                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                                <Text style={styles.relationText}>x1/4</Text>
+                                                <Text style={[styles.relationText, {color: themeSetting2}]}>x1/4</Text>
                                             </View>
                                             {
                                                 typeRelations.doubleResistances.map((item, index) => {
@@ -173,7 +178,7 @@ const Types = () => {
                                         typeRelations.immunities.length > 0 &&
                                         <View style={{flexDirection: "row"}}>
                                             <View style={[styles.typeInfoContainer, {borderColor: "#68c367"}]}>
-                                                <Text style={styles.relationText}>x0</Text>
+                                                <Text style={[styles.relationText, {color: themeSetting2}]}>x0</Text>
                                             </View>
                                             {
                                                 typeRelations.immunities.map((item, index) => {
@@ -186,7 +191,7 @@ const Types = () => {
                                             }
                                         </View>
                                     }
-                                    <Text style={[styles.subHeaderText, {marginLeft: 0}]}>Pokemon with Types</Text>
+                                    <Text style={[styles.subHeaderText, {marginLeft: 0, paddingTop: 26, paddingBottom: 10, color: themeSetting2}]}>Pokemon with Types</Text>
                                 </View>
                                 {
                                     pokemonWith.length > 0 &&
