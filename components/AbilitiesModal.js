@@ -45,7 +45,7 @@ const AbilitiesModal = ({ children, ability }) => {
                 presentationStyle="pageSheet"
             >
                 <View style={{backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7", flex: 1}}>
-                    <View style={styles.header}>
+                    <View style={[styles.header, {backgroundColor: theme.mode === "dark" ? "#55555b" : "#c8c8ce"}]}>
                         <Text style={styles.titleText}>{formatText(ability.name)}</Text>
                     </View>
                     <ScrollView>
