@@ -4,20 +4,35 @@ import { MovesContextProvider } from '../components/contexts/MovesContext';
 import { AbilitiesContextProvider } from '../components/contexts/AbilitiesContext';
 import { TeamsContextProvider } from '../components/contexts/TeamsContext';
 import { ThemeContextProvider } from '../components/contexts/ThemeContext';
+import { useThemeContext } from '../components/hooks/useThemeContext';
 
-export default function Layout() {
-  return (
-    <ThemeContextProvider>
+
+const LayoutContent = () => {
+    const { theme } = useThemeContext()
+    return (
         <PokemonDexContextProvider>
             <MovesContextProvider>
                 <AbilitiesContextProvider>
                     <TeamsContextProvider>
-                        <Drawer>
+                        <Drawer screenOptions={{
+                            drawerStyle: {
+                                backgroundColor: theme.mode === "dark" ? "#1c1c1e" : "#fff"
+                            },
+                            drawerLabelStyle: {
+                                color: theme.mode === "dark" ? "#9e9e9e" : "#69696a"
+                            },
+                            headerStyle: {
+                                backgroundColor: theme.mode === "dark" ? "#1c1c1e" : "#fff"
+                            },
+                            headerTitleStyle: {
+                                color: theme.mode === "dark" ? "#fffaf0" : "#202021"
+                            }
+                        }}>
                             <Drawer.Screen 
                                 name='Pokedex'
                                 options={{
                                     drawerLabel: "Pokedex",
-                                    headerTitle: "Pokedex"
+                                    headerTitle: "Pokedex",
                                 }}
                             />
                             <Drawer.Screen 
@@ -73,6 +88,13 @@ export default function Layout() {
                 </AbilitiesContextProvider>
             </MovesContextProvider>
         </PokemonDexContextProvider>
+    );
+}
+
+export default function Layout() {
+  return (
+    <ThemeContextProvider>
+        <LayoutContent />
     </ThemeContextProvider>
   )
 }
