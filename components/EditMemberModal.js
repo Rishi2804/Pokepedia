@@ -36,7 +36,7 @@ const EditMemberModal = ({ children, team, index, member }) => {
                 (_, result) => {
                     if (result.rowsAffected > 0) {
                         console.log("Team successfully changed")
-                        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, team: team.name, team: updatedTeam}})
+                        dispatch({type: 'UPDATE_TEAM', payload: {id: team.id, name: team.name, team: updatedTeam}})
                     } else {
                         console.log("No rows were updated")
                     }
