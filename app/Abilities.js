@@ -5,8 +5,10 @@ import AbilitiesView from "../components/AbilitiesView";
 import BottomFilters from "../components/BottomFilters";
 import { formatText } from "../global/UtiliyFunctions";
 import LoadingView from "../components/LoadingView";
+import { useThemeContext } from "../components/hooks/useThemeContext";
 
 const Abilities = () => {
+    const { theme } = useThemeContext()
     const { abilities } = useAbilitiesContext()
     const [ abilitiesList, setAbilitiesList ] = useState(abilities)
     const [ state, setState ] = useState(1)
@@ -41,7 +43,7 @@ const Abilities = () => {
     }, [state, selected, searchTerm])
 
     return(
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === 'dark' ? "#000" : "#f2f2f7"}}>
             { loading && <LoadingView />}
             {
                 !loading &&

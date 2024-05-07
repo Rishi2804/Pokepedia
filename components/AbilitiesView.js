@@ -1,12 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 import { formatText } from "../global/UtiliyFunctions";
 import AbilitiesModal from "./AbilitiesModal";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const AbilitiesView = ({ ability }) => {
+
+    const { theme } = useThemeContext()
+
     return (
         <AbilitiesModal ability={ability}>
-            <View style={styles.container}>
-                <Text style={styles.nameText}>{formatText(ability.name)}</Text>
+            <View style={[styles.container, {borderColor: theme.mode === 'dark' ? "white" : "black", backgroundColor: theme.mode === 'dark' ? "#1c1c1e" : "white"}]}>
+                <Text style={[styles.nameText,{color: theme.mode === 'dark' ? "white" : "black"}]}>{formatText(ability.name)}</Text>
             </View>        
         </AbilitiesModal>
     );
@@ -19,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems: "center",
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         backgroundColor: "white",
         borderRadius: 10,
         height: 80

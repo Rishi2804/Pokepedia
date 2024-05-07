@@ -4,8 +4,10 @@ import { formatText } from "../global/UtiliyFunctions";
 import { versionGroupAbr } from "../maps/VersionGroupMap";
 import { useDexContext } from "./hooks/useDexContext";
 import PokemonListView from "./PokemonListView";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const AbilitiesModal = ({ children, ability }) => {
+    const { theme } = useThemeContext()
     const [isVisible, setIsVisible] = useState(false)
     const { dex } = useDexContext()
     const [ pokemonWith, setPokemonWith ] = useState([])
@@ -42,24 +44,24 @@ const AbilitiesModal = ({ children, ability }) => {
                 animationType="slide"
                 presentationStyle="pageSheet"
             >
-                <View style={{backgroundColor: "#f2f2f7", flex: 1}}>
+                <View style={{backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7", flex: 1}}>
                     <View style={styles.header}>
                         <Text style={styles.titleText}>{formatText(ability.name)}</Text>
                     </View>
                     <ScrollView>
                         <View style={styles.section}>
                             <Text style={styles.sectionHeaderText}>Game Descriptions</Text>
-                            <View style={{backgroundColor: "#fff", borderRadius: 8, paddingVertical: 8, paddingHorizontal: 5}}>
+                            <View style={{backgroundColor: theme.mode === "dark" ? "#1c1c1e" : "#fff", borderRadius: 8, paddingVertical: 8, paddingHorizontal: 5}}>
                                 {
                                     ability.descriptions.map((details, index) => {
                                         const gamesAbr = details.versionGroup.map(version => versionGroupAbr[version]).join(",")
                                         return (
                                             <View style={{flexDirection: "row", marginBottom: 10, paddingBottom: index !== ability.descriptions.length - 1 ? 15 : 0, borderBottomWidth: index !== ability.descriptions.length - 1 ? 1 : 0, borderBottomColor: "#c7c7c8"}} key={index}>
                                                 <View style={{width: 120, justifyContent: "center"}}>
-                                                    <Text style={styles.gameListText}>{gamesAbr}</Text>
+                                                    <Text style={[styles.gameListText, {color: theme.mode === "dark" ? "white" : "black"}]}>{gamesAbr}</Text>
                                                 </View>
                                                 <View style={{justifyContent: "center", paddingLeft: 5, flex: 1}}>
-                                                    <Text style={styles.descriptionText2}>{details.entry}</Text>
+                                                    <Text style={[styles.descriptionText2, {color: theme.mode === "dark" ? "white" : "black"}]}>{details.entry}</Text>
                                                 </View>
                                             </View>
                                         )
