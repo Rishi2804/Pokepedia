@@ -320,7 +320,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                     </TouchableOpacity>
                     <LinearGradient 
                         style={styles.currentTeamContainer}
-                        colors={teamInEdit.length === 0 ? ["#909090", "#909090"] : getGradientColorArray([teamInEdit[0].types[0], teamInEdit[teamInEdit.length - 1].types[0]])}
+                        colors={teamInEdit?.length === 0 ? ["#909090", "#909090"] : getGradientColorArray([teamInEdit[0].types[0], teamInEdit[teamInEdit.length - 1].types[0]])}
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}
                     >
@@ -336,7 +336,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                                             >
                                                 <LinearGradient 
                                                     style={{flex: 1, justifyContent: "center", borderRadius: 7}}
-                                                    colors={selected === index ? ["#c8c8ce", "#c8c8ce"] : getGradientColorArray(member.types) }
+                                                    colors={selected === index ? theme.mode === "dark" ? ["#1c1c1e", "#1c1c1e"] : ["#c8c8ce", "#c8c8ce"] : getGradientColorArray(member.types) }
                                                     start={{x: 0, y: 0}}
                                                     end={{x: 1, y: 1}}
                                                 >
@@ -447,7 +447,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                         />
                     </ScrollView>
                     <View style={{paddingHorizontal: 5, paddingBottom: 10, paddingTop: 5}}>
-                        <TextInput autoCorrect={false} style={styles.textInput} onSubmitEditing={(event) => setSearchTerm(event.nativeEvent.text)}/>
+                        <TextInput autoCorrect={false} style={[styles.textInput, {borderColor: themeSetting2, color: themeSetting2}]} onSubmitEditing={(event) => setSearchTerm(event.nativeEvent.text)}/>
                     </View>
                     <FlatList
                         data={filteredPokemon}

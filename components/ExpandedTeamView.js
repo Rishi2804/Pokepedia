@@ -50,6 +50,7 @@ import { useThemeContext } from "./hooks/useThemeContext";
                             <MaterialIcons name="arrow-back-ios-new" size={18} color={"white"}/>
                         </TouchableOpacity>
                         <TextInput
+                            autoCorrect={false}
                             value={teamName}
                             onChange={(event) => setTeamName(event.nativeEvent.text)}
                             style={styles.teamNameText}
