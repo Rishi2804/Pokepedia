@@ -12,9 +12,12 @@ import { darkenColor, formatName, formatText, isRegionalVariant, returnRegionalV
 import IconTypeMapper from "../maps/typeToIconMap";
 import { dexToNameLabel } from "../maps/DexToNameLabelMap";
 import { useTeamsContext } from "./hooks/useTeamsContext";
+import { useThemeContext } from "./hooks/useThemeContext";
+import { AntDesign } from "@expo/vector-icons"
 
 const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
     const db = SQLite.openDatabase('teams.db')
+    const { theme } = useThemeContext()
     const { dex } = useDexContext()
     const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
@@ -29,6 +32,11 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
     const genList = ["Generation I", "Generation II", "Generation III",
                         "Generation IV", "Generation V", "Generation VI",
                         "Generation VII", "Generation VIII", "Generation IX"]
+
+    const themeSetting = theme.mode === "dark" ? "#000" : "#fff"
+    const themeSetting2 = theme.mode === "dark" ? "#fff" : "#000"
+    const themeSetting3 = theme.mode === "dark" ? "#1c1c1e" : "#fff"
+
 
     useEffect(() => {
         const alolaDexes = ['original-alola', 'original-melemele', 'original-akala', 'original-ulaula', 'original-poni',
@@ -297,7 +305,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                 onRequestClose={() => setIsVisible(false)}
                 animationType="slide"
             >
-                <SafeAreaView style={{flex: 1}}>
+                <SafeAreaView style={{flex: 1, backgroundColor: themeSetting}}>
                     <TouchableOpacity style={styles.saveButton} onPress={() => {
                         handleSave()
                         setIsVisible(false)
@@ -305,7 +313,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                         <Text style={styles.saveButtonText}>Save</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.saveButton} onPress={() => {
-                        setTeamInEdit(teamInfo)
+                        setTeamInEdit(!creation ? teamInfo : [])
                         setIsVisible(false)
                     }}>
                         <Text style={styles.saveButtonText}>Quit</Text>
@@ -316,7 +324,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                         start={{x: 0, y: 0}}
                         end={{x: 1, y: 1}}
                     >
-                        <View style={styles.innerTeamContainer}>
+                        <View style={[styles.innerTeamContainer, {backgroundColor: themeSetting}]}>
                             {
                                 teamInEdit.map((member, index) => {
                                     return (
@@ -345,10 +353,10 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                             {
                                 teamInEdit.length < 6 &&
                                 <Pressable
-                                    style={[styles.memberContainer]}
+                                    style={[[styles.memberContainer, {borderColor: themeSetting2, backgroundColor: themeSetting3}]]}
                                     onPress={() => setSelected(-1)}
                                 >   
-                                    <Text style={{fontSize: 30}}>+</Text>
+                                    <Text style={{fontSize: 30, color: themeSetting2}}>+</Text>
                                 </Pressable>
                             }
                             <View style={{width: (16 * (5 - teamInEdit.length)) + "%"}}/>
@@ -366,8 +374,24 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                                     setDexType(dexType)
                                 }
                             }}
-                            dropdownStyle={{paddingRight: 50}}
-                            dropdownContainerStyle={{flex: 1}}
+                            dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
+                        dropdownContainerStyle={{flex: 1}}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSetting3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSetting2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSetting2
+                            },
+                        }}
                         />
                         <Dropdown
                             isMultiple
@@ -375,8 +399,25 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                             placeholder="Select Generations"
                             selectedValue={generation}
                             onValueChange={(value) => {setGeneration(value)}}
-                            dropdownStyle={{paddingRight: 50}}
-                            dropdownContainerStyle={{flex: 1}}
+                            dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        placeholderStyle={{color: themeSetting2}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
+                        dropdownContainerStyle={{flex: 1}}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSetting3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSetting2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSetting2
+                            },
+                        }}
                         />
                         <Dropdown
                             isMultiple
@@ -384,8 +425,25 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                             placeholder="Select Types"
                             selectedValue={filterTypes}
                             onValueChange={(value) => {setFilterTypes(value)}}
-                            dropdownStyle={{paddingRight: 50}}
-                            dropdownContainerStyle={{flex: 1}}
+                            dropdownStyle={{paddingRight: 50, borderColor: themeSetting2, backgroundColor: themeSetting3}}
+                        placeholderStyle={{color: themeSetting2}}
+                        selectedItemStyle={{color: themeSetting2}}
+                        dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
+                        dropdownIconStyle={{top: 20}}
+                        dropdownContainerStyle={{flex: 1}}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSetting3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSetting2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSetting2
+                            },
+                        }}
                         />
                     </ScrollView>
                     <View style={{paddingHorizontal: 5, paddingBottom: 10, paddingTop: 5}}>
@@ -400,7 +458,7 @@ const TeamBuildingModal = ({ children, teamInfo, team, creation }) => {
                                     onPress={() => handleAddPokemon(item)}
                                 >
                                     <LinearGradient
-                                        style={styles.pokemonGridView}
+                                        style={[styles.pokemonGridView, {borderColor: themeSetting2}]}
                                         colors={getGradientColorArray(item.types)}
                                         start={{x: 0, y: 0}}
                                         end={{x: 1, y: 1}}
@@ -459,7 +517,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 2,
         borderRadius: 5,
-        borderWidth: 2
+        borderWidth: 1.5
     },
     currentTeamContainer: {
         height: 150,

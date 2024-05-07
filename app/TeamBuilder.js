@@ -4,12 +4,14 @@ import { useTeamsContext } from "../components/hooks/useTeamsContext"
 import PokemonTeamView from "../components/PokemonTeamView";
 import TeamBuildingModal from "../components/TeamBuildingModal";
 import { ScrollView } from "react-native-gesture-handler";
+import { useThemeContext } from "../components/hooks/useThemeContext";
 
 const TeamBuilder = () => {
+    const { theme } = useThemeContext()
     const { teams } = useTeamsContext()
 
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7"}}>
             <ScrollView>
                 <View style={{paddingHorizontal: 5}}>
                     {teams.map((team, index) => (
@@ -17,8 +19,8 @@ const TeamBuilder = () => {
                     ))}
                 </View>
                 <TeamBuildingModal creation={true}>
-                    <View style={styles.container}>
-                        <Text style={styles.teamNameText}>+</Text>
+                    <View style={[styles.container, {backgroundColor: theme.mode === "dark" ? "#1c1c1e" : "#fff", borderColor: theme.mode === "dark" ? "#fff" : "#000"}]}>
+                        <Text style={[styles.teamNameText, {color: theme.mode === "dark" ? "#fff" : "#000"}]}>+</Text>
                     </View>
                 </TeamBuildingModal>
             </ScrollView>
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         backgroundColor: "white",
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         marginVertical: 5,
         height: 100
     },

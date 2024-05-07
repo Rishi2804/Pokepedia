@@ -10,9 +10,11 @@ import { useRef } from "react";
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useTeamsContext } from "./hooks/useTeamsContext";
 import EditMemberModal from "./EditMemberModal";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const TeamMemberView = ({ member, moves, team, index }) => {
     const db = SQLite.openDatabase('teams.db')
+    const { theme } = useThemeContext()
     const { moves: moveList } = useMovesContext()
     const { dispatch } = useTeamsContext()
     const swipeableRef = useRef(null)
@@ -66,7 +68,7 @@ const TeamMemberView = ({ member, moves, team, index }) => {
             renderLeftActions={EditLeftAction}
         >
             <LinearGradient
-                style={styles.container}
+                style={[styles.container, {borderColor: theme.mode === "dark" ? "#fff" : "#000"}]}
                 colors={[member.types[0] ? typeToGradientDarkColorMap[member.types[0]] : "white",
                     member.types[1] ? typeToGradientDarkColorMap[member.types[1]] : darkenColor(typeToGradientDarkColorMap[member.types[0]], 0.5)]}
                 start={{x: 0, y: 0}}
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 10,
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         marginVertical: 5
     },
     memberNameText: {

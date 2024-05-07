@@ -10,9 +10,11 @@ import { useMovesContext } from "./hooks/useMovesContext";
 import { FlatList } from "react-native-gesture-handler";
 import MovesView from "./MovesView";
 import { useTeamsContext } from "./hooks/useTeamsContext";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const EditMemberModal = ({ children, team, index, member }) => {
     const db = SQLite.openDatabase('teams.db')
+    const { theme } = useThemeContext()
     const { moves: moveList } = useMovesContext()
     const { dispatch } = useTeamsContext()
     const [ isVisible, setIsVisible ] = useState(false)
@@ -69,10 +71,10 @@ const EditMemberModal = ({ children, team, index, member }) => {
                 onRequestClose={() => setIsVisible(false)}
                 animationType="slide"
             >
-                <SafeAreaView>
+                <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7"}}>
                     <Pressable onPress={() => setSelectedMove(-1)}>
                         <LinearGradient
-                            style={styles.container}
+                            style={[styles.container, {borderColor: theme.mode === "dark" ? "#fff" : "#000"}]}
                             colors={[member.types[0] ? typeToGradientDarkColorMap[member.types[0]] : "white",
                                 member.types[1] ? typeToGradientDarkColorMap[member.types[1]] : darkenColor(typeToGradientDarkColorMap[member.types[0]], 0.5)]}
                             start={{x: 0, y: 0}}
@@ -244,7 +246,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderRadius: 10,
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         marginVertical: 5,
         marginHorizontal: 5,
         height: 120

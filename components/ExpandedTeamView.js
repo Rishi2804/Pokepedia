@@ -5,9 +5,11 @@ import { MaterialIcons, Foundation } from "@expo/vector-icons"
 import TeamMemberView from "./TeamMemberView";
 import TeamBuildingModal from "./TeamBuildingModal";
 import { useTeamsContext } from "./hooks/useTeamsContext";
+import { useThemeContext } from "./hooks/useThemeContext";
  
  const ExpandedTeamView = ({ children, teamInfo, team, handleDelete }) => {
     const db = SQLite.openDatabase('teams.db')
+    const { theme } = useThemeContext()
     const [ isVisible, setIsVisible ] = useState(false)
     const [ teamName, setTeamName ] = useState(team.name)
     const { dispatch } = useTeamsContext()
@@ -42,7 +44,7 @@ import { useTeamsContext } from "./hooks/useTeamsContext";
                 onRequestClose={() => setIsVisible(false)}
                 animationType="slide"
             >
-                <SafeAreaView style={{flex: 1}}>
+                <SafeAreaView style={{flex: 1, backgroundColor: theme.mode === "dark" ? "#000" : "#f2f2f7"}}>
                     <View style={{justifyContent: "space-between", flexDirection: "row", paddingHorizontal: 10}}>
                         <TouchableOpacity onPress={() => setIsVisible(false)} style={styles.backButton}>
                             <MaterialIcons name="arrow-back-ios-new" size={18} color={"white"}/>
@@ -72,8 +74,8 @@ import { useTeamsContext } from "./hooks/useTeamsContext";
                         {
                             teamInfo.length < 6 &&
                             <TeamBuildingModal teamInfo={teamInfo} team={team}>
-                                <View style={{height: 100, backgroundColor: "white", borderRadius: 10, borderWidth: 2, justifyContent: "center", alignItems: "center"}}>
-                                    <Text style={{fontSize: 50}}>+</Text>
+                                <View style={{height: 100, backgroundColor: theme.mode === "dark" ? "#1c1c1e" : "#fff", borderRadius: 10, borderWidth: 1.5, borderColor: theme.mode === "dark" ? "#fff" : "#000", justifyContent: "center", alignItems: "center"}}>
+                                    <Text style={{fontSize: 50, color: theme.mode === "dark" ? "#fff" : "#000"}}>+</Text>
                                 </View>
                             </TeamBuildingModal>
                         }

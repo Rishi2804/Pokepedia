@@ -5,8 +5,10 @@ import { typeToColourMap, typeToGradientDarkColorMap } from "../maps/typeToColou
 import { darkenColor } from "../global/UtiliyFunctions";
 import ExpandedTeamView from "./ExpandedTeamView";
 import { useTeamsContext } from "./hooks/useTeamsContext";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const PokemonTeamView = ({ team }) => {
+    const { theme } = useThemeContext()
     const { dex } = useDexContext()
     const { dispatch } = useTeamsContext()
     const dexForms = dex.flatMap(mon => Object.values(mon.forms))
@@ -60,7 +62,7 @@ const PokemonTeamView = ({ team }) => {
         { teamInfo &&
         <ExpandedTeamView teamInfo={teamInfo} team={team} handleDelete={handleDeletePress}>
             <LinearGradient
-                style={styles.container}
+                style={[styles.container, {borderColor: theme.mode === "dark" ? "#fff" : "#000"}]}
                 colors={[teamInfo[0]?.types[0] ? typeToGradientDarkColorMap[teamInfo[0].types[0]] : "white", 
                             teamInfo[teamInfo.length - 1]?.types[0] ? darkenColor(typeToColourMap[teamInfo[teamInfo.length - 1].types[0]], 0.2) : "white", ]}
                 start={{x: 0, y: 1}}
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingVertical: 8,
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1.5,
         marginVertical: 5
     },
     teamNameText: {
