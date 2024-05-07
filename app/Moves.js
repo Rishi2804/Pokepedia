@@ -105,6 +105,19 @@ const Moves = () => {
                         dropdownIcon={<AntDesign name="down" size={20} color={themeSetting2} />}
                         dropdownIconStyle={{top: 20}}
                         dropdownContainerStyle={{flex: 1}}
+                        modalControls={{
+                            modalOptionsContainerStyle: {
+                                backgroundColor: themeSetting3
+                            }
+                        }}
+                        checkboxControls={{
+                            checkboxLabelStyle: {
+                                color: themeSetting2
+                            },
+                            checkboxStyle: {
+                                borderColor: themeSetting2
+                            },
+                        }}
                     />
                 </ScrollView>
             </View>
