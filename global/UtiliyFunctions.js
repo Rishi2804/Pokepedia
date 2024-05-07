@@ -1,4 +1,5 @@
 import { types, versionGroups } from "./UniversalData";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export function darkenColor(color, darkeningFactor) {
     // Convert hex color to RGB
@@ -272,4 +273,30 @@ export function transformMoves(data) {
     const sortedResults = result.sort((a, b) => versionGroups.indexOf(a.version) - versionGroups.indexOf(b.version))
 
     return sortedResults;
+}
+
+export const getData = async (key) => {
+    try {
+        const jsonValue = await AsyncStorage.getItem(key)
+        if (jsonValue) {
+            const parsedValue = JSON.parse(jsonValue)
+            console.log("fetched: ", parsedValue)
+            return parsedValue
+        } else {
+            return null
+        }
+    } catch({ message }) {
+        console.log("get error")
+        alert(message)
+    }
+}
+
+export const storeData = async (key, value) => {
+    try {
+        const jsonValue = JSON.stringify(value)
+        await AsyncStorage.setItem(key, jsonValue)
+    } catch({ message }) {
+        console.log("store error")
+        alert(message)
+    }
 }
